@@ -1,6 +1,6 @@
 Package: genderizeR
 Type: Package
-Title: An R package for predicting gender from first names.
+Title: An R package for predicting gender from first names
 Version: 0.0.1
 Date: 2014-09-12
 Authors@R: person("Kamil", "Wais", email = "kamil.wais@gmail.com", role =

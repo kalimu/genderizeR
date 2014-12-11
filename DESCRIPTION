@@ -19,6 +19,7 @@ Imports:
     dplyr,
     stringr,
     data.table,
-    magrittr
+    magrittr,
+    RCurl
 Depends:
     R (>= 3.1.1)

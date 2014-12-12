@@ -9,7 +9,7 @@ numberOfNames()
 returns a numeric value
 }
 \description{
-\code{numberOfNames} returns a number of distinct names in database scrapped from genderize.io page.
+\code{numberOfNames} returns a number of distinct names in the genderize.io database scrapped from genderize.io page.
 }
 \examples{
 \dontrun{

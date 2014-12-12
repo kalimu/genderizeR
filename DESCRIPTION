@@ -18,6 +18,7 @@ Imports:
     httr (>= 0.5),
     dplyr,
     stringr,
+    tm,
     data.table,
     magrittr,
     RCurl

@@ -1,11 +1,11 @@
-#' Getting data for gender prediction
+#' Getting data from genderize.io  API
 #' 
 #' \code{genderizeAPI} connects with genderize.io API and checks if a term (one or more) is in the given names database and returns its gender probability and count.
 #' 
 #' 
 #' @param A vector of terms to check in genderize.io database.
 #'
-#' @return List with names' gener probabilities and counts. NULL if a given name is not located in the genderize.io database.
+#' @return A data frame with names' gener probabilities and counts. NULL if a given name is not located in the genderize.io database.
 #' 
 #' 
 #' 
@@ -59,7 +59,7 @@ genderizeAPI = function (x) {
         }
     }
 
-  namesTable <- rjson::fromJSON(JSON)
+  namesTable <- jsonlite::fromJSON(JSON)
   namesTable
     
 }

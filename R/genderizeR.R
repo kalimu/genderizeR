@@ -1,16 +1,22 @@
 
 .onAttach <- function(libname, pkgname) {
     
-    packageStartupMessage(paste0('genderizeR Package version: ',
+    packageStartupMessage(paste0('Welcome to genderizeR package version: ',
                                  utils::packageVersion("genderizeR"))
                           )
-    packageStartupMessage("\nSee what's new: news(package = 'genderizeR')")
-    packageStartupMessage("\nSee help: help(genderizeR)")
+    packageStartupMessage("\nChangelog: news(package = 'genderizeR')")
+    packageStartupMessage("Help & Contact: help(genderizeR)")
     
     packageStartupMessage("\nIf you find this package useful cite it please. Thank you! ")
     packageStartupMessage("See: citation('genderizeR')")
 
+    
+    packageStartupMessage("\nTo suppress this message use:\nsuppressPackageStartupMessages(library(genderizeR))")        	
+			
 }
+
+
+ 
 
 #' An R package for predicting gender from first names
 #'

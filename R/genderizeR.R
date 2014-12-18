@@ -29,6 +29,7 @@
 #' 
 #' @seealso 
 #' \itemize{
+#'   \item \url{http://genderize.io/} [Homepage of genderize.io API]
 #'   \item \url{https://github.com/kalimu/genderizeR} [R package source code]
 #'   \item \url{http://www.wais.kamil.rzeszow.pl/genderizeR} [R package homepage]
 #' }

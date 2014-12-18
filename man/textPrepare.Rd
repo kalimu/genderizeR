@@ -7,18 +7,24 @@
 textPrepare(x, textPrepMessages = FALSE)
 }
 \arguments{
+\item{x}{A vector of character strings.}
+
 \item{textPrepMessages}{If TRUE verbose output of the prepairing process is shown on the console.}
 }
 \value{
 frequent terms vector.
 }
 \description{
-\code{textPrepare} Takes a text vector and converts it into a vector of grequent terms.
+\code{textPrepare} Takes a text vector and converts it into a vector of single and unique terms.
 }
 \examples{
 \dontrun{
 
-x = c("Winston J. Durant, ASHP past president, dies at 84", "Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg", "The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology", "JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM")
+x = c("Winston J. Durant, ASHP past president, dies at 84",
+"Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg",
+"The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology",
+"JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM",
+"Maria Sklodowska-Curie")
 
 textPrepare(x)
 

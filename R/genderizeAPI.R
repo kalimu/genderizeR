@@ -3,7 +3,7 @@
 #' \code{genderizeAPI} connects with genderize.io API and checks if a term (one or more) is in the given names database and returns its gender probability and count.
 #' 
 #' 
-#' @param A vector of terms to check in genderize.io database.
+#' @param x A vector of terms to check in genderize.io database.
 #'
 #' @return A data frame with names' gener probabilities and counts. NULL if a given name is not located in the genderize.io database.
 #' 
@@ -12,7 +12,11 @@
 #' @examples 
 #' \dontrun{
 #' 
-#' x = c("Winston J. Durant, ASHP past president, dies at 84", "Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg", "The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology", "JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM")
+#' x = c("Winston J. Durant, ASHP past president, dies at 84", 
+#' "Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg",
+#' "The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology", 
+#' "JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM", 
+#' "Maria Sklodowska-Curie")
 #' 
 #' terms= textPrepare(x)
 #' terms

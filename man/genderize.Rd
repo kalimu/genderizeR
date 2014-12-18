@@ -10,6 +10,8 @@ genderize(x, genderDB = givenNames, blacklist = NULL)
 \item{x}{A vector of text strings.}
 
 \item{genderDB}{A data.table output of  \code{findGivenNames} function for the same vector x.}
+
+\item{blacklist}{Some terms could be exlude from gender checking}
 }
 \value{
 A data table with text strings, a term that is used to predict gender found in genderDB, a predicted gender and number of genderIndicator (1 if only one term is found in genderDB).
@@ -20,7 +22,12 @@ For a each character string \code{genderize} use output of the  \code{findGivenN
 \examples{
 \dontrun{
 
-x = c("Winston J. Durant, ASHP past president, dies at 84", "Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg", "The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology", "JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM", "Maria Sklodowska-Curie")
+x = c("Winston J. Durant, ASHP past president, dies at 84",
+"Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg",
+"The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology",
+"JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM",
+"Maria Sklodowska-Curie")
+
 givenNames = findGivenNames(x)
 givenNames = givenNames[count>40]
 genderize(x, genderDB=givenNames, blacklist=NULL)

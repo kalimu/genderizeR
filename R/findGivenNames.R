@@ -3,7 +3,8 @@
 #' \code{findGivenNames} extract from text unique terms and gets the gender predicion for all these terms.
 #' 
 #' 
-#' @param A text vector.
+#' @param x A text vector.
+#' @param queryLength How much terms can be check in a one single query
 #'
 #' @return A data table with names gener probabilities and counts for terms in given text vector. 
 #' 

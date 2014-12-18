@@ -7,7 +7,9 @@
 findGivenNames(x, queryLength = 400)
 }
 \arguments{
-\item{A}{text vector.}
+\item{x}{A text vector.}
+
+\item{queryLength}{How much terms can be check in a one single query}
 }
 \value{
 A data table with names gener probabilities and counts for terms in given text vector.

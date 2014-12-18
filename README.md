@@ -5,11 +5,11 @@ Kamil Wais
 
 R package for gender predictions based on first names.
 
-The package home page (in Polish):  
-[<http://www.wais.kamil.rzeszow.pl/genderizer>](http://www.wais.kamil.rzeszow.pl/genderizer)
+Author's home page:
+[<http://www.wais.kamil.rzeszow.pl>](http://www.wais.kamil.rzeszow.pl)
 
-Information about the openPoland.net project and documentation of the
-API: [<http://genderize.io>](http://genderize.io)
+Information about the genderize.io project and documentation of the API:
+[<http://genderize.io>](http://genderize.io)
 
 Description
 -----------
@@ -40,7 +40,7 @@ Remember to install `devtools` package first!
     ## Downloading github repo kalimu/genderizeR@master
     ## Installing genderizeR
     ## "C:/PROGRA~1/R/R-31~1.2/bin/x64/R" --vanilla CMD INSTALL "C:\Users\Kamil  \
-    ##   Wais\AppData\Local\Temp\RtmpGihsvI\devtools242c304d6ff\kalimu-genderizeR-9337efb5cf9dfc16261bf475c200deaf0f1af9b0"  \
+    ##   Wais\AppData\Local\Temp\Rtmp2hnQqZ\devtools22ec71287fd8\kalimu-genderizeR-5c643f8f9c2602e3d9df052c2ee5cb93155d8547"  \
     ##   --library="C:/Program Files/R/R-3.1.2/library" --install-tests 
     ## 
     ## Welcome to genderizeR package version: 0.0.1

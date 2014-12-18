@@ -43,6 +43,15 @@ genderizeAPI = function (x) {
                               ']='),1),
                        termsQuery[-1],
                        collapse = "")) 
+    
+    
+    if (length(termsQuery)==1) {
+        
+        query = paste0('http://api.genderize.io?name[0]=',
+               termsQuery[1]) 
+        
+        
+    }
  
     ## loop checking connection with server
     JSON = ""

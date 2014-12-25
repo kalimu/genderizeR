@@ -74,16 +74,16 @@ findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE) {
         #       }
         #     }
   
-        cat('\r')
+
         cat('\r')
         cat(paste0('Packages done: ', p,
-                   '. Packages left: ', nPackages-p,
-                   '. Names: ',nrow(dfNames), '.\n'
+                   '. ToDo: ', nPackages-p,
+                   '. First names: ',nrow(dfNames), '. '
                    )
             )
   
         
-        pb   <- txtProgressBar(0, nPackages, style=3)
+        pb   <- txtProgressBar(0, nPackages, style=3, width=10)
         setTxtProgressBar(pb, p)
         
     }

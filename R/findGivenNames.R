@@ -5,7 +5,8 @@
 #' 
 #' @param x A text vector.
 #' @param queryLength How much terms can be check in a one single query
-#'
+#' @param distributedCorpus If TRUE use as.DistributedCorpus from the tm.plugin.dc package.
+#' 
 #' @return A data table with names gener probabilities and counts for terms in given text vector. 
 #' 
 #' 
@@ -20,10 +21,11 @@
 
  
 
-findGivenNames = function (x, queryLength = 400) {
+findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE) {
  
   
-    terms = textPrepare(x, textPrepMessages = TRUE)   
+    terms = textPrepare(x, textPrepMessages = TRUE, 
+                        distributedCorpus = distributedCorpus)   
     
     startPackage = 1
     nPackages = ceiling(length(terms)/queryLength)

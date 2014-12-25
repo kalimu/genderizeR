@@ -5,6 +5,7 @@
 #' 
 #' @param x A vector of character strings.
 #' @param textPrepMessages If TRUE verbose output of the prepairing process is shown on the console.
+#' @param distributedCorpus If TRUE use as.DistributedCorpus from the tm.plugin.dc package.
 #'
 #' @return frequent terms vector.
 #' 
@@ -24,7 +25,7 @@
 #' }
 
 
-textPrepare = function (x, textPrepMessages = FALSE) {
+textPrepare = function (x, textPrepMessages = FALSE, distributedCorpus = FALSE) {
 
 
     if (textPrepMessages == TRUE) cat('removing special characters...\n')    
@@ -37,8 +38,11 @@ textPrepare = function (x, textPrepMessages = FALSE) {
 
     if (textPrepMessages == TRUE) cat('building text-mining corpus...\n')    
     
-    # x = tm::Corpus(tm::VectorSource(x))
-    x = tm.plugin.dc::as.DistributedCorpus(tm::VCorpus(tm::VectorSource(x)))
+    if (!distributedCorpus) {
+        x = tm::Corpus(tm::VectorSource(x))
+    } else {
+        x = tm.plugin.dc::as.DistributedCorpus(tm::VCorpus(tm::VectorSource(x)))
+    }
 
     if (textPrepMessages == TRUE) cat('building term matrix...\n')   
     if (textPrepMessages == TRUE) cat('removing abbreviations...\n')  

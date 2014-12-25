@@ -4,12 +4,14 @@
 \alias{findGivenNames}
 \title{Getting gender prediction data for a given text vector.}
 \usage{
-findGivenNames(x, queryLength = 400)
+findGivenNames(x, queryLength = 400, distributedCorpus = FALSE)
 }
 \arguments{
 \item{x}{A text vector.}
 
 \item{queryLength}{How much terms can be check in a one single query}
+
+\item{distributedCorpus}{If TRUE use as.DistributedCorpus from the tm.plugin.dc package.}
 }
 \value{
 A data table with names gener probabilities and counts for terms in given text vector.

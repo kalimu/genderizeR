@@ -1,4 +1,10 @@
-openPoland 0.0.1.0
+openPoland 0.1.1
+==============
+
+* optional distributed corpus in textPrepare function
+
+
+openPoland 0.0.1
 ==============
 
 * dev version building on GitHub

@@ -83,7 +83,7 @@ findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE) {
                )
         )
  
-        pb   <- txtProgressBar(0, nPackages, style=3, width=43)
+        pb   <- txtProgressBar(0, nPackages, style=3, width=30)
         setTxtProgressBar(pb, p)
  
 

@@ -37,8 +37,8 @@ textPrepare = function (x, textPrepMessages = FALSE) {
 
     if (textPrepMessages == TRUE) cat('building text-mining corpus...\n')    
     
-    x = tm::Corpus(tm::VectorSource(x))
- 
+    # x = tm::Corpus(tm::VectorSource(x))
+    x = tm.plugin.dc::as.DistributedCorpus(tm::VCorpus(tm::VectorSource(x)))
 
     if (textPrepMessages == TRUE) cat('building term matrix...\n')   
     if (textPrepMessages == TRUE) cat('removing abbreviations...\n')  

@@ -23,7 +23,7 @@
 findGivenNames = function (x, queryLength = 400) {
  
   
-    terms = textPrepare(x)   
+    terms = textPrepare(x, textPrepMessages = TRUE)   
     
     startPackage = 1
     nPackages = ceiling(length(terms)/queryLength)

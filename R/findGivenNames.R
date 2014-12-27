@@ -77,7 +77,7 @@ findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE) {
         #     }
   
 
-        cat('\r')
+       cat('\r')
  
         cat(paste0('Packages done: ', p,
                '. ToDo: ', nPackages-p,

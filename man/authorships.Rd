@@ -10,7 +10,6 @@
   \item{authors}{all authors for this article}
   \item{value}{a single author/authorships}
   \item{genderCoded}{manually coded gender of an author}
-  ...
 }}
 \source{
 \url{http://webofknowledge.com/}

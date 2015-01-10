@@ -83,25 +83,23 @@ genderize = function (x, genderDB=givenNames, blacklist=NULL) {
         
         db[i, gender := as.character(itemGender)] 
       
-         setTxtProgressBar(pb, i) 
-
-            if (i %% 100 == 0 | i == length(x) | i == 1) {
+        if (i %% 100 == 0 | i == length(x) | i == 1) {
                 
                
-               cat('\r') 
+               cat('\n') 
          
                 cat(paste0('Items done: ', i,
-                       '. ToDo: ', length(x)-i, '. \r'
+                       '. ToDo: ', length(x)-i, '. \n'
                        )
                 )
            
                # setTxtProgressBar(pb, i)    
     
-            }
-    
-               # setTxtProgressBar(pb, i)             
-          
         }
+    
+               setTxtProgressBar(pb, i)             
+          
+      }
             
 
       cat('\n')

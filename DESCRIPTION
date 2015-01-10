@@ -24,3 +24,4 @@ Imports:
 Depends:
     R (>= 3.1.1)
 Encoding: UTF-8
+LazyData: true

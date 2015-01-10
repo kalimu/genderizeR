@@ -83,7 +83,7 @@ genderize = function (x, genderDB=givenNames, blacklist=NULL) {
         
         db[i, gender := as.character(itemGender)] 
       
-        if (i %% 100 == 0 | i == length(x) | i == 1) {
+        if (i %% 500 == 0 | i == length(x) | i == 1) {
                 
                
                cat('\n') 

@@ -25,13 +25,7 @@ A list
 \examples{
 \dontrun{
 
-x = c("Winston J. Durant, ASHP past president, dies at 84",
-"Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg",
-"The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology",
-"JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM",
-"Maria Sklodowska-Curie")
 
-textPrepare(x)
 
 }
 }

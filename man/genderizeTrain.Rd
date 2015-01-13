@@ -4,7 +4,7 @@
 \alias{genderizeTrain}
 \title{Training genderize function}
 \usage{
-genderizeTrain(x, y, givenNamesDB, probs, counts)
+genderizeTrain(x, y, givenNamesDB, probs, counts, parallel = FALSE)
 }
 \arguments{
 \item{x}{A text vector that we want to genderize}
@@ -18,6 +18,8 @@ Used to subseting a givenNamesDB dataset}
 
 \item{counts}{A numeric vector of different count values.
 Used to subseting a givenNamesDB dataset}
+
+\item{parallel}{If TRUE it computes errors with the use of \code{parallel} package and available cores. It is design to work on windows machines. Default is FALSE.}
 }
 \value{
 A data frame with all combination of parameters and computed
@@ -36,5 +38,8 @@ of 'probability' and 'count' paramters.
 
 
 }
+}
+\seealso{
+Implementation of parallel mclapply on Windows machines by Nathan VanHoudnos \link{http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R}
 }
 

@@ -17,6 +17,6 @@
  
 # titles = readRDS("data-raw/sample_merged.rds")
 # library(dplyr)
-# titles = titles %>% mutate(firstName = givenName, gender = genderAuto) %>% select(title, firstName, gender)
+# titles = titles %>% mutate(firstName = givenName, gender = genderAuto) %>% select(title, genderCoded)
 # head(titles)
 # devtools::use_data(titles, overwrite=TRUE)

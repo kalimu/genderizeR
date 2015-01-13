@@ -23,7 +23,7 @@
 #' }
 
 # labels = c("female", "male", "male", "unknown", "noname")
-# predictions = c("female", "male", "female", NA, NA)
+# predictions = c("female", "male", "female", "female", NA)
 
 classificatonErrors = function (labels, predictions) {
     

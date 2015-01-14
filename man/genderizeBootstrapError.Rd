@@ -2,7 +2,7 @@
 % Please edit documentation in R/genderizeBootstrapError.R
 \name{genderizeBootstrapError}
 \alias{genderizeBootstrapError}
-\title{Training genderize function}
+\title{Gender prediction errors on bootstrap samples}
 \usage{
 genderizeBootstrapError(x, y, givenNamesDB, probs, counts,
   num_bootstraps = 50, parallel = TRUE)
@@ -20,19 +20,16 @@ Used to subseting a givenNamesDB dataset}
 \item{counts}{A numeric vector of different count values.
 Used to subseting a givenNamesDB dataset}
 
-\item{parallel}{If TRUE it computes errors with the use of \code{parallel} package and available cores. It is design to work on windows machines. Default is FALSE.}
+\item{parallel}{It is passed to \code{genderizeTrain} function. If TRUE it computes errors with the use of \code{parallel} package and available cores. It is design to work on windows machines. Default is FALSE.}
 }
 \value{
-A data frame with all combination of parameters and computed
-sets of prediction indicators for each combination:
-  \item{errorCoded}{classification error for predictet & unpredicted gender}
-  \item{errorCodedWithoutNA}{for predicted gender only}
-  \item{naCoded}{of manually coded gender only }
-  \item{errorGenderBias}{net gender bias error}
+A list of bootstrap errors:
+  \item{apparent}{Apparent Error Rate}
+  \item{loo_boot}{LOO-Boot Error Rate}
+  \item{errorRate632plus}{.632+ Error Rate}
 }
 \description{
-\code{genderizeTrain} predicts gender and checks different combination
-of 'probability' and 'count' paramters.
+\code{genderizeBootstrapError} calculates the Apparent Error Rate, the Leave-One-Out bootstrap error rate  and the .632+ error rate from Efron and Tibishirani (1997). The code is modified version of several functions from \code{sortinghat} package by John A.Ramey.
 }
 \examples{
 \dontrun{
@@ -41,6 +38,6 @@ of 'probability' and 'count' paramters.
 }
 }
 \seealso{
-Implementation of parallel mclapply on Windows machines by Nathan VanHoudnos \link{http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R}
+In the \code{sortinghat} package: \code{\link[sortinghat]{errorest_apparent}} \code{\link[sortinghat]{errorest_loo_boot}} \code{\link[sortinghat]{errorest_632plus}}
 }
 

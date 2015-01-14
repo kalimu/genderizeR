@@ -31,6 +31,8 @@
 
 genderize = function (x, genderDB=givenNames, blacklist=NULL) {
     
+    cat(paste0('ToDo: ', length(x), '. \n'))
+    
     pb <- txtProgressBar(0, length(x), style=3)  
 
     db = data.table::data.table(
@@ -83,19 +85,19 @@ genderize = function (x, genderDB=givenNames, blacklist=NULL) {
         
         db[i, gender := as.character(itemGender)] 
       
-        if (i %% 500 == 0 | i == length(x) | i == 1) {
-                
-               
-               cat('\n') 
-         
-                cat(paste0('Items done: ', i,
-                       '. ToDo: ', length(x)-i, '. \n'
-                       )
-                )
-           
-               # setTxtProgressBar(pb, i)    
-    
-        }
+#         if (i %% 500 == 0 | i == length(x) | i == 1) {
+#                 
+#                
+#                cat('\n') 
+#          
+#                 cat(paste0('Items done: ', i,
+#                        '. ToDo: ', length(x)-i, '. \n'
+#                        )
+#                 )
+#            
+#                # setTxtProgressBar(pb, i)    
+#     
+#         }
     
                setTxtProgressBar(pb, i)             
           

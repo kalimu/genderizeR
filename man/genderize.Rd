@@ -4,7 +4,7 @@
 \alias{genderize}
 \title{Predicting gender for character strings.}
 \usage{
-genderize(x, genderDB = givenNames, blacklist = NULL)
+genderize(x, genderDB = givenNames, blacklist = NULL, progress = TRUE)
 }
 \arguments{
 \item{x}{A vector of text strings.}

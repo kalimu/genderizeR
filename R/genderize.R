@@ -29,11 +29,11 @@
 
 
 
-genderize = function (x, genderDB=givenNames, blacklist=NULL) {
+genderize = function (x, genderDB=givenNames, blacklist=NULL, progress=TRUE) {
     
-    cat(paste0('ToDo: ', length(x), '. \n'))
+    if (progress) cat(paste0('ToDo: ', length(x), '. \n'))
     
-    pb <- txtProgressBar(0, length(x), style=3)  
+    if (progress) pb <- txtProgressBar(0, length(x), style=3)  
 
     db = data.table::data.table(
                             text=x, 
@@ -99,7 +99,7 @@ genderize = function (x, genderDB=givenNames, blacklist=NULL) {
 #     
 #         }
     
-               setTxtProgressBar(pb, i)             
+               if (progress) setTxtProgressBar(pb, i)             
           
       }
             

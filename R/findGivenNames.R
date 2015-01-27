@@ -21,17 +21,18 @@
 
  
 
-findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE) {
+findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE,
+                           progress = TRUE) {
  
 
   
-    terms = textPrepare(x, textPrepMessages = TRUE, 
+    terms = textPrepare(x, textPrepMessages = progress, 
                         distributedCorpus = distributedCorpus)   
     
     startPackage = 1
     nPackages = ceiling(length(terms)/queryLength)
     
-    pb   <- txtProgressBar(0, nPackages, style=3, width=40)    
+    if (progress) pb   <- txtProgressBar(0, nPackages, style=3, width=40)    
  
     dfNames = data.frame(name=character(), 
                          gender=character(), 
@@ -79,14 +80,14 @@ findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE) {
 
        cat('\r')
  
-        cat(paste0('Packages done: ', p,
+        if (progress) cat(paste0('Packages done: ', p,
                '. ToDo: ', nPackages-p,
                '. First names: ',nrow(dfNames), '. \n'
                )
         )
  
 
-        setTxtProgressBar(pb, p)
+        if (progress) setTxtProgressBar(pb, p)
  
 
        

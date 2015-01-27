@@ -23,18 +23,36 @@
 #' }
 
 # labels = c("female", "male", "male", "unknown", "noname")
+# predictions = c(rep("male", 5))
 # predictions = c("female", "male", "female", "female", NA)
+#  titlesCoded = titles[titles$genderCoded %in% c("female", "male"),]
+# cbind('N' = table(titlesCoded$genderCoded),
+#       '%' = round(prop.table(table(titlesCoded$genderCoded))*100,0))
+# 
+#                      
+# classificatonErrors(labels = titlesCoded$genderCoded, predictions = rep("male", NROW(titlesCoded$genderCoded)))   
+#     
 
 classificatonErrors = function (labels, predictions) {
     
     
+
     confMatrix =  
     table(labels = labels, 
           predictions = predictions, 
           useNA = 'always')
 
+    if (sum(colnames(confMatrix) %in% "female") == 0) {
+        
+      confMatrix = cbind('female' = 0, confMatrix)
+    }
     
-
+    if (sum(colnames(confMatrix) %in% "male") == 0) {
+        
+      confMatrix = cbind(confMatrix, 'male' = 0)
+    }
+   
+    
     tab = confMatrix[rownames(confMatrix) %in% c("female", "male", "unknown", "noname"),]
     errorTotal = (1-(sum(diag(tab))/sum(tab)))
     naTotal = (sum(tab[,is.na(colnames(confMatrix))])/sum(tab))

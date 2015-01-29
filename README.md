@@ -14,19 +14,17 @@ Information about the genderize.io project and documentation of the API:
 Description
 -----------
 
-The R package `genderizeR` communicates with `genderize.io API` - a gate
-to huge database of first names and theirs gender. Functions from the
-package takes as input a character string (or strings) and prepare text
-for gender prediction that is based on first names that appear somewhere
-in each element of the character vector.
+The genderizeR package uses genderize.io API to predict gender from
+first names extracted from text corpuses. The accuracy of prediction
+could be control by two parameters: counts of first names in database
+and probability of gender given the first name.
 
 Installing the package
 ----------------------
 
 ### Stable version from CRAN
 
-Not yet, but this is the goal. Please see below for code that let you
-install the package from GitHub.
+    install.packages('genderizeR')
 
 ### Developer version from GitHub
 
@@ -37,13 +35,7 @@ Remember to install `devtools` package first!
 
     library(genderizeR)
 
-    ## Downloading github repo kalimu/genderizeR@master
-    ## Installing genderizeR
-    ## "C:/PROGRA~1/R/R-31~1.2/bin/x64/R" --vanilla CMD INSTALL "C:\Users\Kamil  \
-    ##   Wais\AppData\Local\Temp\Rtmp2hnQqZ\devtools22ec71287fd8\kalimu-genderizeR-5c643f8f9c2602e3d9df052c2ee5cb93155d8547"  \
-    ##   --library="C:/Program Files/R/R-3.1.2/library" --install-tests 
-    ## 
-    ## Welcome to genderizeR package version: 0.0.1
+    ## Welcome to genderizeR package version: 1.0.0
     ## 
     ## Changelog: news(package = 'genderizeR')
     ## Help & Contact: help(genderizeR)
@@ -60,7 +52,7 @@ A working example
     # How many unique first names are there in genderize.io database?
     numberOfNames()
 
-    ## [1] 190560
+    ## [1] 199969
 
     # An example for a character vector of strings
     x = c("Winston J. Durant, ASHP past president, dies at 84",
@@ -70,33 +62,20 @@ A working example
     "Maria Sklodowska-Curie")
 
     # Search for terms that could be first names
-    givenNames = findGivenNames(x)
-
-    ## Packages done: 1. Packages left: 0. Names: 12.
-    ## 
-      |                                                                       
-      |                                                                 |   0%
-      |                                                                       
-      |=================================================================| 100%
+    givenNames = findGivenNames(x, progress = FALSE)
 
     # Use only terms that have more than 40 counts in the database
     givenNames = givenNames[count>40]
     givenNames
 
     ##       name gender probability count
-    ## 1:     jan   male        0.59  1032
-    ## 2:   maria female        0.99  5604
-    ## 3: norbert   male        1.00    56
-    ## 4: winston   male        0.97    61
+    ## 1:     jan   male        0.58  5479
+    ## 2:   maria female        1.00 21262
+    ## 3: norbert   male        1.00    59
+    ## 4: winston   male        0.97    68
 
     # Genderize the original character vector
-    genderize(x, genderDB=givenNames, blacklist=NULL)
-
-    ## 
-      |                                                                       
-      |                                                                 |   0%
-      |                                                                       
-      |=================================================================| 100%
+    genderize(x, genderDB=givenNames, blacklist=NULL, progress = FALSE)
 
     ##                                                                             text
     ## 1:                            Winston J. Durant, ASHP past president, dies at 84

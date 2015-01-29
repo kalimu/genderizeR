@@ -13,6 +13,9 @@
 #' @source \url{http://webofknowledge.com/}
 #' 
 #' 
+#' 
+#' @export
+
 "titles"
  
 # titles = readRDS("data-raw/sample_merged.rds")

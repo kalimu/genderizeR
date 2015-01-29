@@ -25,10 +25,11 @@
 #' @examples 
 #' \dontrun{
 #' 
+#' 
 
 #'
 #' }
- 
+#' @export 
     
 genderizePredict = function(trainedParams, 
                             newdata, 

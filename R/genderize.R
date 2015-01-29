@@ -25,7 +25,8 @@
 #' genderize(x, genderDB=givenNames, blacklist=NULL)
 #'
 #' }
-
+#' 
+#' @export
 
 
 

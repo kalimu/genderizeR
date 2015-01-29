@@ -12,7 +12,7 @@
 #' values: c("female", "male", NA).
 #' 
 #' @return A list 
-#' 
+
 #' 
 #' 
 #' @examples 
@@ -21,6 +21,8 @@
 #' 
 #' 
 #' }
+#' 
+#' @export
 
 # labels = c("female", "male", "male", "unknown", "noname")
 # predictions = c(rep("male", 5))

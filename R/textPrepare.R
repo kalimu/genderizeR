@@ -23,7 +23,8 @@
 #' textPrepare(x)
 #' 
 #' }
-
+#' 
+#' @export
 
 textPrepare = function (x, textPrepMessages = FALSE, distributedCorpus = FALSE) {
 

@@ -16,6 +16,9 @@
 #' }
 #' @source \url{http://genderize.io/}
 #' 
+#' 
+#' @export
+
 "givenNamesDB_authorships"
 
 # givenNamesDB_authorships = readRDS("data-raw/givenNamesDB_authorships.rds")

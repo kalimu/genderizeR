@@ -27,6 +27,10 @@
 #' 
 #' @name genderizeR
 #' 
+#'
+#' @importFrom magrittr "%>%"
+#' @importFrom data.table ":="
+#' 
 #' @seealso 
 #' \itemize{
 #'   \item \url{http://genderize.io/} [Homepage of genderize.io API]
@@ -34,6 +38,7 @@
 #'   \item \url{http://www.wais.kamil.rzeszow.pl/genderizeR} [R package homepage]
 #' }
 #' 
+# @export
 #' 
 #@keywords internal
  

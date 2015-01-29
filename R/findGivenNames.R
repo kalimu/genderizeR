@@ -18,7 +18,8 @@
 #' findGivenNames(paste0(grid$a,grid$b))
 #' 
 #' }
-
+#' 
+#' @export
  
 
 findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE,

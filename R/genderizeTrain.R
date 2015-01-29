@@ -28,7 +28,8 @@
 
 #'
 #' }
-
+#' 
+#' @export
 genderizeTrain = function(x, 
                           y, 
                           givenNamesDB,

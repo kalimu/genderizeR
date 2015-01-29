@@ -22,10 +22,13 @@
 #' @examples 
 #' \dontrun{
 #' 
+#' 
 
 #'
 #' }
-
+#' 
+#' @export
+#' 
 genderizeBootstrapError = function(x, y, 
                           givenNamesDB,
                           probs, counts,

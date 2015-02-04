@@ -12,6 +12,8 @@ genderize(x, genderDB = givenNames, blacklist = NULL, progress = TRUE)
 \item{genderDB}{A data.table output of  \code{findGivenNames} function for the same vector x.}
 
 \item{blacklist}{Some terms could be exlude from gender checking}
+
+\item{progress}{If TRUE (default) progress bar is displayed in the console}
 }
 \value{
 A data table with text strings, a term that is used to predict gender found in genderDB, a predicted gender and number of genderIndicator (1 if only one term is found in genderDB).

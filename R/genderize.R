@@ -6,6 +6,7 @@
 #' @param x A vector of text strings.
 #' @param genderDB A data.table output of  \code{findGivenNames} function for the same vector x.
 #' @param blacklist Some terms could be exlude from gender checking
+#' @param progress If TRUE (default) progress bar is displayed in the console
 #'
 #' @return A data table with text strings, a term that is used to predict gender found in genderDB, a predicted gender and number of genderIndicator (1 if only one term is found in genderDB). 
 #' 

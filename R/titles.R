@@ -13,8 +13,7 @@
 #' @source \url{http://webofknowledge.com/}
 #' 
 #' 
-#' 
-#' @export
+
 
 "titles"
  

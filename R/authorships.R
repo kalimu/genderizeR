@@ -1,7 +1,7 @@
 #' Authorships sample
 #'
 #' A dataset containing sample of authorships (unique combination of authors 
-#' and titles) from WebOfScience records of articles of biographical-items 
+#' and titles) from Web Of Science records of articles of biographical-items 
 #' and items-about-individual types.
 #'
 #' @format A data frame with 2641 rows and 5 variables:
@@ -14,7 +14,6 @@
 #' }
 #' @source \url{http://webofknowledge.com/}
 #' 
-#' @export
 #' 
 
 "authorships"

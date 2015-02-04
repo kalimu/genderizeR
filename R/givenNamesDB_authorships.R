@@ -17,7 +17,7 @@
 #' @source \url{http://genderize.io/}
 #' 
 #' 
-#' @export
+
 
 "givenNamesDB_authorships"
 

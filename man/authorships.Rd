@@ -20,7 +20,7 @@ authorships
 }
 \description{
 A dataset containing sample of authorships (unique combination of authors
-and titles) from WebOfScience records of articles of biographical-items
+and titles) from Web Of Science records of articles of biographical-items
 and items-about-individual types.
 }
 \keyword{datasets}

@@ -40,10 +40,10 @@
 #' @export
 
 
-
 classificatonErrors = function (labels, predictions) {
     
-    
+# labels = c("male", "male")
+#    predictions = c("male", "male")
 
     confMatrix =  
     table(labels = labels, 
@@ -59,6 +59,17 @@ classificatonErrors = function (labels, predictions) {
         
       confMatrix = cbind(confMatrix, 'male' = 0)
     }
+    
+    if (sum(rownames(confMatrix) %in% "female") == 0) {
+        
+      confMatrix = rbind('female' = 0, confMatrix)
+    }
+    
+    if (sum(rownames(confMatrix) %in% "male") == 0) {
+        
+      confMatrix = rbind(confMatrix, 'male' = 0)
+    }
+   
    
     
     tab = confMatrix[rownames(confMatrix) %in% c("female", "male", "unknown", "noname"),]
@@ -75,10 +86,21 @@ classificatonErrors = function (labels, predictions) {
     
     tab = confMatrix[rownames(confMatrix) %in% c("female", "male"),
                      colnames(confMatrix) %in% c("female", "male")]
-    errorCodedWithoutNA = (1-(sum(diag(tab))/sum(tab)))
+    
+    if (sum(tab)==0) { 
+    errorCodedWithoutNA = 0
+    errorGenderBias = 0
+        
+    } else {
+     errorCodedWithoutNA = (1-(sum(diag(tab))/sum(tab)))
     errorGenderBias = 
         (tab[rownames(tab)=='male',colnames(tab)=='female']-
-             tab[rownames(tab)=='female',colnames(tab)=='male'])/sum(tab)
+             tab[rownames(tab)=='female',colnames(tab)=='male'])/sum(tab)       
+        
+        
+    }
+    
+
 
     list(confMatrix = confMatrix, 
          errorTotal = errorTotal,

@@ -4,11 +4,9 @@
 \name{titles}
 \alias{titles}
 \title{Titles sample}
-\format{A data frame with 2641 rows and 5 variables:
+\format{A data frame with 2641 rows and 2 variables:
 \describe{
   \item{title}{title of an article}
-  \item{authors}{all authors for this article}
-  \item{value}{a single author/authorships}
   \item{genderCoded}{manually coded gender of an author}
 }}
 \source{
@@ -18,7 +16,8 @@
 titles
 }
 \description{
-A dataset containing sample of article titles from WebOfScience records of
+A dataset containing a random sample of article titles
+from WebOfScience records of
 biographical-items types.
 }
 \keyword{datasets}

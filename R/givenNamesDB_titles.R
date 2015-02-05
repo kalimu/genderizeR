@@ -3,7 +3,7 @@
 #' A dataset with a gender data from genderize.io for the sample 
 #' of \pkg{titles} in this package. This is the output 
 #' of \code{findGivenNames} 
-#' function output is dated on January 12, 2015. 
+#' function that was performed on December 26, 2014. 
 #'
 #' @format A data.table object with 872 rows and 4 variables:
 #' \describe{

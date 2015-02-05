@@ -17,6 +17,8 @@ genderizePredict = function(trainedParams,
                             newdata, 
                             givenNamesDB
                         ){
+    
+        probability <- count <- NULL
      
         givenNamesDB = data.table::as.data.table(givenNamesDB)
         

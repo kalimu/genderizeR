@@ -33,7 +33,9 @@
 
 genderize = function (x, genderDB=givenNames, blacklist=NULL, progress=TRUE) {
     
-    if (progress) cat(paste0('ToDo: ', length(x), '. \n'))
+    givenNames <- genderIndicators <- givenName <- NULL
+    
+#     if (progress) cat(paste0('ToDo: ', length(x), '. \n'))
     
     if (progress) pb <- txtProgressBar(0, length(x), style=3)  
 

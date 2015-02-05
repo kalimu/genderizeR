@@ -10,6 +10,7 @@
 #' Used to subseting a givenNamesDB dataset
 #' @param counts A numeric vector of different count values. 
 #' Used to subseting a givenNamesDB dataset
+#' @param num_bootstraps Number of bootstrap samples. Default is 50.
 #' @param parallel It is passed to \code{genderizeTrain} function. If TRUE it computes errors with the use of \code{parallel} package and available cores. It is design to work on windows machines. Default is FALSE.
 #' 
 #' @return A list of bootstrap errors:
@@ -28,7 +29,9 @@
 #' classificatonErrors(labels = y,predictions = y)
 #' probs = seq(from =  0.5, to = 0.9, by = 0.05)
 #' counts = c(1)
-#' set.seed(23); genderizeBootstrapError(x = x, y = y, givenNamesDB = givenNamesDB, probs = probs, counts = counts, num_bootstraps = 20, parallel = TRUE)
+#' set.seed(23)
+#' genderizeBootstrapError(x = x, y = y, givenNamesDB = givenNamesDB, 
+#' probs = probs, counts = counts, num_bootstraps = 20, parallel = TRUE)
 #'$apparent
 #'[1] 0.9230769
 #'$loo_boot

@@ -15,9 +15,9 @@
 #' 
 #' @return A data frame with all combination of parameters and computed 
 #' sets of prediction indicators for each combination:
-#'   \item{errorCoded}{classification error for predictet & unpredicted gender}
+#'   \item{errorCoded}{classification error for predicted & unpredicted gender}
 #'   \item{errorCodedWithoutNA}{for predicted gender only}
-#'   \item{naCoded}{of manually coded gender only }
+#'   \item{naCoded}{proportion of items with manually codded gender and with unpredicted gender }
 #'   \item{errorGenderBias}{net gender bias error}
 #'   
 #' @seealso Implementation of parallel mclapply on Windows machines by Nathan VanHoudnos \link{http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R}
@@ -25,7 +25,12 @@
 #' @examples 
 #' \dontrun{
 #' 
-
+#' x = c('Alex', 'Darrell', 'Kale', 'Lee', 'Robin', 'Terry', 'John', 'Tom')
+#' y = c(rep('male',length(x)))
+#' givenNamesDB = findGivenNames(x)
+#' probs = seq(from =  0.5, to = 0.9, by = 0.05)
+#' counts = c(1, 10)
+#' genderizeTrain(x = x, y = y, givenNamesDB = givenNamesDB, probs = probs, counts = counts) 
 #'
 #' }
 #' 

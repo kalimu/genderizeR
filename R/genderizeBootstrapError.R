@@ -22,8 +22,19 @@
 #' @examples 
 #' \dontrun{
 #' 
-#' 
-
+#' x = c('Alex', 'Darrell', 'Kale', 'Lee', 'Robin', 'Terry', rep('Robin', 20))
+#' y = c('female', 'female', 'female', 'female', 'female', 'female', rep('male', 20))
+#' givenNamesDB = findGivenNames(x)
+#' classificatonErrors(labels = y,predictions = y)
+#' probs = seq(from =  0.5, to = 0.9, by = 0.05)
+#' counts = c(1)
+#' set.seed(23); genderizeBootstrapError(x = x, y = y, givenNamesDB = givenNamesDB, probs = probs, counts = counts, num_bootstraps = 20, parallel = TRUE)
+#'$apparent
+#'[1] 0.9230769
+#'$loo_boot
+#'[1] 0.9401709
+#'$errorRate632plus
+#'[1] 0.9336006
 #'
 #' }
 #' 
@@ -33,12 +44,15 @@ genderizeBootstrapError = function(x, y,
                           givenNamesDB,
                           probs, counts,
                           num_bootstraps = 50,
-                          parallel = TRUE
+                          parallel = FALSE
                           ){
     
     givenNamesDB = data.table::as.data.table(givenNamesDB)
     
-    writeLines(c("starting bootstraping..."), "bootstraping.log")
+    seq_y <- seq_along(y)
+    rep_NA <- rep.int(NA, times = length(y))
+    
+#     writeLines(c("starting bootstraping..."), "bootstraping.log")
     
     loo_boot_error_rates <- 
         
@@ -55,12 +69,12 @@ genderizeBootstrapError = function(x, y,
             classifications = genderizePredict(trainedParams,
                                                newdata=x[test],
                                                givenNamesDB = givenNamesDB)
-            
-            sink("bootstraping.log", append = TRUE)
-            
-                cat(paste0('[',num_bootstraps,']: ', b,'\n'))
-            
-            sink()  # empty the sink stack
+#             
+#             sink("bootstraping.log", append = TRUE)
+#             
+#                 cat(paste0('[',num_bootstraps,']: ', b,'\n'))
+#             
+#             sink()  # empty the sink stack
             
             print(b)
             
@@ -97,6 +111,11 @@ genderizeBootstrapError = function(x, y,
     
     p_k <- as.vector(tab)/n
     q_k <- as.vector(table(classify_out))/n
+
+if (!any(classify_out == "unknown")) {
+    q_k = c(q_k, 0)
+}
+
     gamma_hat <- drop(p_k %*% (1 - q_k))
     
     R_hat <- (loo_boot - apparent)/(gamma_hat - apparent)

@@ -5,7 +5,7 @@
 \title{Gender prediction errors on bootstrap samples}
 \usage{
 genderizeBootstrapError(x, y, givenNamesDB, probs, counts,
-  num_bootstraps = 50, parallel = TRUE)
+  num_bootstraps = 50, parallel = FALSE)
 }
 \arguments{
 \item{x}{A text vector that we want to genderize}
@@ -34,7 +34,19 @@ A list of bootstrap errors:
 \examples{
 \dontrun{
 
-
+x = c('Alex', 'Darrell', 'Kale', 'Lee', 'Robin', 'Terry', rep('Robin', 20))
+y = c('female', 'female', 'female', 'female', 'female', 'female', rep('male', 20))
+givenNamesDB = findGivenNames(x)
+classificatonErrors(labels = y,predictions = y)
+probs = seq(from =  0.5, to = 0.9, by = 0.05)
+counts = c(1)
+set.seed(23); genderizeBootstrapError(x = x, y = y, givenNamesDB = givenNamesDB, probs = probs, counts = counts, num_bootstraps = 20, parallel = TRUE)
+$apparent
+[1] 0.9230769
+$loo_boot
+[1] 0.9401709
+$errorRate632plus
+[1] 0.9336006
 
 }
 }

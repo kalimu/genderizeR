@@ -4,17 +4,15 @@
 \alias{textPrepare}
 \title{Preparing text vector for gender prediction}
 \usage{
-textPrepare(x, textPrepMessages = FALSE, distributedCorpus = FALSE)
+textPrepare(x, textPrepMessages = FALSE)
 }
 \arguments{
 \item{x}{A vector of character strings.}
 
 \item{textPrepMessages}{If TRUE verbose output of the prepairing process is shown on the console.}
-
-\item{distributedCorpus}{If TRUE use as.DistributedCorpus from the tm.plugin.dc package.}
 }
 \value{
-frequent terms vector.
+A vector of unique terms
 }
 \description{
 \code{textPrepare} Takes a text vector and converts it into a vector of single and unique terms.

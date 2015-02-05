@@ -1,14 +1,14 @@
 Package: genderizeR
 Type: Package
-Title: An R package for predicting gender from first names
-Version: 0.1.2
+Title: R package for gender prediction based on first names
+Version: 1.0.0
 Date: 2014-09-12
 Authors@R: person("Kamil", "Wais", email = "kamil.wais@gmail.com", role =
     c("aut", "cre"))
 Description: The package uses genderize.io API to predict gender from first
-    names extracted from text corpuses. The accuracy of prediction could be
-    control by two parameters: counts of first names in database and
-    probability of gender given the first name.
+    names extracted from text vector. The accuracy of prediction could be
+    control by two parameters: counts of a first name in the database and
+    probability of prediction.
 License: MIT + file LICENSE
 URL: https://github.com/kalimu/genderizeR,
     http://www.wais.kamil.rzeszow.pl/genderizeR
@@ -19,7 +19,6 @@ Imports:
     tm,
     data.table,
     magrittr,
-    tm.plugin.dc,
     RCurl,
     parallel
 Depends:

@@ -10,6 +10,7 @@
   \item{authors}{all authors for this article}
   \item{value}{a single author/authorships}
   \item{genderCoded}{manually coded gender of an author}
+  \item{WOSaccessionNumber}{ID}
 }}
 \source{
 \url{http://webofknowledge.com/}
@@ -19,7 +20,7 @@ authorships
 }
 \description{
 A dataset containing sample of authorships (unique combination of authors
-and titles) from WebOfScience records of article of biographical-items
+and titles) from Web Of Science records of articles of biographical-items
 and items-about-individual types.
 }
 \keyword{datasets}

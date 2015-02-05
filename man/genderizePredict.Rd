@@ -7,39 +7,17 @@
 genderizePredict(trainedParams, newdata, givenNamesDB)
 }
 \arguments{
+\item{trainedParams}{An output of a \code{genderizeTrain} function with prediction efficiency indicators for different combinations of probability and count values}
+
+\item{newdata}{A character vector for gender prediction}
+
 \item{givenNamesDB}{A dataset with gender data (could be an output of \code{findGivenNames} function)}
-
-\item{x}{A text vector that we want to genderize}
-
-\item{y}{A text vector of true gender labels for x vector}
-
-\item{probs}{A numeric vector of different probability values.
-Used to subseting a givenNamesDB dataset}
-
-\item{counts}{A numeric vector of different count values.
-Used to subseting a givenNamesDB dataset}
-
-\item{parallel}{If TRUE it computes errors with the use of \code{parallel} package and available cores. It is design to work on windows machines. Default is FALSE.}
 }
 \value{
-A data frame with all combination of parameters and computed
-sets of prediction indicators for each combination:
-  \item{errorCoded}{classification error for predictet & unpredicted gender}
-  \item{errorCodedWithoutNA}{for predicted gender only}
-  \item{naCoded}{of manually coded gender only }
-  \item{errorGenderBias}{net gender bias error}
+A character vector of values: "male", "female" or "unknown"
 }
 \description{
 \code{genderizePredict} predicts gender with the best values of
- 'probability' and 'count' paramters.
-}
-\examples{
-\dontrun{
-
-
-}
-}
-\seealso{
-Implementation of parallel mclapply on Windows machines by Nathan VanHoudnos \link{http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R}
+ 'probability' and 'count' parameters.
 }
 

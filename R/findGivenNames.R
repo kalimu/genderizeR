@@ -5,7 +5,7 @@
 #' 
 #' @param x A text vector.
 #' @param queryLength How much terms can be check in a one single query
-#' @param distributedCorpus If TRUE use as.DistributedCorpus from the tm.plugin.dc package.
+#' @param progress If TRUE (default) progress bar is displayed in the console
 #' 
 #' @return A data table with names gener probabilities and counts for terms in given text vector. 
 #' 
@@ -18,16 +18,15 @@
 #' findGivenNames(paste0(grid$a,grid$b))
 #' 
 #' }
-
+#' 
+#' @export
  
 
-findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE,
-                           progress = TRUE) {
+findGivenNames = function (x, queryLength = 400, progress = TRUE) {
  
 
   
-    terms = textPrepare(x, textPrepMessages = progress, 
-                        distributedCorpus = distributedCorpus)   
+    terms = textPrepare(x, textPrepMessages = progress)   
     
     startPackage = 1
     nPackages = ceiling(length(terms)/queryLength)
@@ -41,21 +40,17 @@ findGivenNames = function (x, queryLength = 400, distributedCorpus = FALSE,
                          stringsAsFactors = FALSE)   
     
     for (p in startPackage:nPackages) {
-   
-        
-        # p=1
+
         packageFromIndex = 
             queryLength*p-queryLength+1
       
-        # startPackage
+
      
         packageEndIndex = ifelse(length(terms)<queryLength*p,
                                length(terms), 
                                queryLength*p)
           
-        # endPackage
-      
-        # termsQuery=c('peter',terms[1:3])
+
         termsQuery = terms[packageFromIndex:packageEndIndex]
         
         

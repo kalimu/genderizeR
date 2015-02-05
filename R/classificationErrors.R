@@ -1,41 +1,49 @@
-#' Calculating classification errors on confusion matrix
+#' Calculating classification errors and other prediction indicators 
 #' 
 #' \code{classificatonErrors} builds confusion matrix from manually coded
 #'  and predicted gender vectors and returns different 
-#'  specific classification errors.
+#'  specific classification errors calculated on that matrix.
 #' 
 #' 
 #' @param labels A vector of true labels. Shoud have following 
 #' values: c("female", "male", "unknown", "noname"). "noname" stands also for 
 #' initials only.
-#' @param predictions A vector of true labels. Shoud have following 
+#' @param predictions A vector of predicted gender. Shoud have following 
 #' values: c("female", "male", NA).
 #' 
-#' @return A list 
+#' @return A list of gender prediction efficency indicators:
+#' \describe{
+#'   \item{confMatrix}{full confusion matrix}
+#'   \item{errorTotal}{total classification error}
+#'   \item{errorFullFirstNames}{classification error without "noname" category}
+#'   \item{errorCoded}{classification error without both "noname" and "unknown" category}
+#'   \item{errorCodedWithoutNA}{classification error only on "female" and "male" categories in both predictions and labels}
+#'   \item{naTotal}{total proportion of items with unpredicted gender}
+#'   \item{naFullFirstNames}{proportion of items with unpredicted gender without "noname" category}
+#'   \item{naCoded}{proportion of items with unpredicted gender without both "noname" and "unknown" category}
+#'   \item{errorGenderBias}{"male" classified as "female" minus "female" classifed as "male" and divided by the sum of items in "female" and "male" categories in both predictions and labels}
+#'   
+#'   
+#' }
 #' 
 #' 
 #' 
 #' @examples 
 #' \dontrun{
 #' 
-#' 
-#' 
+#' set.seed(23)
+#' labels = sample(c("female", "male", "unknown", "noname"), 100, replace = TRUE)
+#' predictions = sample(c("female", "male", NA), 100, replace = TRUE)
+#' classificatonErrors(labels, predictions)
 #' }
+#' 
+#' @export
 
-# labels = c("female", "male", "male", "unknown", "noname")
-# predictions = c(rep("male", 5))
-# predictions = c("female", "male", "female", "female", NA)
-#  titlesCoded = titles[titles$genderCoded %in% c("female", "male"),]
-# cbind('N' = table(titlesCoded$genderCoded),
-#       '%' = round(prop.table(table(titlesCoded$genderCoded))*100,0))
-# 
-#                      
-# classificatonErrors(labels = titlesCoded$genderCoded, predictions = rep("male", NROW(titlesCoded$genderCoded)))   
-#     
 
 classificatonErrors = function (labels, predictions) {
     
-    
+# labels = c("male", "male")
+#    predictions = c("male", "male")
 
     confMatrix =  
     table(labels = labels, 
@@ -51,6 +59,17 @@ classificatonErrors = function (labels, predictions) {
         
       confMatrix = cbind(confMatrix, 'male' = 0)
     }
+    
+    if (sum(rownames(confMatrix) %in% "female") == 0) {
+        
+      confMatrix = rbind('female' = 0, confMatrix)
+    }
+    
+    if (sum(rownames(confMatrix) %in% "male") == 0) {
+        
+      confMatrix = rbind(confMatrix, 'male' = 0)
+    }
+   
    
     
     tab = confMatrix[rownames(confMatrix) %in% c("female", "male", "unknown", "noname"),]
@@ -67,10 +86,21 @@ classificatonErrors = function (labels, predictions) {
     
     tab = confMatrix[rownames(confMatrix) %in% c("female", "male"),
                      colnames(confMatrix) %in% c("female", "male")]
-    errorCodedWithoutNA = (1-(sum(diag(tab))/sum(tab)))
+    
+    if (sum(tab)==0) { 
+    errorCodedWithoutNA = 0
+    errorGenderBias = 0
+        
+    } else {
+     errorCodedWithoutNA = (1-(sum(diag(tab))/sum(tab)))
     errorGenderBias = 
         (tab[rownames(tab)=='male',colnames(tab)=='female']-
-             tab[rownames(tab)=='female',colnames(tab)=='male'])/sum(tab)
+             tab[rownames(tab)=='female',colnames(tab)=='male'])/sum(tab)       
+        
+        
+    }
+    
+
 
     list(confMatrix = confMatrix, 
          errorTotal = errorTotal,

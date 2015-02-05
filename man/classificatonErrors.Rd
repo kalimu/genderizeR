@@ -2,7 +2,7 @@
 % Please edit documentation in R/classificationErrors.R
 \name{classificatonErrors}
 \alias{classificatonErrors}
-\title{Calculating classification errors on confusion matrix}
+\title{Calculating classification errors and other prediction indicators}
 \usage{
 classificatonErrors(labels, predictions)
 }
@@ -11,22 +11,37 @@ classificatonErrors(labels, predictions)
 values: c("female", "male", "unknown", "noname"). "noname" stands also for
 initials only.}
 
-\item{predictions}{A vector of true labels. Shoud have following
+\item{predictions}{A vector of predicted gender. Shoud have following
 values: c("female", "male", NA).}
 }
 \value{
-A list
+A list of gender prediction efficency indicators:
+\describe{
+  \item{confMatrix}{full confusion matrix}
+  \item{errorTotal}{total classification error}
+  \item{errorFullFirstNames}{classification error without "noname" category}
+  \item{errorCoded}{classification error without both "noname" and "unknown" category}
+  \item{errorCodedWithoutNA}{classification error only on "female" and "male" categories in both predictions and labels}
+  \item{naTotal}{total proportion of items with unpredicted gender}
+  \item{naFullFirstNames}{proportion of items with unpredicted gender without "noname" category}
+  \item{naCoded}{proportion of items with unpredicted gender without both "noname" and "unknown" category}
+  \item{errorGenderBias}{"male" classified as "female" minus "female" classifed as "male" and divided by the sum of items in "female" and "male" categories in both predictions and labels}
+
+
+}
 }
 \description{
 \code{classificatonErrors} builds confusion matrix from manually coded
  and predicted gender vectors and returns different
- specific classification errors.
+ specific classification errors calculated on that matrix.
 }
 \examples{
 \dontrun{
 
-
-
+set.seed(23)
+labels = sample(c("female", "male", "unknown", "noname"), 100, replace = TRUE)
+predictions = sample(c("female", "male", NA), 100, replace = TRUE)
+classificatonErrors(labels, predictions)
 }
 }
 

@@ -38,7 +38,7 @@ genderizePredict = function(trainedParams,
      
 #         library(genderizeR)
 #         library(data.table)
-        givenNamesDB = as.data.table(givenNamesDB)
+        givenNamesDB = data.table::as.data.table(givenNamesDB)
         
         grid = trainedParams
         minError = grid[grid$errorCoded==min(grid$errorCoded),]

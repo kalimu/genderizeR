@@ -39,6 +39,7 @@
 #' }
 #' 
 #' @export
+
 genderizeTrain = function(x, 
                           y, 
                           givenNamesDB,
@@ -88,9 +89,9 @@ genderizeTrain = function(x,
 
     # parallel version
     
-    writeLines(c("starting parallel computations..."), "training.log")
+#     writeLines(c("starting parallel computations..."), "training.log")
     
-    funcPar = function(g) {
+    funcPar = function(g, x, y) {
   
         givenNamesTrimed = 
             givenNamesDB[probability >= (grid[g,]$prob) & 
@@ -100,11 +101,11 @@ genderizeTrain = function(x,
         
         errors = classificatonErrors(labels = y, predictions = xGenders$gender)
         
-        sink("training.log", append = TRUE)
-        
-            cat(paste0('[',NROW(grid),']: ', g,'\n'))
-        
-        sink()
+#         sink("training.log", append = TRUE)
+#         
+#             cat(paste0('[',NROW(grid),']: ', g,'\n'))
+#         
+#         sink()
         
         list(prob=grid[g,]$prob, 
              count=grid[g,]$count, 
@@ -125,7 +126,7 @@ genderizeTrain = function(x,
     size.of.list <- length(list(1:NROW(grid))[[1]])
     cl <- parallel::makeCluster( min(size.of.list, parallel::detectCores()) )
 
-    parallel::clusterExport(cl, c('x', 'y', 'grid'))
+    #parallel::clusterExport(cl, c('x', 'y', 'grid'))
     
     loaded.package.names = c('genderizeR', 'data.table') 
     
@@ -136,7 +137,7 @@ genderizeTrain = function(x,
     
     ## Run the lapply in parallel
     
-    outcome = parallel::parLapply( cl, 1:NROW(grid), function(x) funcPar(x)) 
+    outcome = parallel::parLapply( cl, 1:NROW(grid), function(i) funcPar(i, x,y)) 
     
     
     parallel::stopCluster(cl)

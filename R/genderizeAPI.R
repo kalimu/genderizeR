@@ -1,6 +1,8 @@
 #' Getting data from genderize.io  API
 #' 
-#' \code{genderizeAPI} connects with genderize.io API and checks if a term (one or more) is in the given names database and returns its gender probability and count.
+#' \code{genderizeAPI} connects with genderize.io API and checks if 
+#' a term (one or more) is in the given names database and returns 
+#' its gender probability and count.
 #' 
 #' 
 #' @param x A vector of terms to check in genderize.io database.

@@ -13,7 +13,9 @@ genderizeAPI(x)
 A data frame with names' gener probabilities and counts. NULL if a given name is not located in the genderize.io database.
 }
 \description{
-\code{genderizeAPI} connects with genderize.io API and checks if a term (one or more) is in the given names database and returns its gender probability and count.
+\code{genderizeAPI} connects with genderize.io API and checks if
+a term (one or more) is in the given names database and returns
+its gender probability and count.
 }
 \examples{
 \dontrun{

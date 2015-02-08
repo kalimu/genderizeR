@@ -18,9 +18,13 @@
 
  
 
-#' An R package for predicting gender from first names
+#' Gender Prediction Based on First Names
 #'
-#' The \code{genderizeR} package uses genderize.io API to predict gender from first names extracted from text corpuses. The accuracy of prediction could be control by two parameters: counts of first names in database and probability of gender given the first name.  
+#' The \code{genderizeR} package uses genderize.io API to predict 
+#' gender from first names extracted from text corpuses. The accuracy 
+#' of prediction could be controlled by two parameters: 
+#' counts of first names in database and probability of gender 
+#' given the first name.  
 #'
 #'
 #' @docType package

@@ -41,7 +41,7 @@ genderizeAPI = function (x) {
     termsQuery[stringr::str_detect(x, "^like$")]='likeERROR'
     
     query = 
-        paste0('http://api.genderize.io?name[0]=',
+        paste0('https://api.genderize.io?name[0]=',
                termsQuery[1],
                    paste0(rep(
                        paste0('&name[',
@@ -53,7 +53,7 @@ genderizeAPI = function (x) {
     
     if (length(termsQuery)==1) {
         
-        query = paste0('http://api.genderize.io?name[0]=',
+        query = paste0('https://api.genderize.io?name[0]=',
                termsQuery[1]) 
         
         
@@ -65,7 +65,7 @@ genderizeAPI = function (x) {
       
     for (i in check) {
   
-        JSON = RCurl::getURL(query, .encoding='UTF-8')
+        JSON = RCurl::getURL(query, .encoding='UTF-8', ssl.verifypeer = FALSE)
       
         if (JSON != "") {break} else {
             print('Connection error. 

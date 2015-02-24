@@ -4,7 +4,7 @@
 \alias{findGivenNames}
 \title{Getting gender prediction data for a given text vector.}
 \usage{
-findGivenNames(x, queryLength = 400, progress = TRUE)
+findGivenNames(x, queryLength = 10, progress = TRUE)
 }
 \arguments{
 \item{x}{A text vector.}

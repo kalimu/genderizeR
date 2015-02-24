@@ -22,7 +22,7 @@
 #' @export
  
 
-findGivenNames = function (x, queryLength = 400, progress = TRUE) {
+findGivenNames = function (x, queryLength = 10, progress = TRUE) {
  
 
   

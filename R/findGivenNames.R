@@ -56,7 +56,7 @@ findGivenNames = function (x, queryLength = 10, progress = TRUE) {
         
         dfResponse = genderizeAPI(termsQuery)
         
-        if (ncol(dfResponse)!=2) {
+        if (NCOL(dfResponse) > 2) {
       
             dfNames = data.table::rbindlist(list(dfNames, dfResponse))
             dfNames = dfNames[!is.na(dfNames$gender),]

@@ -38,7 +38,7 @@ genderizeAPI = function (x) {
     termsQuery = x
     
     # checking for 'like' error that crashing API
-    termsQuery[stringr::str_detect(x, "^like$")]='likeERROR'
+    # termsQuery[stringr::str_detect(x, "^like$")]='likeERROR'
     
     query = 
         paste0('https://api.genderize.io?name[0]=',

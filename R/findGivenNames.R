@@ -22,7 +22,9 @@
 #' @export
  
 
-findGivenNames = function (x, queryLength = 10, progress = TRUE) {
+findGivenNames = function (x, apikey = NULL,
+                           queryLength = 10, 
+                           progress = TRUE) {
  
 
   
@@ -31,7 +33,8 @@ findGivenNames = function (x, queryLength = 10, progress = TRUE) {
     startPackage = 1
     nPackages = ceiling(length(terms)/queryLength)
     
-    if (progress) pb   <- txtProgressBar(0, nPackages, style=3, width=40)    
+    if (progress) pb   <- txtProgressBar(0, nPackages, style=3, width=40)
+    cat('\n')
  
     dfNames = data.frame(name=character(), 
                          gender=character(), 
@@ -54,12 +57,28 @@ findGivenNames = function (x, queryLength = 10, progress = TRUE) {
         termsQuery = terms[packageFromIndex:packageEndIndex]
         
         
-        dfResponse = genderizeAPI(termsQuery)
+         
+        responseAPI = genderizeAPI(termsQuery, apikey = apikey)
+        
+        if (is.primitive(responseAPI)) {
+            
+            stop('Error occured.')
+            
+        } else {
+            
+           dfResponse = responseAPI$response   
+            
+        }
+        
+        
+          
+            
+        
         
         if (NCOL(dfResponse) > 2) {
       
             dfNames = data.table::rbindlist(list(dfNames, dfResponse))
-            dfNames = dfNames[!is.na(dfNames$gender),]
+             #dfNames = dfNames[!is.na(dfNames$gender),]
       
         }
       
@@ -74,17 +93,32 @@ findGivenNames = function (x, queryLength = 10, progress = TRUE) {
   
 
        cat('\r')
- 
+
+
+    
+         
         if (progress) cat(paste0('Packages done: ', p,
                '. ToDo: ', nPackages-p,
                '. First names: ',nrow(dfNames), '. \n'
                )
         )
  
+        
+        
 
         if (progress) setTxtProgressBar(pb, p)
  
+                
+     if (progress & (p%%10==0 | p == nPackages) # &  NROW(dfResponse) != 0
+         ){
+         
 
+        
+        cat('\nYou have used ', (responseAPI$limit-responseAPI$limitLeft), ' out of ', formatC(signif(responseAPI$limit,digits=3), digits=3,format="fg", flag=""), ' (', formatC(signif((responseAPI$limit-responseAPI$limitLeft)/responseAPI$limit*100,digits=3), digits=3,format="fg", flag=""),'%) queries.\n', sep = "")
+        cat('You have ', round(responseAPI$limitReset/60/60,1), ' hours until a new subscription period starts.\n', sep="")             
+         
+         
+     }   
        
         
         

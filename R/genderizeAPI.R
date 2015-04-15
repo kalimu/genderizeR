@@ -27,7 +27,7 @@
 #' }
 
  
-genderizeAPI = function (x) {
+genderizeAPI = function (x, apikey = NULL) {
 
     #require(jsonlite)
   
@@ -39,25 +39,37 @@ genderizeAPI = function (x) {
     
     # checking for 'like' error that crashing API
     # termsQuery[stringr::str_detect(x, "^like$")]='likeERROR'
+
     
-    query = 
-        paste0('https://api.genderize.io?name[0]=',
-               termsQuery[1],
-                   paste0(rep(
-                       paste0('&name[',
-                              1:(length(termsQuery)-1),
-                              ']='),1),
-                       termsQuery[-1],
-                       collapse = "")) 
+#     query = 
+#         paste0('https://api.genderize.io?name[0]=',
+#                termsQuery[1],
+#                    paste0(rep(
+#                        paste0('&name[',
+#                               1:(length(termsQuery)-1),
+#                               ']='),1),
+#                        termsQuery[-1],
+#                        collapse = "")) 
+#     
+#     
+#     if (length(termsQuery)==1) {
+#         
+#         query = paste0('https://api.genderize.io?name[0]=',
+#                termsQuery[1]) 
+#         
+#         
+#     }
     
     
-    if (length(termsQuery)==1) {
-        
-        query = paste0('https://api.genderize.io?name[0]=',
-               termsQuery[1]) 
-        
-        
-    }
+
+        query = as.list(termsQuery)
+        names(query)  = 
+            paste0('name[',
+                              0:(length(termsQuery)-1),
+                              ']')
+   
+  
+    
  
     ## loop checking connection with server
 #     JSON = ""
@@ -77,15 +89,21 @@ genderizeAPI = function (x) {
 # 
 #   namesTable <- jsonlite::fromJSON(JSON)
   
-    
-    r = httr::GET(query)
+    if (!is.null(apikey)) {
+        
+        query = c('apikey' = apikey, query)
+        
+    }
+        
+        
+    r = httr::GET("https://api.genderize.io", query = query)
     
     if (httr::status_code(r) == 200) {
         
 
         
         
-        l = content(r)
+        l = httr::content(r)
         if (is.atomic(l[[1]])) {l= list(l)}
         l = l[unlist(lapply(l, function(x) {!is.null(x$gender)}))]
         

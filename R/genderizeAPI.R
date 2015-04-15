@@ -60,21 +60,68 @@ genderizeAPI = function (x) {
     }
  
     ## loop checking connection with server
-    JSON = ""
-    check = 1:10
-      
-    for (i in check) {
+#     JSON = ""
+#     check = 1:10
+#       
+#     for (i in check) {
+#   
+# 
+#         JSON = RCurl::getURL(query, .encoding='UTF-8', ssl.verifypeer = FALSE)
+#       
+#         if (JSON != "") {break} else {
+#             print('Connection error. 
+#                   Waiting for server response...')
+#             Sys.sleep(5)
+#         }
+#     }
+# 
+#   namesTable <- jsonlite::fromJSON(JSON)
   
-        JSON = RCurl::getURL(query, .encoding='UTF-8', ssl.verifypeer = FALSE)
-      
-        if (JSON != "") {break} else {
-            print('Connection error. 
-                  Waiting for server response...')
-            Sys.sleep(5)
-        }
+    
+    r = httr::GET(query)
+    
+    if (httr::status_code(r) == 200) {
+        
+
+        
+        
+        l = content(r)
+        if (is.atomic(l[[1]])) {l= list(l)}
+        l = l[unlist(lapply(l, function(x) {!is.null(x$gender)}))]
+        
+        limitLeft = as.numeric(httr::headers(r)$'x-rate-limit-remaining')
+        limit = as.numeric(httr::headers(r)$'x-rate-limit-limit')
+        limitReset = as.numeric(httr::headers(r)$'x-rate-reset')
+        
+        
+        return(
+            list(
+                response=data.table::rbindlist(l),
+                        limitLeft=limitLeft, limit=limit, limitReset=limitReset
+                )
+            )
+        
+        
+    } else {
+        
+        cat('\n', httr::http_status(r)$message)
+        cat('\n', content(r)$error)
+        
+        return 
     }
 
-  namesTable <- jsonlite::fromJSON(JSON)
-  namesTable
+  
+  
+  
+  
+  
+  
+  
+  
     
+  
+  
+  
+  
+  
 }

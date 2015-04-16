@@ -1,7 +1,7 @@
 
 .onAttach <- function(libname, pkgname) {
     
-    packageStartupMessage(paste0('Welcome to genderizeR package version: ',
+    packageStartupMessage(paste0('\nWelcome to genderizeR package version: ',
                                  utils::packageVersion("genderizeR"))
                           )
     packageStartupMessage("\nChangelog: news(package = 'genderizeR')")

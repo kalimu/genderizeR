@@ -4,7 +4,7 @@
 \alias{genderizeAPI}
 \title{Getting data from genderize.io  API}
 \usage{
-genderizeAPI(x)
+genderizeAPI(x, apikey = NULL)
 }
 \arguments{
 \item{x}{A vector of terms to check in genderize.io database.}

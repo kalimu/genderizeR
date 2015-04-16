@@ -123,7 +123,7 @@ genderizeAPI = function (x, apikey = NULL) {
     } else {
         
         cat('\n', httr::http_status(r)$message)
-        cat('\n', content(r)$error)
+        cat('\n', httr::content(r)$error)
         
         return 
     }

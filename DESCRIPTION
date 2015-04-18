@@ -14,7 +14,6 @@ URL: https://github.com/kalimu/genderizeR,
     http://www.wais.kamil.rzeszow.pl/genderizeR
 BugReports: https://github.com/kalimu/genderizeR
 Imports: 
-    jsonlite,
     stringr,
     tm,
     data.table,

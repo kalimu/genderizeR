@@ -131,7 +131,14 @@ genderizeAPI = function (x, apikey = NULL) {
         cat('\n', httr::http_status(r)$message)
         cat('\n', httr::content(r)$error)
         
-        return 
+        if (httr::status_code(r) == 429){
+            
+            stop('You have used all available requests in this subscription plan.')
+            
+        }
+        
+        
+        return
     }
 
   

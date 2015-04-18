@@ -33,8 +33,10 @@ findGivenNames = function (x, apikey = NULL,
     startPackage = 1
     nPackages = ceiling(length(terms)/queryLength)
     
-    if (progress) pb   <- txtProgressBar(0, nPackages, style=3, width=40)
-    cat('\n')
+    if (progress) pb   <- txtProgressBar(0, nPackages, style=3, width=46)
+    
+    cat('\r')
+    # cat('\n')
  
     dfNames = data.frame(name=character(), 
                          gender=character(), 
@@ -97,13 +99,22 @@ findGivenNames = function (x, apikey = NULL,
 
     
          
-        if (progress) cat(paste0('Packages done: ', p,
-               '. ToDo: ', nPackages-p,
-               '. First names: ',nrow(dfNames), '. \n'
-               )
-        )
+#         if (progress) cat(paste0('Packages done: ', p,
+#                '. ToDo: ', nPackages-p,
+#                '. First names: ',nrow(dfNames), '. \n'
+#                )
+#         )
  
+        if (progress) {
+            
+            cat(paste0('Terms checked: ', p*queryLength,
+                   '/', length(terms),
+                   '. First names found: ',nrow(dfNames), '. \n'
+                   ))               
+            
+            }
         
+     
         
 
         if (progress) setTxtProgressBar(pb, p)
@@ -114,7 +125,7 @@ findGivenNames = function (x, apikey = NULL,
          
 
         
-        cat('\nYou have used ', (responseAPI$limit-responseAPI$limitLeft), ' out of ', formatC(signif(responseAPI$limit,digits=3), digits=3,format="fg", flag=""), ' (', formatC(signif((responseAPI$limit-responseAPI$limitLeft)/responseAPI$limit*100,digits=3), digits=3,format="fg", flag=""),'%) queries.\n', sep = "")
+        cat('\nYou have used ', (responseAPI$limit-responseAPI$limitLeft), ' out of ', formatC(signif(responseAPI$limit,digits=3), digits=3,format="fg", flag=""), ' (', formatC(signif((responseAPI$limit-responseAPI$limitLeft)/responseAPI$limit*100,digits=3), digits=3,format="fg", flag=""),'%) term queries.\n', sep = "")
         cat('You have ', round(responseAPI$limitReset/60/60,1), ' hours until a new subscription period starts.\n', sep="")             
          
          

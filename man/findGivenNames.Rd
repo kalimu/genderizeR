@@ -9,6 +9,8 @@ findGivenNames(x, apikey = NULL, queryLength = 10, progress = TRUE)
 \arguments{
 \item{x}{A text vector.}
 
+\item{apikey}{A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.}
+
 \item{queryLength}{How much terms can be check in a one single query}
 
 \item{progress}{If TRUE (default) progress bar is displayed in the console}

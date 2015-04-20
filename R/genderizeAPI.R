@@ -6,6 +6,7 @@
 #' 
 #' 
 #' @param x A vector of terms to check in genderize.io database.
+#' @param apikey A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.
 #'
 #' @return A data frame with names' gener probabilities and counts. NULL if a given name is not located in the genderize.io database.
 #' 

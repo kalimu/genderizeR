@@ -4,6 +4,7 @@
 #' 
 #' 
 #' @param x A text vector.
+#' @param apikey A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.
 #' @param queryLength How much terms can be check in a one single query
 #' @param progress If TRUE (default) progress bar is displayed in the console
 #' 

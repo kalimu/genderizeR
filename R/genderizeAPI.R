@@ -100,6 +100,7 @@ genderizeAPI = function (x, apikey = NULL) {
     # eliminating  multi handle error
         # http://recology.info/2014/12/multi-handle/
         
+   httr::handle_find("https://api.genderize.io")    
     httr::handle_reset("https://api.genderize.io")
         
         

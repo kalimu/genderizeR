@@ -19,7 +19,6 @@ Imports:
     tm,
     data.table,
     magrittr,
-    RCurl,
     parallel
 Depends: 
     R (>= 3.1.1)

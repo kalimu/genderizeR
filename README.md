@@ -35,7 +35,8 @@ Remember to install `devtools` package first!
 
     library(genderizeR)
 
-    ## Welcome to genderizeR package version: 1.0.0
+    ## 
+    ## Welcome to genderizeR package version: 1.1.0
     ## 
     ## Changelog: news(package = 'genderizeR')
     ## Help & Contact: help(genderizeR)
@@ -52,15 +53,15 @@ A working example
     # How many unique first names are there in genderize.io database?
     numberOfNames()
 
-    ## [1] 199969
+    ## [1] 211826
 
     # An example for a character vector of strings
-    x = c("Winston J. Durant, ASHP past president, dies at 84",
-    "Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg",
-    "The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology",
-    "JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM",
-    "Maria Sklodowska-Curie")
-
+    # x = c("Winston J. Durant, ASHP past president, dies at 84",
+    # "Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg",
+    # "The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology",
+    # "JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM",
+    # "Maria Sklodowska-Curie")
+    x= 'Kamil'
     # Search for terms that could be first names
     givenNames = findGivenNames(x, progress = FALSE)
 
@@ -68,27 +69,14 @@ A working example
     givenNames = givenNames[count>40]
     givenNames
 
-    ##       name gender probability count
-    ## 1:     jan   male        0.58  5479
-    ## 2:   maria female        1.00 21262
-    ## 3: norbert   male        1.00    59
-    ## 4: winston   male        0.97    68
+    ##     name gender probability count
+    ## 1: kamil   male        0.99   124
 
     # Genderize the original character vector
-    genderize(x, genderDB=givenNames, blacklist=NULL, progress = FALSE)
+    genderize(x, genderDB=givenNames, progress = FALSE)
 
-    ##                                                                             text
-    ## 1:                            Winston J. Durant, ASHP past president, dies at 84
-    ## 2:   Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg
-    ## 3: The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology
-    ## 4:                JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM
-    ## 5:                                                        Maria Sklodowska-Curie
-    ##    givenName gender genderIndicators
-    ## 1:   winston   male                1
-    ## 2:   norbert   male                1
-    ## 3:        NA     NA                0
-    ## 4:       jan   male                1
-    ## 5:     maria female                1
+    ##     text givenName gender genderIndicators
+    ## 1: Kamil     kamil   male                1
 
 What's new?
 -----------
@@ -119,3 +107,6 @@ How to cite the package?
 ------------------------
 
     citation('genderizeR')
+
+[![Travis-CI Build
+Status](https://travis-ci.org/kalimu/genderizeR.png?branch=master)](https://travis-ci.org/kalimu/genderizeR)

@@ -1,52 +1,64 @@
+genderizeR 1.1.0
+================
+
+* second CRAN release working with new API now
+* RCurl package replaced by httr
+* https connection fixed
+* default queryLength set to 10
+* small bug fixes
+* implemented API authorization
+* simple unit tests
+* workaround with multi handle error when the API query is stopped by user
+
 genderizeR 1.0.0.3
-==============
+==================
 
 * ncol error fixed
 * 'like' term works
 
 genderizeR 1.0.0.1
-==============
+==================
 
 * https temporary fix
 
 genderizeR 1.0.0.0
-==============
+==================
 
 * hotfixes and updates
 * first CRAN release
 
 genderizeR 0.1.2.4
-==============
+==================
 
 * training function with parallel version as well
 
 
 genderizeR 0.1.2.3
-==============
+==================
 
 * dataset with titles sample
 * dataset with first names and their gender data for the titles sample
 
 
 genderizeR 0.1.2.2
-==============
+==================
 
 * dataset with authorships sample 
 * dataset with first names and their gender data for the authorships sample
 
 genderizeR 0.1.2.1
-==============
+==================
 
 * improved progress monitoring 
 
 
 genderizeR 0.1.1
-==============
+================
 
 * optional distributed corpus in textPrepare function
 
 
 genderizeR 0.0.1
-==============
+================
 
 * dev version building on GitHub

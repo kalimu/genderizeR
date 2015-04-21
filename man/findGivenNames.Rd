@@ -4,7 +4,8 @@
 \alias{findGivenNames}
 \title{Getting gender prediction data for a given text vector.}
 \usage{
-findGivenNames(x, apikey = NULL, queryLength = 10, progress = TRUE)
+findGivenNames(x, apikey = NULL, queryLength = 10, progress = TRUE,
+  ssl.verifypeer = TRUE)
 }
 \arguments{
 \item{x}{A text vector.}
@@ -14,6 +15,8 @@ findGivenNames(x, apikey = NULL, queryLength = 10, progress = TRUE)
 \item{queryLength}{How much terms can be check in a one single query}
 
 \item{progress}{If TRUE (default) progress bar is displayed in the console}
+
+\item{ssl.verifypeer}{Checks the SSL Cerftificate. Default is TRUE.}
 }
 \value{
 A data table with names gener probabilities and counts for terms in given text vector.

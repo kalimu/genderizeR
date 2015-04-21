@@ -7,6 +7,9 @@
 #' @param apikey A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.
 #' @param queryLength How much terms can be check in a one single query
 #' @param progress If TRUE (default) progress bar is displayed in the console
+#' @param ssl.verifypeer Checks the SSL Cerftificate. Default is TRUE. 
+#'
+#'
 #' 
 #' @return A data table with names gener probabilities and counts for terms in given text vector. 
 #' 
@@ -25,7 +28,8 @@
 
 findGivenNames = function (x, apikey = NULL,
                            queryLength = 10, 
-                           progress = TRUE) {
+                           progress = TRUE,
+                           ssl.verifypeer = TRUE) {
  
 
   
@@ -34,7 +38,7 @@ findGivenNames = function (x, apikey = NULL,
     startPackage = 1
     nPackages = ceiling(length(terms)/queryLength)
     
-    if (progress) pb   <- txtProgressBar(0, nPackages, style=3, width=46)
+    if (progress) pb   <- txtProgressBar(0, nPackages, style=3, width=50)
     
     cat('\r')
     # cat('\n')
@@ -43,8 +47,18 @@ findGivenNames = function (x, apikey = NULL,
                          gender=character(), 
                          probability=character(), 
                          count=numeric(), 
-                         stringsAsFactors = FALSE)   
+                         stringsAsFactors = FALSE) 
     
+    dfNames = data.table::as.data.table(dfNames)
+          
+    # eliminating  multi handle error
+        # http://recology.info/2014/12/multi-handle/
+        
+   httr::handle_find("https://api.genderize.io")    
+   httr::handle_reset("https://api.genderize.io")
+        
+             
+       
     for (p in startPackage:nPackages) {
 
         packageFromIndex = 
@@ -61,7 +75,8 @@ findGivenNames = function (x, apikey = NULL,
         
         
          
-        responseAPI = genderizeAPI(termsQuery, apikey = apikey)
+        responseAPI = genderizeAPI(termsQuery, apikey = apikey,
+                                   ssl.verifypeer = ssl.verifypeer)
         
         if (is.primitive(responseAPI)) {
             
@@ -73,9 +88,7 @@ findGivenNames = function (x, apikey = NULL,
             
         }
         
-        
-          
-            
+      
         
         
         if (NCOL(dfResponse) > 2) {
@@ -130,10 +143,10 @@ findGivenNames = function (x, apikey = NULL,
         cat('You have ', round(responseAPI$limitReset/60/60,1), ' hours until a new subscription period starts.\n', sep="")             
          
          
+         
      }   
        
-        
-        
+        gc()
     }
     
     cat('\n')

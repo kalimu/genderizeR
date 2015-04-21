@@ -9,6 +9,7 @@ genderizeR 1.1.0
 * implemented API authorization
 * simple unit tests
 * workaround with multi handle error when the API query is stopped by user
+* added ssl.verifypeer option
 
 genderizeR 1.0.0.3
 ==================

@@ -7,6 +7,7 @@
 #' 
 #' @param x A vector of terms to check in genderize.io database.
 #' @param apikey A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.
+#' @param ssl.verifypeer Checks the SSL Cerftificate. Default is TRUE. 
 #'
 #' @return A data frame with names' gener probabilities and counts. NULL if a given name is not located in the genderize.io database.
 #' 
@@ -28,7 +29,7 @@
 #' }
 
  
-genderizeAPI = function (x, apikey = NULL) {
+genderizeAPI = function (x, apikey = NULL, ssl.verifypeer = TRUE) {
 
     #require(jsonlite)
   
@@ -97,14 +98,9 @@ genderizeAPI = function (x, apikey = NULL) {
     }
      
         
-    # eliminating  multi handle error
-        # http://recology.info/2014/12/multi-handle/
-        
-   httr::handle_find("https://api.genderize.io")    
-    httr::handle_reset("https://api.genderize.io")
-        
-        
-    r = httr::GET("https://api.genderize.io", query = query)
+       
+    r = httr::GET("https://api.genderize.io", query = query, 
+                  httr::config(ssl.verifypeer = ssl.verifypeer))
     
     if (httr::status_code(r) == 200) {
         

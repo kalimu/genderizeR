@@ -4,12 +4,14 @@
 \alias{genderizeAPI}
 \title{Getting data from genderize.io  API}
 \usage{
-genderizeAPI(x, apikey = NULL)
+genderizeAPI(x, apikey = NULL, ssl.verifypeer = TRUE)
 }
 \arguments{
 \item{x}{A vector of terms to check in genderize.io database.}
 
 \item{apikey}{A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.}
+
+\item{ssl.verifypeer}{Checks the SSL Cerftificate. Default is TRUE.}
 }
 \value{
 A data frame with names' gener probabilities and counts. NULL if a given name is not located in the genderize.io database.

@@ -38,12 +38,14 @@ numberOfNames = function () {
         extracted
     }
 
-    pageURL <- paste0('http://genderize.io')
-    pageHTML <- RCurl::getURL(pageURL, .encoding='UTF-8')
+    pageURL <- paste0('https://genderize.io')
+    r = httr::GET(pageURL)
+    # pageHTML <- RCurl::getURL(pageURL, .encoding='UTF-8')
     tagsBefore = 
         "the database contains <span class=\"label\">"
     tagsAfter = "</span> distinct names"
-  
+    pageHTML = 
+         (httr::content(r, "text"))
     nNames = extractData(pageHTML, tagsBefore, tagsAfter)
     nNames <- as.numeric(nNames)
     nNames

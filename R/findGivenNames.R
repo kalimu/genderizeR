@@ -145,8 +145,8 @@ findGivenNames = function (x, apikey = NULL,
          
          
      }   
-       
-        gc()
+
+        
     }
     
     cat('\n')

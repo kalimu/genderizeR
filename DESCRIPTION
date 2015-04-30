@@ -1,11 +1,11 @@
 Package: genderizeR
 Type: Package
 Title: Gender Prediction Based on First Names
-Version: 1.1.0
+Version: 1.1.1
 Date: 2015-04-20
 Authors@R: person("Kamil", "Wais", email = "kamil.wais@gmail.com", role =
     c("aut", "cre"))
-Description: Utilizes the genderize.io API to predict gender from first
+Description: Utilizes the 'genderize.io' API to predict gender from first
     names extracted from a text vector. The accuracy of prediction could be
     controlled by two parameters: counts of a first name in the database and
     probability of prediction.

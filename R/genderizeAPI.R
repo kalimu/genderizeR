@@ -29,7 +29,7 @@
 #' }
 
  
-genderizeAPI = function (x, apikey = NULL, ssl.verifypeer = TRUE) {
+genderizeAPI = function(x, apikey = NULL, ssl.verifypeer = TRUE) {
 
     #require(jsonlite)
   
@@ -97,10 +97,12 @@ genderizeAPI = function (x, apikey = NULL, ssl.verifypeer = TRUE) {
         
     }
      
-        
-       
+    
+    # fix for version 1.0.0 of the httr package        
+    #  r = httr::GET("https://api.genderize.io", httr::timeout(100), query = query, 
+    #               httr::config(ssl.verifypeer = ssl.verifypeer))       
     r = httr::GET("https://api.genderize.io", query = query, 
-                  httr::config(ssl.verifypeer = ssl.verifypeer))
+                  httr::config(ssl_verifypeer = ssl.verifypeer))
     
     if (httr::status_code(r) == 200) {
         

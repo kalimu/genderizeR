@@ -1,3 +1,8 @@
+genderizeR 1.2.0
+================
+
+* fix for changes in version 1.0.0 of httr package
+
 genderizeR 1.1.1
 ================
 

@@ -2,7 +2,7 @@ Package: genderizeR
 Type: Package
 Title: Gender Prediction Based on First Names
 Version: 1.2.0
-Date: 2015-04-20
+Date: 2015-07-03
 Authors@R: person("Kamil", "Wais", email = "kamil.wais@gmail.com", role =
     c("aut", "cre"))
 Description: Utilizes the 'genderize.io' API to predict gender from first

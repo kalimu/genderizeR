@@ -34,6 +34,8 @@
 #'
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table ":="
+#' @import utils
+#' 
 #' 
 #' @seealso 
 #' \itemize{

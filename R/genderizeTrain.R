@@ -14,7 +14,7 @@
 #' Used to subseting a givenNamesDB dataset
 #' @param parallel If TRUE it computes errors with the use 
 #' of \code{parallel} package and available cores. It is design to work 
-#' on windows machines. Default is FALSE.
+#' on Windows machines. Default is FALSE.
 #' 
 #' @return A data frame with all combination of parameters and computed 
 #' sets of prediction indicators for each combination:
@@ -126,7 +126,8 @@ genderizeTrain = function(x,
     size.of.list <- length(list(1:NROW(grid))[[1]])
     cl <- parallel::makeCluster( min(size.of.list, parallel::detectCores()) )
 
-    #parallel::clusterExport(cl, c('x', 'y', 'grid'))
+parallel::clusterExport(cl, c("x", "y"), envir = .GlobalEnv) #, 'y', 'grid'))
+  
     
     loaded.package.names = c('genderizeR', 'data.table') 
     
@@ -136,7 +137,7 @@ genderizeTrain = function(x,
        })
     
     ## Run the lapply in parallel
-    
+# parallel::clusterExport(cl, c('x'))    
     outcome = parallel::parLapply( cl, 1:NROW(grid), function(i) funcPar(i, x,y)) 
     
     

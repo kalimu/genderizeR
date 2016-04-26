@@ -24,8 +24,7 @@
 #'   and with unpredicted gender }
 #'   \item{errorGenderBias}{net gender bias error}
 #'   
-#' @seealso Implementation of parallel mclapply on Windows machines 
-#' by Nathan VanHoudnos \url{http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R}
+#' @seealso Implementation of parallel mclapply on Windows machines by Nathan VanHoudnos \url{http://edustatistics.org/nathanvan/setup/mclapply.hack.R}
 #' 
 #' @examples 
 #' \dontrun{

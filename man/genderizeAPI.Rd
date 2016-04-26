@@ -19,7 +19,7 @@ A data frame with names' gener probabilities and counts. NULL if a given name is
 \description{
 \code{genderizeAPI} connects with genderize.io API and checks if
 a term (one or more) is in the given names database and returns
-its gender probability and count.
+its gender probability and count of the cases recorded in the database.
 }
 \examples{
 \dontrun{

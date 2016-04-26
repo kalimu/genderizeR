@@ -11,7 +11,8 @@ genderizePredict(trainedParams, newdata, givenNamesDB)
 
 \item{newdata}{A character vector for gender prediction}
 
-\item{givenNamesDB}{A dataset with gender data (could be an output of \code{findGivenNames} function)}
+\item{givenNamesDB}{A dataset with gender data
+(could be an output of \code{findGivenNames} function)}
 }
 \value{
 A character vector of values: "male", "female" or "unknown"

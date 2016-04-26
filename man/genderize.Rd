@@ -4,22 +4,28 @@
 \alias{genderize}
 \title{Predicting gender for character strings.}
 \usage{
-genderize(x, genderDB = givenNames, blacklist = NULL, progress = TRUE)
+genderize(x, genderDB, blacklist = NULL, progress = TRUE)
 }
 \arguments{
 \item{x}{A vector of text strings.}
 
-\item{genderDB}{A data.table output of  \code{findGivenNames} function for the same vector x.}
+\item{genderDB}{A data.table output of  \code{findGivenNames} function
+for the same vector x.}
 
-\item{blacklist}{Some terms could be exlude from gender checking}
+\item{blacklist}{Some terms could be exluded from gender checking}
 
 \item{progress}{If TRUE (default) progress bar is displayed in the console}
 }
 \value{
-A data table with text strings, a term that is used to predict gender found in genderDB, a predicted gender and number of genderIndicator (1 if only one term is found in genderDB).
+A data table with text strings, a term that is used to predict gender
+found in genderDB, a predicted gender and number of genderIndicator
+(1 if only one term is found in genderDB).
 }
 \description{
-For a each character string \code{genderize} use output of the  \code{findGivenNames} function for the strings and returns a gender prediction for the whole character string based on first names located inside strings.
+For a each character string \code{genderize} use output of the
+\code{findGivenNames} function for the strings and returns
+a gender prediction for the whole character string based
+on first names located inside strings.
 }
 \examples{
 \dontrun{

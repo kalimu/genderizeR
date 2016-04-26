@@ -16,13 +16,19 @@ findGivenNames(x, apikey = NULL, queryLength = 10, progress = TRUE,
 
 \item{progress}{If TRUE (default) progress bar is displayed in the console}
 
-\item{ssl.verifypeer}{Checks the SSL Cerftificate. Default is TRUE.}
+\item{ssl.verifypeer}{Checks the SSL Cerftificate. Default is TRUE.
+You may set it to FALSE if you encounter some errors that break the connection
+with the API (though it is not recommended).}
 }
 \value{
-A data table with names gener probabilities and counts for terms in given text vector.
+A data table with given names found in database,
+gender predictions,
+probabilities of gender predictions,
+and counts how many people with a given name is recorded in the database.
 }
 \description{
-\code{findGivenNames} extract from text unique terms and gets the gender predicion for all these terms.
+\code{findGivenNames} extract from text unique terms and gets
+the gender predicion for all these terms.
 }
 \examples{
 \dontrun{

@@ -3,6 +3,7 @@
 export(classificatonErrors)
 export(findGivenNames)
 export(genderize)
+export(genderizeAPI)
 export(genderizeBootstrapError)
 export(genderizePredict)
 export(genderizeTrain)

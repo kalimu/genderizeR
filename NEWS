@@ -1,3 +1,10 @@
+genderizeR 1.2.1
+================
+
+* fix in function textPrepare (now works properly with initials at the end)
+* documentation corrected
+* code cleared
+
 genderizeR 1.2.0
 ================
 

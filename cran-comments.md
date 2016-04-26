@@ -1,5 +1,5 @@
 ## Test environments
-* Win7 64-bit (local), R version 3.2.1
+* Win7 64-bit (local), R version 3.2.2
 * Ubuntu 12.04 64-bit (on travis-ci), R version 3.2.1
 * win-builder (devel and release)
 

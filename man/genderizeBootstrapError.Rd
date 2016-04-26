@@ -22,7 +22,7 @@ Used to subseting a givenNamesDB dataset}
 
 \item{num_bootstraps}{Number of bootstrap samples. Default is 50.}
 
-\item{parallel}{It is passed to \code{genderizeTrain} function. If TRUE it computes errors with the use of \code{parallel} package and available cores. It is design to work on windows machines. Default is FALSE.}
+\item{parallel}{It is passed to \code{genderizeTrain} function. If TRUE it computes errors with the use of \code{parallel} package and available cores. It is designed to work on Windows machines. Default is FALSE.}
 }
 \value{
 A list of bootstrap errors:
@@ -31,26 +31,34 @@ A list of bootstrap errors:
   \item{errorRate632plus}{.632+ Error Rate}
 }
 \description{
-\code{genderizeBootstrapError} calculates the Apparent Error Rate, the Leave-One-Out bootstrap error rate  and the .632+ error rate from Efron and Tibishirani (1997). The code is modified version of several functions from \code{sortinghat} package by John A.Ramey.
+\code{genderizeBootstrapError} calculates the Apparent Error Rate,
+the Leave-One-Out bootstrap error rate,
+and the .632+ error rate from Efron and Tibishirani (1997).
+The code is modified version of several functions from \code{sortinghat}
+package by John A. Ramey.
 }
 \examples{
 \dontrun{
 
-x = c('Alex', 'Darrell', 'Kale', 'Lee', 'Robin', 'Terry', rep('Robin', 20))
-y = c('female', 'female', 'female', 'female', 'female', 'female', rep('male', 20))
+x <- c('Alex', 'Darrell', 'Kale', 'Lee', 'Robin', 'Terry',
+rep('Robin', 20))
+
+y <- c('female', 'female', 'female', 'female', 'female', 'female',
+rep('male', 20))
+
 givenNamesDB = findGivenNames(x)
-classificatonErrors(labels = y,predictions = y)
+pred = genderize(x, givenNamesDB)
+classificatonErrors(labels = y, predictions = pred$gender)
+
 probs = seq(from =  0.5, to = 0.9, by = 0.05)
 counts = c(1)
 set.seed(23)
-genderizeBootstrapError(x = x, y = y, givenNamesDB = givenNamesDB,
-probs = probs, counts = counts, num_bootstraps = 20, parallel = TRUE)
-$apparent
-[1] 0.9230769
-$loo_boot
-[1] 0.9401709
-$errorRate632plus
-[1] 0.9336006
+genderizeBootstrapError(x = x, y = y,
+givenNamesDB = givenNamesDB,
+probs = probs, counts = counts,
+num_bootstraps = 20,
+parallel = TRUE)
+
 
 }
 }

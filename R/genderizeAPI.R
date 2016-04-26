@@ -2,7 +2,7 @@
 #' 
 #' \code{genderizeAPI} connects with genderize.io API and checks if 
 #' a term (one or more) is in the given names database and returns 
-#' its gender probability and count.
+#' its gender probability and count of the cases recorded in the database.
 #' 
 #' 
 #' @param x A vector of terms to check in genderize.io database.
@@ -27,77 +27,27 @@
 #' genderizeAPI(terms)
 #' 
 #' }
+#' 
+#' @export
 
  
-genderizeAPI = function(x, apikey = NULL, ssl.verifypeer = TRUE) {
-
-    #require(jsonlite)
-  
-
-    # length(x) < 400
+genderizeAPI = function(x, 
+                        apikey = NULL, 
+                        ssl.verifypeer = TRUE
+                        ) {
     
-
     termsQuery = x
     
-    # checking for 'like' error that crashing API
-    # termsQuery[stringr::str_detect(x, "^like$")]='likeERROR'
-
+    query = as.list(termsQuery)
     
-#     query = 
-#         paste0('https://api.genderize.io?name[0]=',
-#                termsQuery[1],
-#                    paste0(rep(
-#                        paste0('&name[',
-#                               1:(length(termsQuery)-1),
-#                               ']='),1),
-#                        termsQuery[-1],
-#                        collapse = "")) 
-#     
-#     
-#     if (length(termsQuery)==1) {
-#         
-#         query = paste0('https://api.genderize.io?name[0]=',
-#                termsQuery[1]) 
-#         
-#         
-#     }
+    names(query)  = paste0('name[', 0:(length(termsQuery) - 1), ']')
     
-    
-
-        query = as.list(termsQuery)
-        names(query)  = 
-            paste0('name[',
-                              0:(length(termsQuery)-1),
-                              ']')
-   
-  
-    
- 
-    ## loop checking connection with server
-#     JSON = ""
-#     check = 1:10
-#       
-#     for (i in check) {
-#   
-# 
-#         JSON = RCurl::getURL(query, .encoding='UTF-8', ssl.verifypeer = FALSE)
-#       
-#         if (JSON != "") {break} else {
-#             print('Connection error. 
-#                   Waiting for server response...')
-#             Sys.sleep(5)
-#         }
-#     }
-# 
-#   namesTable <- jsonlite::fromJSON(JSON)
-  
     if (!is.null(apikey)) {
         
         query = c('apikey' = apikey, query)
         
     }
      
-    
     # fix for version 1.0.0 of the httr package        
     #  r = httr::GET("https://api.genderize.io", httr::timeout(100), query = query, 
     #               httr::config(ssl.verifypeer = ssl.verifypeer))       
@@ -106,32 +56,29 @@ genderizeAPI = function(x, apikey = NULL, ssl.verifypeer = TRUE) {
     
     if (httr::status_code(r) == 200) {
         
-
-        
-        
         l = httr::content(r)
-        if (is.atomic(l[[1]])) {l= list(l)}
+        if (is.atomic(l[[1]])) {l = list(l)}
         l = l[unlist(lapply(l, function(x) {!is.null(x$gender)}))]
         
         limitLeft = as.numeric(httr::headers(r)$'x-rate-limit-remaining')
         limit = as.numeric(httr::headers(r)$'x-rate-limit-limit')
         limitReset = as.numeric(httr::headers(r)$'x-rate-reset')
         
-        
         return(
             list(
-                response=data.table::rbindlist(l),
-                        limitLeft=limitLeft, limit=limit, limitReset=limitReset
+                response = data.table::rbindlist(l),
+                limitLeft = limitLeft, 
+                limit = limit, 
+                limitReset = limitReset
                 )
             )
-        
         
     } else {
         
         cat('\n', httr::http_status(r)$message)
         cat('\n', httr::content(r)$error)
         
-        if (httr::status_code(r) == 429){
+        if (httr::status_code(r) == 429) {
             
             stop('You have used all available requests in this subscription plan.')
             
@@ -140,19 +87,6 @@ genderizeAPI = function(x, apikey = NULL, ssl.verifypeer = TRUE) {
         
         return
     }
-
-  
-  
-  
-  
-  
-  
-  
-  
     
-  
-  
-  
-  
-  
 }
+

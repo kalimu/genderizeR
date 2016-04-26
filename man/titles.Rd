@@ -7,7 +7,7 @@
 \format{A data frame with 2641 rows and 2 variables:
 \describe{
   \item{title}{title of an article}
-  \item{genderCoded}{manually coded gender of an author}
+  \item{genderCoded}{manually coded gender of an author. There are four codes: female, male, noname, unknown. Noname is the code for a case were coders were not be able to find a proper first name of an author. Unknown if the code for a case were coders found a full name of an author but were not be able to verify if she or he is a man of a female.}
 }}
 \source{
 \url{http://webofknowledge.com/}
@@ -17,8 +17,8 @@ titles
 }
 \description{
 A dataset containing a random sample of article titles
-from WebOfScience records of
-biographical-items types.
+from WebOfScience records with
+biographical-items and items-about-individual categories.
 }
 \keyword{datasets}
 

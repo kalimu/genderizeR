@@ -1,6 +1,7 @@
 #' Getting gender prediction data for a given text vector.
 #' 
-#' \code{findGivenNames} extract from text unique terms and gets the gender predicion for all these terms.
+#' \code{findGivenNames} extract from text unique terms and gets 
+#' the gender predicion for all these terms.
 #' 
 #' 
 #' @param x A text vector.
@@ -8,10 +9,15 @@
 #' @param queryLength How much terms can be check in a one single query
 #' @param progress If TRUE (default) progress bar is displayed in the console
 #' @param ssl.verifypeer Checks the SSL Cerftificate. Default is TRUE. 
+#' You may set it to FALSE if you encounter some errors that break the connection 
+#' with the API (though it is not recommended).
 #'
 #'
 #' 
-#' @return A data table with names gener probabilities and counts for terms in given text vector. 
+#' @return A data table with given names found in database, 
+#' gender predictions,
+#' probabilities of gender predictions, 
+#' and counts how many people with a given name is recorded in the database. 
 #' 
 #' 
 #' 
@@ -26,57 +32,55 @@
 #' @export
  
 
-findGivenNames = function (x, apikey = NULL,
-                           queryLength = 10, 
-                           progress = TRUE,
-                           ssl.verifypeer = TRUE) {
- 
-
-  
+findGivenNames = function(x, 
+                          apikey = NULL,
+                          queryLength = 10, 
+                          progress = TRUE,
+                          ssl.verifypeer = TRUE) {
+    
+    # todo: an option to turn the textPrepare function off
     terms = textPrepare(x, textPrepMessages = progress)   
     
     startPackage = 1
-    nPackages = ceiling(length(terms)/queryLength)
     
-    if (progress) pb   <- txtProgressBar(0, nPackages, style=3, width=50)
+    nPackages = ceiling(length(terms) / queryLength)
+    
+    if (progress) pb <- txtProgressBar(0, nPackages, style = 3, width = 50)
     
     cat('\r')
     # cat('\n')
  
-    dfNames = data.frame(name=character(), 
-                         gender=character(), 
-                         probability=character(), 
-                         count=numeric(), 
+    dfNames = data.frame(name = character(), 
+                         gender = character(), 
+                         probability = character(), 
+                         count = numeric(), 
                          stringsAsFactors = FALSE) 
     
     dfNames = data.table::as.data.table(dfNames)
           
     # eliminating  multi handle error
-        # http://recology.info/2014/12/multi-handle/
-        
-   httr::handle_find("https://api.genderize.io")    
-   httr::handle_reset("https://api.genderize.io")
+    # http://recology.info/2014/12/multi-handle/
+    httr::handle_find("https://api.genderize.io")    
+    httr::handle_reset("https://api.genderize.io")
         
              
        
     for (p in startPackage:nPackages) {
 
         packageFromIndex = 
-            queryLength*p-queryLength+1
-      
-
-     
-        packageEndIndex = ifelse(length(terms)<queryLength*p,
-                               length(terms), 
-                               queryLength*p)
-          
-
+            queryLength*p - queryLength + 1
+        
+        packageEndIndex = ifelse(length(terms) < queryLength*p,
+                                 length(terms), 
+                                 queryLength*p
+                                 )
+        
         termsQuery = terms[packageFromIndex:packageEndIndex]
         
-        
-         
-        responseAPI = genderizeAPI(termsQuery, apikey = apikey,
-                                   ssl.verifypeer = ssl.verifypeer)
+        responseAPI = genderizeAPI(termsQuery, 
+                                   apikey = apikey,
+                                   ssl.verifypeer = ssl.verifypeer
+                                   )
         
         if (is.primitive(responseAPI)) {
             
@@ -87,9 +91,6 @@ findGivenNames = function (x, apikey = NULL,
            dfResponse = responseAPI$response   
             
         }
-        
-      
-        
         
         if (NCOL(dfResponse) > 2) {
       
@@ -106,47 +107,38 @@ findGivenNames = function (x, apikey = NULL,
         #     
         #       }
         #     }
-  
-
-       cat('\r')
-
-
-    
-         
-#         if (progress) cat(paste0('Packages done: ', p,
-#                '. ToDo: ', nPackages-p,
-#                '. First names: ',nrow(dfNames), '. \n'
-#                )
-#         )
- 
+        
+        
+        cat('\r')
+        
         if (progress) {
             
             cat(paste0('Terms checked: ', p*queryLength,
                    '/', length(terms),
                    '. First names found: ',nrow(dfNames), '. \n'
-                   ))               
+                   )
+                )               
             
-            }
+        }
         
-     
-        
-
         if (progress) setTxtProgressBar(pb, p)
- 
-                
-     if (progress & (p%%10==0 | p == nPackages) # &  NROW(dfResponse) != 0
-         ){
-         
-
         
-        cat('\nYou have used ', (responseAPI$limit-responseAPI$limitLeft), ' out of ', formatC(signif(responseAPI$limit,digits=3), digits=3,format="fg", flag=""), ' (', formatC(signif((responseAPI$limit-responseAPI$limitLeft)/responseAPI$limit*100,digits=3), digits=3,format="fg", flag=""),'%) term queries.\n', sep = "")
-        cat('You have ', round(responseAPI$limitReset/60/60,1), ' hours until a new subscription period starts.\n', sep="")             
-         
-         
-         
-     }   
-
-        
+        if (progress & (p %% 10 == 0 | p == nPackages) 
+            # &  NROW(dfResponse) != 0
+            ) {
+            
+            cat('\nYou have used ', (responseAPI$limit - responseAPI$limitLeft), 
+                ' out of ', formatC(signif(responseAPI$limit,digits = 3), 
+                                    digits = 3,format = "fg", flag = ""), 
+                ' (', formatC(signif((responseAPI$limit - responseAPI$limitLeft) / 
+                                         responseAPI$limit*100,digits = 3), 
+                              digits = 3,format = "fg", flag = ""),
+                '%) term queries.\n', sep = "")
+            
+            cat('You have ', round(responseAPI$limitReset/60/60,1), 
+                ' hours until a new subscription period starts.\n', sep = "")         
+            
+        }   
     }
     
     cat('\n')

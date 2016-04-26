@@ -8,11 +8,11 @@ classificatonErrors(labels, predictions)
 }
 \arguments{
 \item{labels}{A vector of true labels. Shoud have following
-values: c("female", "male", "unknown", "noname"). "noname" stands also for
+values: c("female", "male", "unknown", "noname"). Noname stands also for
 initials only.}
 
 \item{predictions}{A vector of predicted gender. Shoud have following
-values: c("female", "male", NA).}
+values: c("female", "male", NA). NA when it was not possible to predict any gender.}
 }
 \value{
 A list of gender prediction efficency indicators:

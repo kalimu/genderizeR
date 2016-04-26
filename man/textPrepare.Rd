@@ -9,13 +9,16 @@ textPrepare(x, textPrepMessages = FALSE)
 \arguments{
 \item{x}{A vector of character strings.}
 
-\item{textPrepMessages}{If TRUE verbose output of the prepairing process is shown on the console.}
+\item{textPrepMessages}{If TRUE verbose output of the prepairing process
+is shown on the console.}
 }
 \value{
 A vector of unique terms
 }
 \description{
-\code{textPrepare} Takes a text vector and converts it into a vector of single and unique terms.
+\code{textPrepare} Takes a text vector and converts it into a vector
+of single and unique terms. This function is used by the \code{findGivenNames}
+ function before sending a query to the API.
 }
 \examples{
 \dontrun{

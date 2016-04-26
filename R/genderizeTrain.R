@@ -13,28 +13,34 @@
 #' @param counts A numeric vector of different count values. 
 #' Used to subseting a givenNamesDB dataset
 #' @param parallel If TRUE it computes errors with the use 
-#' of \code{parallel} package and available cores. It is design to work 
+#' of \code{parallel} package and available cores. It is designed to work 
 #' on Windows machines. Default is FALSE.
 #' 
 #' @return A data frame with all combination of parameters and computed 
 #' sets of prediction indicators for each combination:
 #'   \item{errorCoded}{classification error for predicted & unpredicted gender}
 #'   \item{errorCodedWithoutNA}{for predicted gender only}
-#'   \item{naCoded}{proportion of items with manually codded gender and with unpredicted gender }
+#'   \item{naCoded}{proportion of items with manually codded gender 
+#'   and with unpredicted gender }
 #'   \item{errorGenderBias}{net gender bias error}
 #'   
-#' @seealso Implementation of parallel mclapply on Windows machines by Nathan VanHoudnos \url{http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R}
+#' @seealso Implementation of parallel mclapply on Windows machines 
+#' by Nathan VanHoudnos \url{http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R}
 #' 
 #' @examples 
 #' \dontrun{
 #' 
 #' x = c('Alex', 'Darrell', 'Kale', 'Lee', 'Robin', 'Terry', 'John', 'Tom')
 #' y = c(rep('male',length(x)))
+#' 
 #' givenNamesDB = findGivenNames(x)
 #' probs = seq(from =  0.5, to = 0.9, by = 0.05)
 #' counts = c(1, 10)
-#' genderizeTrain(x = x, y = y, givenNamesDB = givenNamesDB, 
-#' probs = probs, counts = counts) 
+#' 
+#' genderizeTrain(x = x, y = y, 
+#' givenNamesDB = givenNamesDB, 
+#' probs = probs, counts = counts, 
+#' parallel = TRUE) 
 #'
 #' }
 #' 
@@ -71,8 +77,6 @@ genderizeTrain = function(x,
             
             errors = classificatonErrors(labels = y, predictions = xGenders$gender)
             
-    
-                
             grid[g,]$errorCoded = errors$errorCoded
             grid[g,]$errorCodedWithoutNA = errors$errorCodedWithoutNA
             grid[g,]$naCoded = errors$naCoded
@@ -86,10 +90,9 @@ genderizeTrain = function(x,
     
     }
 
-
     # parallel version
     
-#     writeLines(c("starting parallel computations..."), "training.log")
+    # writeLines(c("starting parallel computations..."), "training.log")
     
     funcPar = function(g, x, y) {
   
@@ -101,23 +104,23 @@ genderizeTrain = function(x,
         
         errors = classificatonErrors(labels = y, predictions = xGenders$gender)
         
-#         sink("training.log", append = TRUE)
-#         
-#             cat(paste0('[',NROW(grid),']: ', g,'\n'))
-#         
-#         sink()
+        #  sink("training.log", append = TRUE)
+        #         
+        #       cat(paste0('[',NROW(grid),']: ', g,'\n'))
+        #         
+        #  sink()
         
-        list(prob=grid[g,]$prob, 
-             count=grid[g,]$count, 
-             errorCoded=errors$errorCoded,
+        list(prob = grid[g,]$prob, 
+             count = grid[g,]$count, 
+             errorCoded = errors$errorCoded,
              errorCodedWithoutNA = errors$errorCodedWithoutNA,
              naCoded = errors$naCoded,
              errorGenderBias = errors$errorGenderBias
-             )
-        
+        )
+    
     }
     
-    # Inspired by:
+    # Parallel computations nspired by:
     # Nathan VanHoudnos
     ## nathanvan AT northwestern FULL STOP edu
     ## July 14, 2014    
@@ -125,21 +128,19 @@ genderizeTrain = function(x,
     ## Create a cluster
     size.of.list <- length(list(1:NROW(grid))[[1]])
     cl <- parallel::makeCluster( min(size.of.list, parallel::detectCores()) )
-
-parallel::clusterExport(cl, c("x", "y"), envir = .GlobalEnv) #, 'y', 'grid'))
-  
     
+    parallel::clusterExport(cl, c("x", "y"), envir = .GlobalEnv) 
+  
     loaded.package.names = c('genderizeR', 'data.table') 
     
     parallel::parLapply( cl, 1:length(cl), function(xx){
            lapply(loaded.package.names, function(yy) {
-               require(yy , character.only=TRUE)})
+               require(yy , character.only = TRUE)})
        })
     
-    ## Run the lapply in parallel
-# parallel::clusterExport(cl, c('x'))    
-    outcome = parallel::parLapply( cl, 1:NROW(grid), function(i) funcPar(i, x,y)) 
+    ## Run the lapply in parallel    
     
+    outcome = parallel::parLapply( cl, 1:NROW(grid), function(i) funcPar(i, x,y)) 
     
     parallel::stopCluster(cl)
     

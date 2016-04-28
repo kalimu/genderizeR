@@ -163,10 +163,25 @@ genderizeTrain = function(x,
         
         message(paste(
           "\n", 
-          "   *** Linux detected ***\n",
+          "   *** Linux detected             ***\n",
           "   *** using mclapply function... ***\n",
           "   ***", parallel::detectCores(), 
-          "cores detected.           ***",
+          "cores detected.          ***",
+          "   \n\n"))
+        
+        outcome = parallel::mclapply(1:NROW(grid), 
+                           function(i) funcPar(i, x,y), 
+                           mc.cores = parallel::detectCores()
+                           )
+
+    } else {
+        
+        message(paste(
+          "\n", 
+          "   *** Other system detected than Windows or Linux ***\n",
+          "   *** attampt to use mclapply function...         ***\n",
+          "   ***", parallel::detectCores(), 
+          "cores detected.          ",
           "   \n\n"))
         
         outcome = parallel::mclapply(1:NROW(grid), 
@@ -174,13 +189,7 @@ genderizeTrain = function(x,
                            mc.cores = parallel::detectCores()
                            )
         
-        
-        
-        
-        
     }
-    
-
     
     data.table::rbindlist(outcome)
     

@@ -132,8 +132,10 @@ genderizeTrain = function(x,
         
         message(paste(
           "\n", 
-          "   *** Microsoft Windows detected ***\n",
+          "   *** Microsoft Windows detected  ***\n",
           "   *** using parLapply function... ***\n",
+          "   ***", parallel::detectCores(), 
+          "cores detected.           ***",
           "   \n\n"))
         
         ## Create a cluster
@@ -159,14 +161,22 @@ genderizeTrain = function(x,
         
     } else if (Sys.info()[['sysname']] == 'Linux') {
         
-    message(paste(
+        message(paste(
           "\n", 
           "   *** Linux detected ***\n",
           "   *** using mclapply function... ***\n",
+          "   ***", parallel::detectCores(), 
+          "cores detected.           ***",
           "   \n\n"))
         
+        outcome = parallel::mclapply(1:NROW(grid), 
+                           function(i) funcPar(i, x,y), 
+                           mc.cores = parallel::detectCores()
+                           )
         
-        outcome = "todo....."
+        
+        
+        
         
     }
     

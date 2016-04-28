@@ -74,7 +74,8 @@ genderizeTrain = function(x,
     
             xGenders = genderize(x = x, genderDB = givenNamesTrimed)
             
-            errors = classificatonErrors(labels = y, predictions = xGenders$gender)
+            errors = classificatonErrors(labels = y, 
+                                         predictions = xGenders$gender)
             
             grid[g,]$errorCoded = errors$errorCoded
             grid[g,]$errorCodedWithoutNA = errors$errorCodedWithoutNA
@@ -90,6 +91,7 @@ genderizeTrain = function(x,
     }
 
     # parallel version
+    # with update for Linux
     
     # writeLines(c("starting parallel computations..."), "training.log")
     
@@ -124,24 +126,51 @@ genderizeTrain = function(x,
     ## nathanvan AT northwestern FULL STOP edu
     ## July 14, 2014    
     
-    ## Create a cluster
-    size.of.list <- length(list(1:NROW(grid))[[1]])
-    cl <- parallel::makeCluster( min(size.of.list, parallel::detectCores()) )
+    # Check what system is being used
     
-    parallel::clusterExport(cl, c("x", "y"), envir = .GlobalEnv) 
+    if (Sys.info()[['sysname']] == 'Windows') {
+        
+        message(paste(
+          "\n", 
+          "   *** Microsoft Windows detected ***\n",
+          "   *** using parLapply function... ***\n",
+          "   \n\n"))
+        
+        ## Create a cluster
+        size.of.list <- length(list(1:NROW(grid))[[1]])
+        cl <- parallel::makeCluster( min(size.of.list, parallel::detectCores()) )
+    
+        parallel::clusterExport(cl, c("x", "y"), envir = .GlobalEnv) 
   
-    loaded.package.names = c('genderizeR', 'data.table') 
+        loaded.package.names = c('genderizeR', 'data.table') 
     
-    parallel::parLapply( cl, 1:length(cl), function(xx){
+        parallel::parLapply( cl, 1:length(cl), function(xx){
            lapply(loaded.package.names, function(yy) {
                require(yy , character.only = TRUE)})
-       })
+           })
     
-    ## Run the lapply in parallel    
+        ## Run the lapply in parallel    
+        outcome = parallel::parLapply(cl, 
+                                      1:NROW(grid), 
+                                      function(i) funcPar(i, x,y)
+                                      ) 
     
-    outcome = parallel::parLapply( cl, 1:NROW(grid), function(i) funcPar(i, x,y)) 
+        parallel::stopCluster(cl)       
+        
+    } else if (Sys.info()[['sysname']] == 'Linux') {
+        
+    message(paste(
+          "\n", 
+          "   *** Linux detected ***\n",
+          "   *** using mclapply function... ***\n",
+          "   \n\n"))
+        
+        
+        outcome = "todo....."
+        
+    }
     
-    parallel::stopCluster(cl)
+
     
     data.table::rbindlist(outcome)
     

@@ -4,11 +4,13 @@
 \alias{findGivenNames}
 \title{Getting gender prediction data for a given text vector.}
 \usage{
-findGivenNames(x, apikey = NULL, queryLength = 10, progress = TRUE,
-  ssl.verifypeer = TRUE)
+findGivenNames(x, textPrepare = TRUE, apikey = NULL, queryLength = 10,
+  progress = TRUE, ssl.verifypeer = TRUE)
 }
 \arguments{
 \item{x}{A text vector.}
+
+\item{textPrepare}{If TRUE (default) the \code{textPrepare} function will be used on the \code{x} vector. Set it to FALSE if you already have prepared a character vector of cleaned up and unique terms that you wannt to send to the API for first name and gender checking.}
 
 \item{apikey}{A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.}
 

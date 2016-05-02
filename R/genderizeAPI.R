@@ -80,7 +80,7 @@ genderizeAPI = function(x,
         
         if (httr::status_code(r) == 429) {
             
-            stop('You have used all available requests in this subscription plan.')
+            warning('You have used all available requests in this subscription plan.')
             
         }
         

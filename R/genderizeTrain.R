@@ -15,6 +15,7 @@
 #' @param parallel If TRUE it computes errors with the use 
 #' of \code{parallel} package and available cores. It is designed to work 
 #' on Windows machines. Default is FALSE.
+#' @param cores A integer value for number of cores designated to parallel processing or NULL (default). If \code{parallel} argument is TRUE and \code{cores} is NULL, than the available number of cores will be detected automatically.
 #' 
 #' @return A data frame with all combination of parameters and computed 
 #' sets of prediction indicators for each combination:
@@ -50,7 +51,8 @@ genderizeTrain = function(x,
                           givenNamesDB,
                           probs,
                           counts,
-                          parallel = FALSE
+                          parallel = FALSE,
+                          cores = NULL
                           ){
     
     probability <- count <- NULL
@@ -126,6 +128,9 @@ genderizeTrain = function(x,
     ## nathanvan AT northwestern FULL STOP edu
     ## July 14, 2014    
     
+    if (is.null(cores)) {cores = parallel::detectCores()} 
+    
+    
     # Check what system is being used
     
     if (Sys.info()[['sysname']] == 'Windows') {
@@ -134,13 +139,13 @@ genderizeTrain = function(x,
           "\n", 
           "   *** Microsoft Windows detected  ***\n",
           "   *** using parLapply function... ***\n",
-          "   ***", parallel::detectCores(), 
+          "   ***", cores, 
           "cores detected.           ***",
           "   \n\n"))
         
         ## Create a cluster
         size.of.list <- length(list(1:NROW(grid))[[1]])
-        cl <- parallel::makeCluster( min(size.of.list, parallel::detectCores()) )
+        cl <- parallel::makeCluster( min(size.of.list, cores) )
     
         parallel::clusterExport(cl, c("x", "y"), envir = .GlobalEnv) 
   
@@ -165,13 +170,13 @@ genderizeTrain = function(x,
           "\n", 
           "   *** Linux detected             ***\n",
           "   *** using mclapply function... ***\n",
-          "   ***", parallel::detectCores(), 
+          "   ***", cores, 
           "cores detected.          ***",
           "   \n\n"))
         
         outcome = parallel::mclapply(1:NROW(grid), 
                            function(i) funcPar(i, x,y), 
-                           mc.cores = parallel::detectCores()
+                           mc.cores = cores
                            )
 
     } else {
@@ -180,13 +185,13 @@ genderizeTrain = function(x,
           "\n", 
           "   *** Other system detected than Windows or Linux ***\n",
           "   *** attampt to use mclapply function...         ***\n",
-          "   ***", parallel::detectCores(), 
+          "   ***", cores, 
           "cores detected.          ",
           "   \n\n"))
         
         outcome = parallel::mclapply(1:NROW(grid), 
                            function(i) funcPar(i, x,y), 
-                           mc.cores = parallel::detectCores()
+                           mc.cores = cores
                            )
         
     }

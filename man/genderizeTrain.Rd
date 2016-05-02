@@ -4,7 +4,8 @@
 \alias{genderizeTrain}
 \title{Training genderize function}
 \usage{
-genderizeTrain(x, y, givenNamesDB, probs, counts, parallel = FALSE)
+genderizeTrain(x, y, givenNamesDB, probs, counts, parallel = FALSE,
+  cores = NULL)
 }
 \arguments{
 \item{x}{A text vector that we want to genderize}
@@ -23,6 +24,8 @@ Used to subseting a givenNamesDB dataset}
 \item{parallel}{If TRUE it computes errors with the use 
 of \code{parallel} package and available cores. It is designed to work 
 on Windows machines. Default is FALSE.}
+
+\item{cores}{A integer value for number of cores designated to parallel processing or NULL (default). If \code{parallel} argument is TRUE and \code{cores} is NULL, than the available number of cores will be detected automatically.}
 }
 \value{
 A data frame with all combination of parameters and computed 

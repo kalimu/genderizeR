@@ -104,12 +104,13 @@ findGivenNames = function(x,
         
         if (is.primitive(responseAPI)) {
             
-            startNext = ifelse(packageFromIndex == 1, 1 , 
-                               packageFromIndex - queryLength
-                               )
+            #startNext = ifelse(packageFromIndex == 1, 1 , 
+             #                  packageFromIndex - queryLength
+              #                 )
             
-            warning('An error have occured.')
-            warning('The API queries stopped at ', startNext, ' term. \n')  
+            
+            #warning('An error have occured.')
+            warning('The API queries stopped. \n')  
             dfResponse = NULL
             break
             
@@ -152,8 +153,13 @@ findGivenNames = function(x,
     
     if (is.null(dfResponse)) {
         
+      startNext = ifelse(
+          (NROW(dfNames) == 0), 1, 
+          which(terms == tail(dfNames, 1)$name)
+          )
+      
       cat('The API queries stopped at', startNext, 'term. \n')  
-      cat('If you have reached the end of your API limit, you can start the function again from that term and continue finding given names next time with efficient use of the API. Remember to add the results to already found names and not to overwrite them. \n\n')  
+      cat('If you have reached the end of your API limit, you can start the function again from that term and continue finding given names next time with efficient use of the API.\n Remember to add the results to already found names and not to overwrite them. \n\n')  
         
     } 
     

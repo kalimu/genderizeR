@@ -102,12 +102,9 @@ findGivenNames = function(x,
                                    ssl.verifypeer = ssl.verifypeer
                                    )
         
-        if (is.primitive(responseAPI)) {
-            
-            #startNext = ifelse(packageFromIndex == 1, 1 , 
-             #                  packageFromIndex - queryLength
-              #                 )
-            
+        if (is.primitive(responseAPI) ) {
+        # set below only for testing purposes            
+        # if (is.primitive(responseAPI) | (p==8)) {
             
             #warning('An error have occured.')
             warning('The API queries stopped. \n')  
@@ -117,7 +114,7 @@ findGivenNames = function(x,
         } else {
             
            dfResponse = responseAPI$response   
-            
+           
         }
         
         if (NCOL(dfResponse) > 2) {

@@ -41,6 +41,8 @@ genderize = function(x,
                      progress = TRUE
                      ) {
     
+
+    
     # givenNames <- 
     genderIndicators <- givenName <- NULL
     
@@ -53,6 +55,7 @@ genderize = function(x,
                                 )    
 
     genderDB = data.table::data.table(genderDB, key = 'name')
+    #cat('asdf')
 
     for (i in 1:length(x)) {
 
@@ -92,14 +95,17 @@ genderize = function(x,
                               )]
         
         db[i, gender := as.character(itemGender)] 
+        #print(db[i,])
         
         if (progress) setTxtProgressBar(pb, i)             
           
       }
             
-
+ 
       cat('\n')
       cat('\n')
-    
-    return(db)
+       # return(NROW(db))
+      #return(data.table::data.table(db))
+      
+    return(db[])
 }

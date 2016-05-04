@@ -1,17 +1,23 @@
 #' Getting gender prediction data for a given text vector.
 #' 
-#' \code{findGivenNames} extract from text unique terms and gets 
+#' \code{findGivenNames} extracts from text unique terms and gets 
 #' the gender predicion for all these terms.
 #' 
 #' 
-#' @param x A text vector.
-#' @param textPrepare If TRUE (default) the \code{textPrepare} function will be used on the \code{x} vector. Set it to FALSE if you already have prepared a character vector of cleaned up and unique terms that you wannt to send to the API for first name and gender checking.
-#' @param apikey A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.
-#' @param queryLength How much terms can be check in a one single query
+#' @param x A text vector or a character vector of unique terms prepared beforehand. 
+#' @param textPrepare If TRUE (default) the \code{textPrepare} function 
+#' will be used on the \code{x} vector. Set it to FALSE if you already 
+#' have prepared a character vector of cleaned up and deduplicated terms 
+#' that you want to send to the API for first name gender checking.
+#' @param apikey A character string with the API key obtained via 
+#' https://store.genderize.io. A default is NULL, which uses the free API plan.
+#'  If you reached the limit of the API you can start from the last checked 
+#'  term next time.
+#' @param queryLength How much terms can be checked in a one single query
 #' @param progress If TRUE (default) progress bar is displayed in the console
 #' @param ssl.verifypeer Checks the SSL Cerftificate. Default is TRUE. 
-#' You may set it to FALSE if you encounter some errors that break the connection 
-#' with the API (though it is not recommended).
+#' You may set it to FALSE if you encounter some errors that break 
+#' the connection with the API (though it is not recommended).
 #'
 #'
 #' 
@@ -25,8 +31,33 @@
 #' @examples 
 #' \dontrun{
 #' 
-#' grid = (expand.grid(a=letters,b=letters))
-#' findGivenNames(paste0(grid$a,grid$b))
+#' x = "Tom did play hookey, and he had a very good time. He got back home 
+#'      barely in season to help Jim, the small colored boy, saw next-day's wood 
+#'      and split the kindlings before supper-at least he was there in time 
+#'      to tell his adventures to Jim while Jim did three-fourths of the work. 
+#'      Tom's younger brother (or rather half-brother) Sid was already through 
+#'      with his part of the work (picking up chips), for he was a quiet boy, 
+#'      and had no adventurous, trouble-some ways. While Tom was eating his
+#'      supper, and stealing sugar as opportunity offered, Aunt Polly asked 
+#'      him questions that were full of guile, and very deep-for she wanted 
+#'      to trap him into damaging revealments. Like many other simple-hearted
+#'      souls, it was her pet vanity to believe she was endowed with a talent 
+#'      for dark and mysterious diplomacy, and she loved to contemplate her 
+#'      most transparent devices as marvels of low cunning. 
+#'      (from 'Tom Sawyer' by Mark Twain)"
+#' 
+#' xProcessed = textPrepare(x)
+#' xProcessed[90:100]
+#' 
+#' foundNames = findGivenNames(xProcessed, textPrepare = FALSE)
+#' foundNames[count > 100]
+#' 
+#' # (the results can differ due to new, updated data pulled from the API)
+#' #    name gender probability count
+#' # 1:   jim   male        1.00  2291
+#' # 2:  mark   male        1.00  6178
+#' # 3: polly female        0.99   191
+#' # 4:   tom   male        1.00  3736
 #' 
 #' }
 #' 

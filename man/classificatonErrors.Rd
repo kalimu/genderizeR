@@ -41,7 +41,7 @@ A list of gender prediction efficency indicators:
 set.seed(23)
 labels = sample(c("female", "male", "unknown", "noname"), 100, replace = TRUE)
 predictions = sample(c("female", "male", NA), 100, replace = TRUE)
-classificatonErrors(labels, predictions)
+classificationErrors(labels, predictions)
 }
 
 }

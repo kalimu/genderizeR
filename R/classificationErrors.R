@@ -1,15 +1,15 @@
 #' Calculating classification errors and other prediction indicators 
 #' 
-#' \code{classificatonErrors} builds confusion matrix from manually coded
+#' \code{classificationErrors} builds confusion matrix from manually coded
 #'  and predicted gender vectors and returns different 
 #'  specific classification errors calculated on that matrix.
 #' 
 #' 
 #' @param labels A vector of true labels. Shoud have following 
-#' values: c("female", "male", "unknown", "noname"). Noname stands also for 
+#' values: c("female", "male", "unknown", "noname"). \code{noname} stands also for 
 #' initials only.
 #' @param predictions A vector of predicted gender. Shoud have following 
-#' values: c("female", "male", NA). NA when it was not possible to predict any gender.
+#' values: c("female", "male", NA). \code{NA} when it was not possible to predict any gender.
 #' 
 #' @return A list of gender prediction efficency indicators:
 #' \describe{
@@ -40,7 +40,7 @@
 #' @export
 
 
-classificatonErrors = function(labels, predictions) {
+classificationErrors = function(labels, predictions) {
     
     confMatrix =  
         table(labels = labels, 

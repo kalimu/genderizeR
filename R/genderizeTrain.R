@@ -76,7 +76,7 @@ genderizeTrain = function(x,
     
             xGenders = genderize(x = x, genderDB = givenNamesTrimed)
             
-            errors = classificatonErrors(labels = y, 
+            errors = classificationErrors(labels = y, 
                                          predictions = xGenders$gender)
             
             grid[g,]$errorCoded = errors$errorCoded
@@ -105,7 +105,7 @@ genderizeTrain = function(x,
         
         xGenders = genderize(x = x, genderDB = givenNamesTrimed)
         
-        errors = classificatonErrors(labels = y, predictions = xGenders$gender)
+        errors = classificationErrors(labels = y, predictions = xGenders$gender)
         
         #  sink("training.log", append = TRUE)
         #         

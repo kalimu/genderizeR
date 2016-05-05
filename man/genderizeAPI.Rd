@@ -14,7 +14,7 @@ genderizeAPI(x, apikey = NULL, ssl.verifypeer = TRUE)
 \item{ssl.verifypeer}{Checks the SSL Cerftificate. Default is TRUE.}
 }
 \value{
-A data frame with names' gener probabilities and counts. NULL if a given name is not located in the genderize.io database.
+A list of four elements: \code{response} is a data frame with names, genders, probabilities and counts or \code{NULL} if non of the terms are not located in the genderize.io database; \code{limitLeft} is showing how many queries to the API are still possible within the current \code{limit} which will be renewed in \code{limitReset} seconds.
 }
 \description{
 \code{genderizeAPI} connects with genderize.io API and checks if 
@@ -24,15 +24,29 @@ its gender probability and count of the cases recorded in the database.
 \examples{
 \dontrun{
 
-x = c("Winston J. Durant, ASHP past president, dies at 84", 
-"Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg",
-"The contribution of professor Yu.S. Martynov (1921-2008) to Russian neurology", 
-"JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM", 
-"Maria Sklodowska-Curie")
+terms = c("loremipsum")
+genderizeAPI(terms)$response
+# Null data.table (0 rows and 0 cols)
 
-terms= textPrepare(x)
-terms
+terms = c("jan", "maria", "norbert", "winston", "loremipsum")
 genderizeAPI(terms)
+ 
+# example of the function output 
+$response
+      name gender probability count
+      1:     jan   male        0.60  1692
+      2:   maria female        0.99  8467
+      3: norbert   male        1.00    77
+      4: winston   male        0.98   128
+
+$limitLeft
+[1] 967
+
+$limit
+[1] 1000
+
+$limitReset
+[1] 83234 
 
 }
 

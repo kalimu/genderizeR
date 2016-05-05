@@ -12,11 +12,16 @@ of prediction could be controlled by two parameters:
 counts of first names in database and probability of gender 
 given the first name.
 }
+\details{
+If you need help with your research od commercial projects, 
+feel free to contat me via my homepage contact form: 
+\url{http://www.wais.kamil.rzeszow.pl/genderizeR}
+}
 \seealso{
 \itemize{
-  \item \url{http://genderize.io/} [Homepage of genderize.io API]
-  \item \url{https://github.com/kalimu/genderizeR} [source code of the latest development version of the R package]
   \item \url{http://www.wais.kamil.rzeszow.pl/genderizeR} [R package homepage]
+  \item \url{https://github.com/kalimu/genderizeR} [source code of the latest development version of the R package]
+  \item \url{http://genderize.io/} [Homepage of genderize.io API]
 }
 }
 

@@ -15,10 +15,10 @@ genderizePredict(trainedParams, newdata, givenNamesDB)
 (could be an output of \code{findGivenNames} function)}
 }
 \value{
-A character vector of values: "male", "female" or "unknown"
+A character vector of values: \code{male}, \code{female} or \code{unknown}.
 }
 \description{
 \code{genderizePredict} predicts gender with the best values of
- 'probability' and 'count' parameters.
+ \code{probability} and \code{count} parameters.
 }
 

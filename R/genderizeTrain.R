@@ -1,26 +1,28 @@
 #' Training genderize function
 #' 
-#' \code{genderizeTrain} predicts gender and checks different combination
-#' of 'probability' and 'count' paramters. 
+#' \code{genderizeTrain} predicts gender and checks different combinations
+#' of \code{probability} and \code{count} paramters. 
 #' 
 #' 
-#' @param x A text vector that we want to genderize
-#' @param y A text vector of true gender labels for x vector
+#' @param x A text vector that we want to genderize.
+#' @param y A text vector of true gender labels for x vector.
 #' @param givenNamesDB A dataset with gender data (could be an output 
-#' of \code{findGivenNames} function)
+#' of \code{findGivenNames} function).
 #' @param probs A numeric vector of different probability values. 
-#' Used to subseting a givenNamesDB dataset
+#' Used to subseting a givenNamesDB dataset.
 #' @param counts A numeric vector of different count values. 
-#' Used to subseting a givenNamesDB dataset
+#' Used to subseting a givenNamesDB dataset.
 #' @param parallel If TRUE it computes errors with the use 
-#' of \code{parallel} package and available cores. It is designed to work 
-#' on Windows machines. Default is FALSE.
-#' @param cores A integer value for number of cores designated to parallel processing or NULL (default). If \code{parallel} argument is TRUE and \code{cores} is NULL, than the available number of cores will be detected automatically.
+#' of \code{parallel} package and available cores. Default is FALSE.
+#' @param cores A integer value for number of cores designated to parallel
+#' processing or NULL (default). If \code{parallel} argument is TRUE and
+#' \code{cores} is NULL, than the available number of cores will 
+#' be detected automatically.
 #' 
 #' @return A data frame with all combination of parameters and computed 
 #' sets of prediction indicators for each combination:
 #'   \item{errorCoded}{classification error for predicted & unpredicted gender}
-#'   \item{errorCodedWithoutNA}{for predicted gender only}
+#'   \item{errorCodedWithoutNA}{classification error for predicted gender only}
 #'   \item{naCoded}{proportion of items with manually codded gender 
 #'   and with unpredicted gender }
 #'   \item{errorGenderBias}{net gender bias error}
@@ -34,13 +36,25 @@
 #' y = c(rep('male',length(x)))
 #' 
 #' givenNamesDB = findGivenNames(x)
-#' probs = seq(from =  0.5, to = 0.9, by = 0.05)
+#' probs = seq(from =  0.5, to = 0.9, by = 0.1)
 #' counts = c(1, 10)
 #' 
 #' genderizeTrain(x = x, y = y, 
-#' givenNamesDB = givenNamesDB, 
-#' probs = probs, counts = counts, 
-#' parallel = TRUE) 
+#'                givenNamesDB = givenNamesDB, 
+#'                probs = probs, counts = counts, 
+#'                parallel = TRUE) 
+#' 
+#' #     prob count errorCoded errorCodedWithoutNA naCoded errorGenderBias
+#' #  1:  0.5     1      0.125               0.125   0.000           0.125
+#' #  2:  0.6     1      0.125               0.000   0.125           0.000
+#' #  3:  0.7     1      0.125               0.000   0.125           0.000
+#' #  4:  0.8     1      0.375               0.000   0.375           0.000
+#' #  5:  0.9     1      0.500               0.000   0.500           0.000
+#' #  6:  0.5    10      0.125               0.125   0.000           0.125
+#' #  7:  0.6    10      0.125               0.000   0.125           0.000
+#' #  8:  0.7    10      0.125               0.000   0.125           0.000
+#' #  9:  0.8    10      0.375               0.000   0.375           0.000
+#' # 10:  0.9    10      0.500               0.000   0.500           0.000
 #'
 #' }
 #' 

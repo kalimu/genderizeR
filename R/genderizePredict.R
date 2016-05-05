@@ -1,7 +1,7 @@
 #' Geder prredicting function
 #' 
 #' \code{genderizePredict} predicts gender with the best values of
-#'  'probability' and 'count' parameters. 
+#'  \code{probability} and \code{count} parameters. 
 #' 
 #' 
 #' @param trainedParams An output of a \code{genderizeTrain} function with prediction efficiency indicators for different combinations of probability and count values
@@ -9,7 +9,7 @@
 #' @param givenNamesDB A dataset with gender data 
 #' (could be an output of \code{findGivenNames} function)
 #' 
-#' @return A character vector of values: "male", "female" or "unknown"
+#' @return A character vector of values: \code{male}, \code{female} or \code{unknown}.
 #' 
 
 #' @export 

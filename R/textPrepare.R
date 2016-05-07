@@ -41,6 +41,7 @@ textPrepare = function(x, textPrepMessages = FALSE ) {
     x = stringr::str_replace_all(x, '\\(|\\)|\'|,|\\|', " ")
     x = stringr::str_replace_all(x, '/|"', " ")
     x = stringr::str_replace_all(x, '@', " ")
+    x = stringr::str_replace_all(x, '\\.', " ") # textPrepare("Kamil L. B. Wais")
     
     # x = stringr::str_replace_all(x, '[ ]*?.*?\\.', " ")
     # this line was giving problems with terms with initials at the end

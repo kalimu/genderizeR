@@ -47,7 +47,6 @@
 #'      (from 'Tom Sawyer' by Mark Twain)"
 #' 
 #' xProcessed = textPrepare(x)
-#' xProcessed[90:100]
 #' 
 #' foundNames = findGivenNames(xProcessed, textPrepare = FALSE)
 #' foundNames[count > 100]

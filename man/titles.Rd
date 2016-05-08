@@ -17,8 +17,11 @@ titles
 }
 \description{
 A dataset containing a simple random sample of article titles 
-from WebOfScience records with
-biographical-items and items-about-individual categories.
+from WebOfScience records 
+of articles of "biographical-items" or "items-about-individual" types
+from all fields of study
+published from 1945 to 2014.
+The sample was drawn in December 2014.
 }
 \keyword{datasets}
 

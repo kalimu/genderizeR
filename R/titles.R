@@ -1,8 +1,11 @@
 #' Titles sample
 #'
 #' A dataset containing a simple random sample of article titles 
-#' from WebOfScience records with
-#' biographical-items and items-about-individual categories.
+#' from WebOfScience records 
+#' of articles of "biographical-items" or "items-about-individual" types
+#' from all fields of study
+#' published from 1945 to 2014.
+#' The sample was drawn in December 2014. 
 #'
 #' @format A data frame with 2641 rows and 2 variables:
 #' \describe{

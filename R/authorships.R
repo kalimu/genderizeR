@@ -1,8 +1,12 @@
 #' Authorships sample
 #'
-#' A dataset containing a simple random sample of authorships (unique combination of authors 
-#' and titles) from Web Of Science records of articles from biographical-items 
-#' and items-about-individual categories.
+#' A dataset containing a simple random sample of authorships 
+#' (unique combination of authors and titles) from WebOfScience records 
+#' of articles of "biographical-items" or "items-about-individual" types
+#' from all fields of study
+#' published from 1945 to 2014.
+#' The sample was drawn in December 2014. 
+
 #'
 #' @format A data frame with 2641 rows and 5 variables:
 #' \describe{

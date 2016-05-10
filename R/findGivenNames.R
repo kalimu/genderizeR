@@ -15,7 +15,7 @@
 #'  term next time.
 #' @param queryLength How much terms can be checked in a one single query
 #' @param progress If TRUE (default) progress bar is displayed in the console
-#' @param ssl.verifypeer Checks the SSL Cerftificate. Default is TRUE. 
+#' @param ssl.verifypeer Checks the SSL Certificate. Default is TRUE. 
 #' You may set it to FALSE if you encounter some errors that break 
 #' the connection with the API (though it is not recommended).
 #'

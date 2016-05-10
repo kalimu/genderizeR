@@ -1,3 +1,18 @@
+genderizeR 2.0.0
+================
+
+* parallel processing in genderizeTrain works properly under Linux now
+* simple solution for caching results from findGivenNames() 
+* fix in misspelled name function (classificationErrors)
+* improved textPrepare function
+* updated help pages and function examples
+* more comprehensive exemplary datasets description
+* new more comprehensive set of unit tests
+* small fixes and code cleaning 
+* more thorough unit tests
+* updated README file
+* added tutorial vignette
+
 genderizeR 1.2.1
 ================
 

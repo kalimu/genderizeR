@@ -5,10 +5,10 @@
 #' Old function name still works, but is deprecated now and will be removed
 #' in future version of the package. 
 #' 
-#' @param labels A vector of true labels. Shoud have following 
+#' @param labels A vector of true labels. Should have following 
 #' values: c("female", "male", "unknown", "noname"). \code{noname} stands also for 
 #' initials only.
-#' @param predictions A vector of predicted gender. Shoud have following 
+#' @param predictions A vector of predicted gender. Should have following 
 #' values: c("female", "male", NA). \code{NA} when it was not possible to predict any gender.
 #' 
  

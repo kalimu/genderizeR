@@ -7,7 +7,7 @@
 #' 
 #' 
 #' @param x A vector of character strings.
-#' @param textPrepMessages If TRUE verbose output of the prepairing process 
+#' @param textPrepMessages If TRUE verbose output of the preparing process 
 #' is shown on the console.
  
 #'
@@ -45,7 +45,7 @@ textPrepare = function(x, textPrepMessages = FALSE ) {
     
     # x = stringr::str_replace_all(x, '[ ]*?.*?\\.', " ")
     # this line was giving problems with terms with initials at the end
-    # probably it is artefact of previous solutions and it is completelly 
+    # probably it is artifact of previous solutions and it is completely 
     # unnecessary...
 
     if (textPrepMessages == TRUE) cat('building text-mining corpus...\n')    

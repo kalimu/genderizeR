@@ -1,7 +1,7 @@
 Package: genderizeR
 Type: Package
 Title: Gender Prediction Based on First Names
-Version: 2.0.999
+Version: 2.0.90003
 Date: 2016-05-04
 Authors@R: c(person("Kamil", "Wais", email = "kamil.wais@gmail.com", role =
     c("aut", "cre")), person("Nathan", "VanHoudnos", role = "ctb"), person("John", "Ramey", role = "ctb"))

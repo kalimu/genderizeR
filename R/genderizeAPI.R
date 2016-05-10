@@ -7,7 +7,7 @@
 #' 
 #' @param x A vector of terms to check in genderize.io database.
 #' @param apikey A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.
-#' @param ssl.verifypeer Checks the SSL Cerftificate. Default is TRUE. 
+#' @param ssl.verifypeer Checks the SSL Certificate. Default is TRUE. 
 #'
 #' @return A list of four elements: \code{response} is a data frame with names, genders, probabilities and counts or \code{NULL} if non of the terms are not located in the genderize.io database; \code{limitLeft} is showing how many queries to the API are still possible within the current \code{limit} which will be renewed in \code{limitReset} seconds.
 #' 

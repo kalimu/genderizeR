@@ -1,4 +1,4 @@
-#' Geder prredicting function
+#' Gender predicting function
 #' 
 #' \code{genderizePredict} predicts gender with the best values of
 #'  \code{probability} and \code{count} parameters. 

@@ -1,7 +1,7 @@
 #' Training genderize function
 #' 
 #' \code{genderizeTrain} predicts gender and checks different combinations
-#' of \code{probability} and \code{count} paramters. 
+#' of \code{probability} and \code{count} parameters. 
 #' 
 #' 
 #' @param x A text vector that we want to genderize.
@@ -99,7 +99,7 @@ genderizeTrain = function(x,
             grid[g,]$errorGenderBias = errors$errorGenderBias
             
             print(grid[g,])
-            cat('Total combinations of paramaters: ',NROW(grid),'\n')
+            cat('Total combinations of parameters: ',NROW(grid),'\n')
         }
         
         return(grid)
@@ -137,7 +137,7 @@ genderizeTrain = function(x,
     
     }
     
-    # Parallel computations nspired by:
+    # Parallel computations inspired by:
     # Nathan VanHoudnos
     ## nathanvan AT northwestern FULL STOP edu
     ## July 14, 2014    
@@ -198,7 +198,7 @@ genderizeTrain = function(x,
         message(paste(
           "\n", 
           "   *** Other system detected than Windows or Linux ***\n",
-          "   *** attampt to use mclapply function...         ***\n",
+          "   *** attempt to use mclapply function...         ***\n",
           "   ***", cores, 
           "cores detected.          ",
           "   \n\n"))

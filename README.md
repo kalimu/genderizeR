@@ -16,7 +16,7 @@ Information about the genderize.io project and documentation of the API: <http:/
 Description
 -----------
 
-The genderizeR package uses genderize.io API to **predict gender** from first names extracted from text corpus (not only from clean vectors of given names). The accuracy of **prediction could be controled** by two parameters: counts of first names in database and probability of gender given the first name. The package has also built-in functions that can **calculate specific errors** (also with bootstrapping), **train algorithm** on training dataset (with gender labels) and **prepare character vectors for gender checking**.
+The genderizeR package uses genderize.io API to **predict gender** from first names extracted from text corpus (not only from clean vectors of given names). The accuracy of **prediction could be controlled** by two parameters: counts of first names in database and probability of gender given the first name. The package has also built-in functions that can **calculate specific errors** (also with bootstrapping), **train algorithm** on training dataset (with gender labels) and **prepare character vectors for gender checking**.
 
 Installing the package
 ----------------------

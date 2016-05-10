@@ -7,11 +7,11 @@
 classificatonErrors(labels, predictions)
 }
 \arguments{
-\item{labels}{A vector of true labels. Shoud have following 
+\item{labels}{A vector of true labels. Should have following 
 values: c("female", "male", "unknown", "noname"). \code{noname} stands also for 
 initials only.}
 
-\item{predictions}{A vector of predicted gender. Shoud have following 
+\item{predictions}{A vector of predicted gender. Should have following 
 values: c("female", "male", NA). \code{NA} when it was not possible to predict any gender.}
 }
 \description{

@@ -40,7 +40,7 @@ sets of prediction indicators for each combination:
 }
 \description{
 \code{genderizeTrain} predicts gender and checks different combinations
-of \code{probability} and \code{count} paramters.
+of \code{probability} and \code{count} parameters.
 }
 \examples{
 \dontrun{

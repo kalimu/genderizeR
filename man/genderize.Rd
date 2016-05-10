@@ -12,7 +12,7 @@ genderize(x, genderDB, blacklist = NULL, progress = TRUE)
 \item{genderDB}{A data.table output of  \code{findGivenNames} function 
 for the vector x.}
 
-\item{blacklist}{Some terms could be exluded from gender checking}
+\item{blacklist}{Some terms could be excluded from gender checking}
 
 \item{progress}{If TRUE (default) progress bar is displayed in the console}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/genderizePredict.R
 \name{genderizePredict}
 \alias{genderizePredict}
-\title{Geder prredicting function}
+\title{Gender predicting function}
 \usage{
 genderizePredict(trainedParams, newdata, givenNamesDB)
 }

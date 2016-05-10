@@ -9,7 +9,7 @@ textPrepare(x, textPrepMessages = FALSE)
 \arguments{
 \item{x}{A vector of character strings.}
 
-\item{textPrepMessages}{If TRUE verbose output of the prepairing process 
+\item{textPrepMessages}{If TRUE verbose output of the preparing process 
 is shown on the console.}
 }
 \value{

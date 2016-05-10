@@ -24,7 +24,7 @@ https://store.genderize.io. A default is NULL, which uses the free API plan.
 
 \item{progress}{If TRUE (default) progress bar is displayed in the console}
 
-\item{ssl.verifypeer}{Checks the SSL Cerftificate. Default is TRUE. 
+\item{ssl.verifypeer}{Checks the SSL Certificate. Default is TRUE. 
 You may set it to FALSE if you encounter some errors that break 
 the connection with the API (though it is not recommended).}
 }

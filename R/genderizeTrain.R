@@ -1,25 +1,28 @@
 #' Training genderize function
 #' 
-#' \code{genderizeTrain} predicts gender and checks different combination
-#' of 'probability' and 'count' paramters. 
+#' \code{genderizeTrain} predicts gender and checks different combinations
+#' of \code{probability} and \code{count} parameters. 
 #' 
 #' 
-#' @param x A text vector that we want to genderize
-#' @param y A text vector of true gender labels for x vector
+#' @param x A text vector that we want to genderize.
+#' @param y A text vector of true gender labels for x vector.
 #' @param givenNamesDB A dataset with gender data (could be an output 
-#' of \code{findGivenNames} function)
+#' of \code{findGivenNames} function).
 #' @param probs A numeric vector of different probability values. 
-#' Used to subseting a givenNamesDB dataset
+#' Used to subseting a givenNamesDB dataset.
 #' @param counts A numeric vector of different count values. 
-#' Used to subseting a givenNamesDB dataset
+#' Used to subseting a givenNamesDB dataset.
 #' @param parallel If TRUE it computes errors with the use 
-#' of \code{parallel} package and available cores. It is designed to work 
-#' on Windows machines. Default is FALSE.
+#' of \code{parallel} package and available cores. Default is FALSE.
+#' @param cores A integer value for number of cores designated to parallel
+#' processing or NULL (default). If \code{parallel} argument is TRUE and
+#' \code{cores} is NULL, than the available number of cores will 
+#' be detected automatically.
 #' 
 #' @return A data frame with all combination of parameters and computed 
 #' sets of prediction indicators for each combination:
 #'   \item{errorCoded}{classification error for predicted & unpredicted gender}
-#'   \item{errorCodedWithoutNA}{for predicted gender only}
+#'   \item{errorCodedWithoutNA}{classification error for predicted gender only}
 #'   \item{naCoded}{proportion of items with manually codded gender 
 #'   and with unpredicted gender }
 #'   \item{errorGenderBias}{net gender bias error}
@@ -33,13 +36,25 @@
 #' y = c(rep('male',length(x)))
 #' 
 #' givenNamesDB = findGivenNames(x)
-#' probs = seq(from =  0.5, to = 0.9, by = 0.05)
+#' probs = seq(from =  0.5, to = 0.9, by = 0.1)
 #' counts = c(1, 10)
 #' 
 #' genderizeTrain(x = x, y = y, 
-#' givenNamesDB = givenNamesDB, 
-#' probs = probs, counts = counts, 
-#' parallel = TRUE) 
+#'                givenNamesDB = givenNamesDB, 
+#'                probs = probs, counts = counts, 
+#'                parallel = TRUE) 
+#' 
+#' #     prob count errorCoded errorCodedWithoutNA naCoded errorGenderBias
+#' #  1:  0.5     1      0.125               0.125   0.000           0.125
+#' #  2:  0.6     1      0.125               0.000   0.125           0.000
+#' #  3:  0.7     1      0.125               0.000   0.125           0.000
+#' #  4:  0.8     1      0.375               0.000   0.375           0.000
+#' #  5:  0.9     1      0.500               0.000   0.500           0.000
+#' #  6:  0.5    10      0.125               0.125   0.000           0.125
+#' #  7:  0.6    10      0.125               0.000   0.125           0.000
+#' #  8:  0.7    10      0.125               0.000   0.125           0.000
+#' #  9:  0.8    10      0.375               0.000   0.375           0.000
+#' # 10:  0.9    10      0.500               0.000   0.500           0.000
 #'
 #' }
 #' 
@@ -50,7 +65,8 @@ genderizeTrain = function(x,
                           givenNamesDB,
                           probs,
                           counts,
-                          parallel = FALSE
+                          parallel = FALSE,
+                          cores = NULL
                           ){
     
     probability <- count <- NULL
@@ -74,7 +90,8 @@ genderizeTrain = function(x,
     
             xGenders = genderize(x = x, genderDB = givenNamesTrimed)
             
-            errors = classificatonErrors(labels = y, predictions = xGenders$gender)
+            errors = classificationErrors(labels = y, 
+                                         predictions = xGenders$gender)
             
             grid[g,]$errorCoded = errors$errorCoded
             grid[g,]$errorCodedWithoutNA = errors$errorCodedWithoutNA
@@ -82,7 +99,7 @@ genderizeTrain = function(x,
             grid[g,]$errorGenderBias = errors$errorGenderBias
             
             print(grid[g,])
-            cat('Total combinations of paramaters: ',NROW(grid),'\n')
+            cat('Total combinations of parameters: ',NROW(grid),'\n')
         }
         
         return(grid)
@@ -90,6 +107,7 @@ genderizeTrain = function(x,
     }
 
     # parallel version
+    # with update for Linux
     
     # writeLines(c("starting parallel computations..."), "training.log")
     
@@ -101,7 +119,7 @@ genderizeTrain = function(x,
         
         xGenders = genderize(x = x, genderDB = givenNamesTrimed)
         
-        errors = classificatonErrors(labels = y, predictions = xGenders$gender)
+        errors = classificationErrors(labels = y, predictions = xGenders$gender)
         
         #  sink("training.log", append = TRUE)
         #         
@@ -119,29 +137,78 @@ genderizeTrain = function(x,
     
     }
     
-    # Parallel computations nspired by:
+    # Parallel computations inspired by:
     # Nathan VanHoudnos
     ## nathanvan AT northwestern FULL STOP edu
     ## July 14, 2014    
     
-    ## Create a cluster
-    size.of.list <- length(list(1:NROW(grid))[[1]])
-    cl <- parallel::makeCluster( min(size.of.list, parallel::detectCores()) )
+    if (is.null(cores)) {cores = parallel::detectCores()} 
     
-    parallel::clusterExport(cl, c("x", "y"), envir = .GlobalEnv) 
+    
+    # Check what system is being used
+    
+    if (Sys.info()[['sysname']] == 'Windows') {
+        
+        message(paste(
+          "\n", 
+          "   *** Microsoft Windows detected  ***\n",
+          "   *** using parLapply function... ***\n",
+          "   ***", cores, 
+          "cores detected.           ***",
+          "   \n\n"))
+        
+        ## Create a cluster
+        size.of.list <- length(list(1:NROW(grid))[[1]])
+        cl <- parallel::makeCluster( min(size.of.list, cores) )
+    
+        parallel::clusterExport(cl, c("x", "y"), envir = .GlobalEnv) 
   
-    loaded.package.names = c('genderizeR', 'data.table') 
+        loaded.package.names = c('genderizeR', 'data.table') 
     
-    parallel::parLapply( cl, 1:length(cl), function(xx){
+        parallel::parLapply( cl, 1:length(cl), function(xx){
            lapply(loaded.package.names, function(yy) {
                require(yy , character.only = TRUE)})
-       })
+           })
     
-    ## Run the lapply in parallel    
+        ## Run the lapply in parallel    
+        outcome = parallel::parLapply(cl, 
+                                      1:NROW(grid), 
+                                      function(i) funcPar(i, x,y)
+                                      ) 
     
-    outcome = parallel::parLapply( cl, 1:NROW(grid), function(i) funcPar(i, x,y)) 
-    
-    parallel::stopCluster(cl)
+        parallel::stopCluster(cl)       
+        
+    } else if (Sys.info()[['sysname']] == 'Linux') {
+        
+        message(paste(
+          "\n", 
+          "   *** Linux detected             ***\n",
+          "   *** using mclapply function... ***\n",
+          "   ***", cores, 
+          "cores detected.          ***",
+          "   \n\n"))
+        
+        outcome = parallel::mclapply(1:NROW(grid), 
+                           function(i) funcPar(i, x,y), 
+                           mc.cores = cores
+                           )
+
+    } else {
+        
+        message(paste(
+          "\n", 
+          "   *** Other system detected than Windows or Linux ***\n",
+          "   *** attempt to use mclapply function...         ***\n",
+          "   ***", cores, 
+          "cores detected.          ",
+          "   \n\n"))
+        
+        outcome = parallel::mclapply(1:NROW(grid), 
+                           function(i) funcPar(i, x,y), 
+                           mc.cores = cores
+                           )
+        
+    }
     
     data.table::rbindlist(outcome)
     

@@ -1,28 +1,33 @@
 Package: genderizeR
 Type: Package
 Title: Gender Prediction Based on First Names
-Version: 1.2.0
-Date: 2015-07-03
-Authors@R: person("Kamil", "Wais", email = "kamil.wais@gmail.com", role =
-    c("aut", "cre"))
-Description: Utilizes the 'genderize.io' API to predict gender from first
-    names extracted from a text vector. The accuracy of prediction could be
-    controlled by two parameters: counts of a first name in the database and
-    probability of prediction.
+Version: 2.0.90004
+Date: 2016-05-11
+Authors@R: c(person("Kamil", "Wais", email = "kamil.wais@gmail.com", role =
+    c("aut", "cre")), person("Nathan", "VanHoudnos", role = "ctb"), person("John", "Ramey", role = "ctb"))
+Description: Utilizes the 'genderize.io' Application Programming Interface 
+    to predict gender from first names extracted from a text vector. 
+    The accuracy of prediction could be controlled by two parameters: 
+    counts of a first name in the database and probability of prediction.
 License: MIT + file LICENSE
 URL: https://github.com/kalimu/genderizeR,
     http://www.wais.kamil.rzeszow.pl/genderizeR
 BugReports: https://github.com/kalimu/genderizeR
-Imports: 
-    stringr,
-    httr,
-    tm,
-    data.table,
+Imports:
+    stringr (>= 1.0.0),
+    httr (>= 1.1.0),
+    tm (>= 0.6-2),
+    data.table (>= 1.9.6),
     magrittr,
-    parallel,
+    parallel (>= 3.3.0),
     utils
-Depends: 
-    R (>= 3.1.1)
+Depends:
+    R (>= 3.3.0)
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown
+RoxygenNote: 5.0.1
+VignetteBuilder: knitr

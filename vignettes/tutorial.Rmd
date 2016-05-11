@@ -179,6 +179,8 @@ givenNames = rbind(givenNames_part1, givenNames_part2)
 
 ```
 
+
+    
 ## Encoding handling
 
 ```{r, echo=TRUE, eval=FALSE, cache=TRUE}
@@ -191,7 +193,14 @@ Sys.setlocale("LC_ALL", "Polish")
 findGivenNames(x, progress = FALSE)
 #    name gender probability count
 # 1: róża female        0.89    28
-```
+```  
+    
+
+
+
+
+
+
 
 ## Case studies in genderizing
 

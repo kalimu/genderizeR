@@ -4,9 +4,9 @@
 * Win-builder R Under development (unstable) (2016-05-10 r70594)
 
 ## R CMD check results
-There were no ERRORs or WARNINGs. 
+On local environment there were no ERRORs, WARNINGs or NOTEs. 
 
-There was 1 NOTE:
+On win-builder there was 1 NOTE:
 
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Kamil Wais <kamil.wais@gmail.com>'

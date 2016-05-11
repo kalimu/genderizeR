@@ -17,4 +17,5 @@ File 'LICENSE':
   YEAR: 2015
   COPYRIGHT HOLDER: Kamil Wais
 
-
+## Downstream dependencies
+There are currently no downstream dependencies for this package.

@@ -5,7 +5,7 @@ genderizeR
 
 by Kamil Wais [homepage / contact](http://www.wais.kamil.rzeszow.pl)
 
-[![Travis-CI Build Status](https://travis-ci.org/kalimu/genderizeR.png?branch=master)](https://travis-ci.org/kalimu/genderizeR) [![cran version](http://www.r-pkg.org/badges/version/genderizeR)](https://cran.r-project.org/web/packages/genderizeR/) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/genderizeR?)](https://github.com/metacran/cranlogs.app)
+[![Travis-CI Build Status](https://travis-ci.org/kalimu/genderizeR.png?branch=master)](https://travis-ci.org/kalimu/genderizeR) [![cran version](http://www.r-pkg.org/badges/version/genderizeR)](https://cran.r-project.org/package=genderizeR) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/genderizeR?)](https://github.com/metacran/cranlogs.app)
 
 R package for gender predictions based on first names.
 

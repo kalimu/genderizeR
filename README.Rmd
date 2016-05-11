@@ -1,0 +1,137 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+ 
+genderizeR
+==========
+by Kamil Wais [homepage / contact](http://www.wais.kamil.rzeszow.pl)
+
+[![Travis-CI Build Status](https://travis-ci.org/kalimu/genderizeR.png?branch=master)](https://travis-ci.org/kalimu/genderizeR)
+[![cran version](http://www.r-pkg.org/badges/version/genderizeR)](https://cran.r-project.org/package=genderizeR)
+ [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/genderizeR?)](https://github.com/metacran/cranlogs.app)
+
+
+R package for gender predictions based on first names. 
+
+The package home page:
+[http://www.wais.kamil.rzeszow.pl/genderizer/](http://www.wais.kamil.rzeszow.pl/genderizer/)
+
+Information about the genderize.io project and documentation of the API: 
+[http://genderize.io](http://genderize.io)
+
+
+## Description
+
+The genderizeR package uses genderize.io API to __predict gender__ from first names extracted from text corpus (not only from clean vectors of given names). The accuracy of __prediction could be controlled__ by two parameters: counts of first names in database and probability of gender given the first name. The package has also built-in functions that can __calculate specific errors__ (also with bootstrapping), __train algorithm__ on training dataset (with gender labels) and __prepare character vectors for gender checking__.  
+
+
+## Installing the package
+
+### Installing stable version from CRAN
+
+```{r, echo=TRUE, eval=FALSE, cache=FALSE}
+install.packages('genderizeR')
+```
+
+### Installing developer version from GitHub
+
+Remember to install `devtools` package first!
+
+```{r, echo=TRUE, eval=FALSE, cache=FALSE}
+# install.packages('devtools')
+devtools::install_github("kalimu/genderizeR")
+```
+
+### Loading the installed package
+
+```{r, echo=TRUE, eval=FALSE, cache=FALSE}
+library(genderizeR)
+```
+
+```{r, echo=FALSE, eval=TRUE, results='hide', cache=FALSE}
+# detach("package:genderizeR", unload=TRUE)
+# auth_token = 'e5cb441b4154a6c9669238e8771c5d022c01e65a'
+# devtools::install_github("kalimu/genderizeR", auth_token=auth_token)
+library(genderizeR)
+```
+
+## A working example
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+# An example for a character vector of strings
+x = c("Winston J. Durant, ASHP past president, dies at 84",
+"JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM",
+"Maria Sklodowska-Curie")
+ 
+# Search for terms that could be first names
+# If you have your API key you can authorize access to the API with apikey argument
+# e.g. findGivenNames(x, progress = FALSE, apikey = 'your_api_key')
+givenNames = findGivenNames(x, progress = FALSE)
+
+# Use only terms that have more than x counts in the database
+givenNames = givenNames[count > 100]
+givenNames
+
+# Genderize the original character vector
+genderize(x, genderDB = givenNames, progress = FALSE)
+
+```
+## Tutorial
+
+For more comprehensive tutorial check the vignette in the package.
+
+```{r, echo=TRUE, eval=FALSE, cache=FALSE}
+browseVignettes("genderizeR")
+```
+
+## What's new in the package?
+
+```{r, echo=TRUE, eval=FALSE, cache=FALSE}
+news(package = 'genderizeR')
+```
+
+## See package help pages in R / Rstudio
+
+```{r, echo=TRUE, eval=FALSE, cache=FALSE}
+help(package = 'genderizeR')
+?textPrepare
+?findGivenNames
+?genderize
+```
+
+
+## How to contribute to the package?
+
+### For bugs, updates and new functionalities:
+
+Fork git repo `https://github.com/kalimu/genderizeR` and submit a pull request.
+
+### Feedback:
+
+If you enjoy using the package you could write a short testimonial 
+and send it to me. I will be happy to post in on the package homepage.
+
+For any kind of feedback you can use the contact form here: http://www.wais.kamil.rzeszow.pl/kontakt/
+
+## How to contact the package's author regarding research or commercial project?
+
+Please use the contact form: http://www.wais.kamil.rzeszow.pl/kontakt/
+
+## How to cite the package?
+
+```{r, echo=TRUE, eval=FALSE, cache=FALSE}
+citation('genderizeR')
+```
+
+Thank You for the citation!

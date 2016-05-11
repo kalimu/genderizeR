@@ -22,7 +22,7 @@
 #'   \item{loo_boot}{LOO-Boot Error Rate}
 #'   \item{errorRate632plus}{.632+ Error Rate}
 #'   
-#' @seealso In the \code{sortinghat} package: \code{\link[sortinghat]{errorest_apparent}} \code{\link[sortinghat]{errorest_loo_boot}} \code{\link[sortinghat]{errorest_632plus}} 
+#' @seealso In the \code{sortinghat} package: \code{errorest_apparent} \code{errorest_loo_boot} \code{errorest_632plus}. 
 #' 
 #' @examples 
 #' \dontrun{

@@ -18,27 +18,29 @@ library(genderizeR)
 #  ?genderize
 
 ## ---- echo=TRUE, eval=TRUE, cache=TRUE-----------------------------------
-# An example for a character vector of strings
+# An example of a character vector of strings
 x = c("Winston J. Durant, ASHP past president, dies at 84",
 "JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM",
 "Maria Sklodowska-Curie")
  
-# Search for terms that could be first names
+# Search for terms that could be first names.
 # If you have your API key you can authorize access to the API with apikey argument
-# e.g. findGivenNames(x, progress = FALSE, apikey = 'your_api_key')
+# e.g. findGivenNames(x, progress = FALSE, apikey = 'your_api_key').
 givenNames = findGivenNames(x, progress = FALSE)
 
-# Use only terms that have more than x counts in the database
+# We can use only terms that have more than x counts in the database 
+# to eliminate noise in gender data.
 givenNames = givenNames[count > 100]
 givenNames
 
-# Genderize the original character vector
+# Genderize the original character vector.
 genderize(x, genderDB = givenNames, progress = FALSE)
+
+# We have got it right!
 
 
 ## ---- echo=TRUE, eval=TRUE, cache=TRUE-----------------------------------
-# Let's say we have some block of text, where are some given names
-# but we don't now where.
+# Let's work with some block of text with some given names inside
 x = "Tom did play hookey, and he had a very good time. He got back home 
      barely in season to help Jim, the small colored boy, saw next-day's wood 
      and split the kindlings before supper-at least he was there in time 
@@ -58,27 +60,26 @@ x = "Tom did play hookey, and he had a very good time. He got back home
 # but let's see what textPrepare() function does for us.
 
 (xPrepared = textPrepare(x))
-# We got all unique terms (with at least 2 characters) which can be our 
+# We got all unique terms (at least 2 characters long) which can be our 
 # candidates for given names.
 
-# If we use free API plan, it will be better if we use some list of stopwords 
-# to obtain fewer API requests. Let's use some simplified one and remove 
-# some of such terms.
+# If we using free API plan, it will be better to apply a list of stopwords 
+# to use fewer API requests. Let's use some simplified one and remove 
+# some of terms.
 xPrepared = xPrepared[!xPrepared %in% c("before", "from", "had", "her", "in", 
 "no", "that", "with", "at", "him", "into", "of", "the", "to", "he", "his", 
 "it", "up", "for", "got", "as", "by", "did", "or", "was", "and", "back", "she")]
 
-# Now we are ready to look for terms that will be our given names candidates.
+# Now we are ready to look for terms that will be our candidates for given names.
 
 ## ---- echo=TRUE, eval=TRUE, cache=TRUE-----------------------------------
-# To connect with API and automatically obtain a data table with 
-# query results use findGivenNames() function.
+# Use the findGivenNames() function to connect with the API.
 
 (givenNames = findGivenNames(xPrepared, progress = FALSE))
 
-# We have found more than thirty terms in genderize.io database, but 
-# many of them are just garbage. We can remove them with setting 
-# higher threshold of "count" parameter. Thus we obtain more reliable results.
+# We have found more than thirty terms in the genderize.io database, but 
+# many of them introduce only noise to gender data. We can remove them by setting 
+# higher threshold of "count" parameter. By doing that we obtain more reliable results.
 
 givenNames[givenNames$count > 100]
 
@@ -86,62 +87,15 @@ givenNames[givenNames$count > 100]
 
 
 ## ---- echo=TRUE, eval=FALSE, cache=TRUE----------------------------------
-#  # If you work with free API plan you are limited to 1000 gueries a day.
-#  # If your vector of terms to check is quite large we may want to
-#  # somehow cache the results when you reach the limit and start from
-#  # that point the next day.
 #  
-#  # When you reached the limit you will get a message...
-#  givenNames_part1 = findGivenNames(xPrepared)
-#  
-#  # Terms checked: 10/86. First names found: 4.          |   0%
-#  # Terms checked: 20/86. First names found: 7.          |  11%
-#  # Terms checked: 30/86. First names found: 12.         |  22%
-#  # Terms checked: 40/86. First names found: 17.         |  33%
-#  # Terms checked: 50/86. First names found: 22.         |  44%
-#  # Terms checked: 60/86. First names found: 25.         |  56%
-#  #   |=================================                 |  67%
-#  #  Client error: (429) Too Many Requests (RFC 6585)
-#  #  Request limit reached
-#  #
-#  # The API queries stopped at 57 term.
-#  # If you have reached the end of your API limit, you can start the function again from that term and continue finding given names next time with efficient use of the API.
-#  #  Remember to add the results to already found names and not to overwrite them.
-#  #
-#  # Warning messages:
-#  # 1: In genderizeAPI(termsQuery, apikey = apikey, ssl.verifypeer = ssl.verifypeer) :
-#  #   You have used all available requests in this subscription plan.
-#  # 2: In findGivenNames(xPrepared) : The API queries stopped.
-#  
-#  # You can see that the query stopped at 57 term in this case.
-#  # We can use it tomorrow:
-#  givenNames_part2 = findGivenNames(xPrepared[57:NROW(xPrepared)])
-#  
-#  # Finally, we can bind all parts together.
-#  givenNames = rbind(givenNames_part1, givenNames_part2)
-#  
-
-## ---- echo=TRUE, eval=FALSE, cache=TRUE----------------------------------
-#  # Genderize.io API uses UTF-8 encoding. We can also set specific locale.
-#  Sys.setlocale("LC_ALL", "Polish")
-#  (x = "Róza")
-#  # [1] "Róza"
-#  (xp = textPrepare(x))
-#  # [1] "róza"
-#  findGivenNames(x, progress = FALSE)
-#  #    name gender probability count
-#  # 1: róza female        0.89    28
-
-## ---- echo=TRUE, eval=FALSE, cache=TRUE----------------------------------
-#  
-#  # Let's say we have a character string with some names within.
+#  # Let's say we have a character string with a first name within.
 #  x = 'Pascual-Leone Pascual, Ana Ma'
 #  
 #  # There are four unique terms that will be checked in the API database.
 #  textPrepare(x)
 #  # [1] "ana"     "leone"   "ma"      "pascual"
 #  
-#  # Let's don't assume which term can be a given name and run through the API
+#  # Let's don't assume which term is a given name and run through the API
 #  # all four terms.
 #  (genderDB = findGivenNames(x, progress = FALSE))
 #  #       name gender probability count
@@ -207,14 +161,14 @@ givenNames[givenNames$count > 100]
 #  
 #  # The "naCoded" is the proportion of observations without gender predictions.
 #  # It doesn't take into account predictions for labels "unknown";
-#  # if a human coder couldn't classified such observation we shouldn't
+#  # If a human coder couldn't classified such observation we shouldn't
 #  # penalize our algorithm for trying.
 #  # naCoded = (4 + 12) / ( 12 + 10 + 4 + 7 + 10 + 12)
 #  unlist(indicators['naCoded'])
 #  #   naCoded
 #  # 0.2909091
 #  
-#  # The "errorGenderBias" is robust for situation when we misclassify
+#  # The "errorGenderBias" is robust for situations when we misclassify
 #  # the same number of female as male and male as female.
 #  # If it is close to zero we can assume that misclassified observations
 #  # won't affect much our estimates of true gender proportions.
@@ -238,7 +192,7 @@ givenNames[givenNames$count > 100]
 #  # 2640  GILCHRIST, E      noname
 #  # 2641     Haury, LR      noname
 #  
-#  # We also have in the package prepared gender data for that set.
+#  # In the genderizeR package we have prepared gender data for that set as well.
 #  tail(givenNamesDB_authorships)
 #  #      name gender probability count
 #  # 1:     yv   male        1.00     1
@@ -302,7 +256,7 @@ givenNames[givenNames$count > 100]
 #  # 1:  0.5     1 0.07093822          0.03791469 0.03432494      0.01421801
 #  
 #  # However, if we would like to minimize "errorCodedWithoutNA" we should
-#  # choose prob=0.97 and count=10. The trade off is that the proportion
+#  # choose prob = 0.97 and count = 10. The trade off is that the proportion
 #  # of observation with unpredicted gender ("naCodded") will greatly increase.
 #  # authorshipsGrid[authorshipsGrid$errorCodedWithoutNA ==
 #                          min(abs(authorshipsGrid$errorCodedWithoutNA)),]

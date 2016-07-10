@@ -1,27 +1,28 @@
 #' Calculating classification errors and other prediction indicators 
 #' 
 #' \code{classificationErrors} builds confusion matrix from manually coded
-#'  and predicted gender vectors and returns different 
-#'  specific classification errors calculated on that matrix.
+#'  and predicted gender vectors and returns 
+#'  classification errors calculated on that matrix.
 #' 
 #' 
 #' @param labels A vector of true labels. Should have following 
 #' values: c("female", "male", "unknown", "noname"). \code{noname} stands also for 
 #' initials only.
 #' @param predictions A vector of predicted gender. Should have following 
-#' values: c("female", "male", NA). \code{NA} when it was not possible to predict any gender.
+#' values: c("female", "male", NA). \code{NA} when it was not possible 
+#' to predict a gender.
 #' 
 #' @return A list of gender prediction efficency indicators:
 #' \describe{
-#'   \item{confMatrix}{full confusion matrix}
-#'   \item{errorTotal}{total classification error}
-#'   \item{errorFullFirstNames}{classification error without "noname" category}
-#'   \item{errorCoded}{classification error without both "noname" and "unknown" category}
-#'   \item{errorCodedWithoutNA}{classification error only on "female" and "male" categories in both predictions and labels}
-#'   \item{naTotal}{total proportion of items with unpredicted gender}
-#'   \item{naFullFirstNames}{proportion of items with unpredicted gender without "noname" category}
-#'   \item{naCoded}{proportion of items with unpredicted gender without both "noname" and "unknown" category}
-#'   \item{errorGenderBias}{"male" classified as "female" minus "female" classifed as "male" and divided by the sum of items in "female" and "male" categories in both predictions and labels}
+#'   \item{confMatrix}{Full confusion matrix.}
+#'   \item{errorTotal}{Total classification error calculated on the matrix.}
+#'   \item{errorFullFirstNames}{Classification error calculated without "noname" category.}
+#'   \item{errorCoded}{Classification error calculated without both "noname" and "unknown" category.}
+#'   \item{errorCodedWithoutNA}{Classification error calculated only on "female" and "male" categories from both predictions and labels.}
+#'   \item{naTotal}{Total proportion of items with unpredicted gender.}
+#'   \item{naFullFirstNames}{Proportion of items with unpredicted gender calculated without "noname" category.}
+#'   \item{naCoded}{Proportion of items with unpredicted gender calculated without both "noname" and "unknown" category.}
+#'   \item{errorGenderBias}{Calculated as follows: "male" classified as "female" minus "female" classifed as "male" and divided by the sum of items in "female" and "male" categories from both predictions and labels.}
 #'   
 #'   
 #' }
@@ -35,6 +36,40 @@
 #' labels = sample(c("female", "male", "unknown", "noname"), 100, replace = TRUE)
 #' predictions = sample(c("female", "male", NA), 100, replace = TRUE)
 #' classificationErrors(labels, predictions)
+#' 
+#' # $confMatrix
+#' #          predictions
+#' # labels    female male <NA>
+#' #   female       6    6    8
+#' #   male         6   10   10
+#' #   noname      12    6   17
+#' #   unknown      5    7    7
+#' #   <NA>         0    0    0
+#' # 
+#' # $errorTotal
+#' # [1] 0.67
+#' # 
+#' # $errorFullFirstNames
+#' # [1] 0.6461538
+#' # 
+#' # $errorCoded
+#' # [1] 0.6521739
+#' # 
+#' # $errorCodedWithoutNA
+#' # [1] 0.4285714
+#' # 
+#' # $naTotal
+#' # [1] 0.42
+#' # 
+#' # $naFullFirstNames
+#' # [1] 0.3846154
+#' # 
+#' # $naCoded
+#' # [1] 0.3913043
+#' # 
+#' # $errorGenderBias
+#' # [1] 0 
+#' 
 #' }
 #' 
 #' @export

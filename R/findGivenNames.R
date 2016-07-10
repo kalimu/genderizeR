@@ -1,20 +1,21 @@
 #' Getting gender prediction data for a given text vector.
 #' 
-#' \code{findGivenNames} extracts from text unique terms and gets 
-#' the gender predicion for all these terms.
+#' \code{findGivenNames} extracts from text unique terms and predicts  
+#' gender for them.
 #' 
 #' 
-#' @param x A text vector or a character vector of unique terms prepared beforehand. 
+#' @param x A text vector or a character vector of unique terms 
+#' pre-processed earlier manually or by the \code{textPrepare} function.
 #' @param textPrepare If TRUE (default) the \code{textPrepare} function 
 #' will be used on the \code{x} vector. Set it to FALSE if you already 
 #' have prepared a character vector of cleaned up and deduplicated terms 
-#' that you want to send to the API for first name gender checking.
+#' that you want to send to the API for gender checking.
 #' @param apikey A character string with the API key obtained via 
 #' https://store.genderize.io. A default is NULL, which uses the free API plan.
 #'  If you reached the limit of the API you can start from the last checked 
 #'  term next time.
-#' @param queryLength How much terms can be checked in a one single query
-#' @param progress If TRUE (default) progress bar is displayed in the console
+#' @param queryLength How much terms can be checked in a one single query.
+#' @param progress If TRUE (default) progress bar is displayed in the console.
 #' @param ssl.verifypeer Checks the SSL Certificate. Default is TRUE. 
 #' You may set it to FALSE if you encounter some errors that break 
 #' the connection with the API (though it is not recommended).

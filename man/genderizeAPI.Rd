@@ -9,17 +9,24 @@ genderizeAPI(x, apikey = NULL, ssl.verifypeer = TRUE)
 \arguments{
 \item{x}{A vector of terms to check in genderize.io database.}
 
-\item{apikey}{A character string with the API key obtained via https://store.genderize.io. A default is NULL, which uses the free API plan.}
+\item{apikey}{A character string with the API key obtained from 
+https://store.genderize.io. When set to NULL (default), 
+the free API plan is used.}
 
-\item{ssl.verifypeer}{Checks the SSL Certificate. Default is TRUE.}
+\item{ssl.verifypeer}{If TRUE (default) it checks the SSL Certificate.}
 }
 \value{
-A list of four elements: \code{response} is a data frame with names, genders, probabilities and counts or \code{NULL} if non of the terms are not located in the genderize.io database; \code{limitLeft} is showing how many queries to the API are still possible within the current \code{limit} which will be renewed in \code{limitReset} seconds.
+A list of four elements: \code{response} is a data frame with names, 
+genders, probabilities and counts or \code{NULL} if no terms are found 
+in the genderize.io database; \code{limitLeft} is showing how many API queries 
+are still possible within the current \code{limit} which will be renewed 
+in \code{limitReset} seconds.
 }
 \description{
-\code{genderizeAPI} connects with genderize.io API and checks if 
-a term (one or more) is in the given names database and returns 
-its gender probability and count of the cases recorded in the database.
+The \code{genderizeAPI} function connects to genderize.io API and checks if 
+a term (one or more) is in the genderize.io database and returns 
+predicted gender probability and count of the records with this 
+term in the database.
 }
 \examples{
 \dontrun{

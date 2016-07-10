@@ -10,7 +10,7 @@ genderizeTrain(x, y, givenNamesDB, probs, counts, parallel = FALSE,
 \arguments{
 \item{x}{A text vector that we want to genderize.}
 
-\item{y}{A text vector of true gender labels for x vector.}
+\item{y}{A text vector of true gender labels for the x vector.}
 
 \item{givenNamesDB}{A dataset with gender data (could be an output 
 of \code{findGivenNames} function).}
@@ -30,23 +30,25 @@ processing or NULL (default). If \code{parallel} argument is TRUE and
 be detected automatically.}
 }
 \value{
-A data frame with all combination of parameters and computed 
-sets of prediction indicators for each combination:
-  \item{errorCoded}{classification error for predicted & unpredicted gender}
-  \item{errorCodedWithoutNA}{classification error for predicted gender only}
-  \item{naCoded}{proportion of items with manually codded gender 
-  and with unpredicted gender }
-  \item{errorGenderBias}{net gender bias error}
+A data frame with prediction indicators for each combination 
+of parameters:
+  \item{errorCoded}{The classification error for predicted and 
+  unpredicted gender.}
+  \item{errorCodedWithoutNA}{The classification error for items with 
+  predicted gender only.}
+  \item{naCoded}{The proportion of items with manually coded gender 
+  and with unpredicted gender.}
+  \item{errorGenderBias}{The net gender bias error.}
 }
 \description{
-\code{genderizeTrain} predicts gender and checks different combinations
-of \code{probability} and \code{count} parameters.
+THe \code{genderizeTrain} function predicts gender and checks 
+different combinations of \code{probability} and \code{count} parameters.
 }
 \examples{
 \dontrun{
 
 x = c('Alex', 'Darrell', 'Kale', 'Lee', 'Robin', 'Terry', 'John', 'Tom')
-y = c(rep('male',length(x)))
+y = c(rep('male', length(x)))
 
 givenNamesDB = findGivenNames(x)
 probs = seq(from =  0.5, to = 0.9, by = 0.1)
@@ -73,6 +75,6 @@ genderizeTrain(x = x, y = y,
 
 }
 \seealso{
-Implementation of parallel mclapply on Windows machines by Nathan VanHoudnos \url{http://edustatistics.org/nathanvan/setup/mclapply.hack.R}
+Implementation of parallel mclapply on Windows machines by Nathan VanHoudnos \url{http://edustatistics.org/nathanvan/setup/mclapply.hack.R}.
 }
 

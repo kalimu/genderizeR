@@ -10,16 +10,17 @@ textPrepare(x, textPrepMessages = FALSE)
 \item{x}{A vector of character strings.}
 
 \item{textPrepMessages}{If TRUE verbose output of the preparing process 
-is shown on the console.}
+is shown on the console (default is FALSE).}
 }
 \value{
 A vector of unique terms with at least two characters.
 }
 \description{
-\code{textPrepare} Takes a text vector and converts it into a vector 
-of unique terms. This function is used by default 
+The \code{textPrepare} function takes a text vector as an argument 
+and converts it into a vector of unique terms. 
+This function is used by default 
 by the \code{findGivenNames} function
-as text pre-processor before sending a query to the API.
+as a text pre-processor before sending a query to the genderize.io API.
 }
 \examples{
 \dontrun{

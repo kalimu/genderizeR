@@ -6,12 +6,11 @@
 \title{Gender data for titles sample}
 \format{A data.table object with 872 rows and 4 variables:
 \describe{
-  \item{name}{first name}
-  \item{gender}{predicted gender}
-  \item{probability}{how many persons in with this first name 
-  has the predicted gender}
-  \item{count}{how many persons in the genderize.io database 
-  had that first name}
+  \item{name}{A term used as first name.}
+  \item{gender}{The predicted gender for the term.}
+  \item{probability}{The probability of the predicted gender.}
+  \item{count}{How many social profiles with the term as a given name 
+  is recorded in the genderize.io database.}
 }}
 \source{
 \url{http://genderize.io/}
@@ -20,8 +19,8 @@
 givenNamesDB_titles
 }
 \description{
-A dataset with a gender data from genderize.io for the sample 
-of \pkg{titles} in this package. This is the output 
+A dataset with a gender data from genderize.io for the  
+\pkg{titles} dataset in the package. This is the output 
 of \code{findGivenNames} 
 function that was performed on December 26, 2014.
 }

@@ -7,13 +7,18 @@
 #' published from 1945 to 2014.
 #' The sample was drawn in December 2014. 
 #'
-#' @format A data frame with 2641 rows and 2 variables:
+#' @format A data frame with 1190 rows and 2 variables:
 #' \describe{
-#'   \item{title}{title of an article}
-#'   \item{genderCoded}{manually coded gender of an author. There are four codes: "female", "male", "noname, "unknown". "Noname" is the code for a case were human coders were not be able to find a proper first name of an author. "Unknown" if the code for a case were the coders found a full name of an author but were not be able to verify if she or he is a man or a female.}
+#'   \item{title}{The title of an article.}
+#'   \item{genderCoded}{Manually coded gender of a person mentioned in the 
+#'   title. There are four codes: "female", "male", "both", "none". 
+#'   "None" is the code for a case were human coders were not able to find 
+#'   a full name in the title or verify if she or he is a man or a female.
+#'   "Both" is the code for two rare cases in the dataset where two people 
+#'   were mentioned in the title and one of them was male and the other 
+#'   was female.}
 #' }
 #' @source \url{http://webofknowledge.com/}
-#' 
 #' 
 
 

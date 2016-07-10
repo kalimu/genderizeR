@@ -1,22 +1,23 @@
 #' Predicting gender for character strings.
 #' 
-#' For each character string in \code{x} vector \code{genderize} 
-#' use output of the 
+#' For each character string in a \code{x} vector \code{genderize} function
+#' using an output of the 
 #' \code{findGivenNames} function and returns 
 #' a gender prediction for the whole character string based 
-#' on possible first name terms located inside those strings.
+#' on first names located inside the strings.
 #' 
 #' 
 #' @param x A vector of text strings.
-#' @param genderDB A data.table output of  \code{findGivenNames} function 
+#' @param genderDB A data table output of  \code{findGivenNames} function 
 #' for the vector x.
-#' @param blacklist Some terms could be excluded from gender checking
-#' @param progress If TRUE (default) progress bar is displayed in the console
+#' @param blacklist A character vector of terms (stopwords) that will be 
+#' excluded from gender checking.
+#' @param progress If TRUE (default) progress bar is displayed in the console.
 #'
 #' @return A data table with text string, a term found in \code{genderDB},
-#'  that is finally used as a given name to predict gender, 
-#'  a predicted gender, number of potential gender indicators 
-#' ("1" if only one term from the text string is found in \code{genderDB}). 
+#'  that is finally used as a given name to predict gender of the string, 
+#'  a predicted gender, a number of potential gender indicators 
+#' (eg. 1 if only one term from the text string is found in \code{genderDB}). 
 #' 
 #' 
 #' 
@@ -31,7 +32,7 @@
 #' 
 #' givenNames = findGivenNames(x)
 #' givenNames = givenNames[count>40]
-#' genderize(x, genderDB=givenNames, blacklist=NULL)
+#' genderize(x, genderDB=givenNames, blacklist=c('med'))
 #'
 #' #                                                                             text
 #' # 1:                            Winston J. Durant, ASHP past president, dies at 84
@@ -42,8 +43,8 @@
 #' 
 #' #    givenName gender genderIndicators
 #' # 1:   winston   male                1
-#' # 2:       med   male                2
-#' # 3:        NA     NA                0
+#' # 2:   norbert   male                1
+#' # 3:        yu female                1
 #' # 4:       jan   male                1
 #' # 5:     maria female                1
 #'

@@ -7,18 +7,21 @@
 genderizePredict(trainedParams, newdata, givenNamesDB)
 }
 \arguments{
-\item{trainedParams}{An output of a \code{genderizeTrain} function with prediction efficiency indicators for different combinations of probability and count values}
+\item{trainedParams}{An output of a \code{genderizeTrain} function with 
+prediction efficiency indicators for different combinations of probability 
+and count values.}
 
-\item{newdata}{A character vector for gender prediction}
+\item{newdata}{A character vector for gender prediction.}
 
 \item{givenNamesDB}{A dataset with gender data 
-(could be an output of \code{findGivenNames} function)}
+(could be an output of \code{findGivenNames} function).}
 }
 \value{
 A character vector of values: \code{male}, \code{female} or \code{unknown}.
 }
 \description{
-\code{genderizePredict} predicts gender with the best values of
- \code{probability} and \code{count} parameters.
+The \code{genderizePredict} function predicts gender using the values of
+ \code{probability} and \code{count} parameters that mimize 
+ the \code{errorCoded}.
 }
 

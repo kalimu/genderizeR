@@ -1,13 +1,16 @@
 #' Gender predicting function
 #' 
-#' \code{genderizePredict} predicts gender with the best values of
-#'  \code{probability} and \code{count} parameters. 
+#' The \code{genderizePredict} function predicts gender using the values of
+#'  \code{probability} and \code{count} parameters that mimize 
+#'  the \code{errorCoded}. 
 #' 
 #' 
-#' @param trainedParams An output of a \code{genderizeTrain} function with prediction efficiency indicators for different combinations of probability and count values
-#' @param newdata A character vector for gender prediction
+#' @param trainedParams An output of a \code{genderizeTrain} function with 
+#' prediction efficiency indicators for different combinations of probability 
+#' and count values.
+#' @param newdata A character vector for gender prediction.
 #' @param givenNamesDB A dataset with gender data 
-#' (could be an output of \code{findGivenNames} function)
+#' (could be an output of \code{findGivenNames} function).
 #' 
 #' @return A character vector of values: \code{male}, \code{female} or \code{unknown}.
 #' 

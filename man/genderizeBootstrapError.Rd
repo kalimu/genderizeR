@@ -10,7 +10,8 @@ genderizeBootstrapError(x, y, givenNamesDB, probs, counts,
 \arguments{
 \item{x}{A text vector that we want to genderize}
 
-\item{y}{A text vector of true gender labels for x vector}
+\item{y}{A text vector of true gender labels ('female' or 'male') 
+for x vector}
 
 \item{givenNamesDB}{A dataset with gender data (could be an output of \code{findGivenNames} function)}
 

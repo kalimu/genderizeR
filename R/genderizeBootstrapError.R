@@ -8,7 +8,8 @@
 #' 
 #' 
 #' @param x A text vector that we want to genderize
-#' @param y A text vector of true gender labels for x vector
+#' @param y A text vector of true gender labels ('female' or 'male') 
+#' for x vector 
 #' @param givenNamesDB A dataset with gender data (could be an output of \code{findGivenNames} function)
 #' @param probs A numeric vector of different probability values. 
 #' Used to subseting a givenNamesDB dataset
@@ -88,7 +89,7 @@ genderizeBootstrapError = function(x,
                                            counts = counts, 
                                            parallel = parallel
                                            )
-            
+
             classifications = genderizePredict(trainedParams,
                                                newdata = x[test],
                                                givenNamesDB = givenNamesDB)
@@ -133,15 +134,13 @@ genderizeBootstrapError = function(x,
     
     n <- length(y)
     tab = table(y)
-    tab = c(tab,'unknown' = 0)
-    tab = as.table(tab)
-    
+
     p_k <- as.vector(tab)/n
     q_k <- as.vector(table(classify_out))/n
     
     if (!any(classify_out == "unknown")) {
         
-        q_k = c(q_k, 0)
+        p_k = c(p_k, 0)
         
     }
     

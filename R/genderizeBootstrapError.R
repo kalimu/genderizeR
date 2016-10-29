@@ -138,7 +138,7 @@ genderizeBootstrapError = function(x,
     p_k <- as.vector(tab)/n
     q_k <- as.vector(table(classify_out))/n
     
-    if (!any(classify_out == "unknown")) {
+    if (any(classify_out == "unknown")) {
         
         p_k = c(p_k, 0)
         

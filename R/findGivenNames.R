@@ -191,10 +191,12 @@ findGivenNames = function(x,
             verbose(responseAPI)            
             
         }   
+        
+        if (progress) {
+          cat('\n')
+          cat('\n')  
+        }
     }
-    
-    cat('\n')
-    cat('\n')  
     
     if (is.null(dfResponse)) {
         

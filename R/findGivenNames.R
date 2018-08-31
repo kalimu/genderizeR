@@ -11,9 +11,11 @@
 #' have prepared a character vector of cleaned up and deduplicated terms 
 #' that you want to send to the API for gender checking.
 #' @param country A character string with a country code for localized search
-#' for names.
+#' for names. Country codes follow the ISO_3166-1 alpha-2 standard:
+#' https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 #' @param language A character string with a language code for localized search
-#' for names.
+#' for names. Language codes follow the ISO_639-1 standard: 
+#' https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 #' @param apikey A character string with the API key obtained via 
 #' https://store.genderize.io. A default is NULL, which uses the free API plan.
 #'  If you reached the limit of the API you can start from the last checked 

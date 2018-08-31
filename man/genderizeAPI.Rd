@@ -4,10 +4,17 @@
 \alias{genderizeAPI}
 \title{Getting data from genderize.io  API}
 \usage{
-genderizeAPI(x, apikey = NULL, ssl.verifypeer = TRUE)
+genderizeAPI(x, country = NULL, language = NULL, apikey = NULL,
+  ssl.verifypeer = TRUE)
 }
 \arguments{
 \item{x}{A vector of terms to check in genderize.io database.}
+
+\item{country}{A character string with a country code for localized search
+for names.}
+
+\item{language}{A character string with a language code for localized search
+for names.}
 
 \item{apikey}{A character string with the API key obtained from 
 https://store.genderize.io. When set to NULL (default), 

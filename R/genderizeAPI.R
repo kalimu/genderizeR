@@ -7,6 +7,10 @@
 #' 
 #' 
 #' @param x A vector of terms to check in genderize.io database.
+#' @param country A character string with a country code for localized search
+#' for names.
+#' @param language A character string with a language code for localized search
+#' for names.
 #' @param apikey A character string with the API key obtained from 
 #' https://store.genderize.io. When set to NULL (default), 
 #' the free API plan is used.
@@ -53,7 +57,9 @@
 #' @export
 
  
-genderizeAPI = function(x, 
+genderizeAPI = function(x,
+                        country = NULL,
+                        language = NULL,
                         apikey = NULL, 
                         ssl.verifypeer = TRUE
                         ) {
@@ -63,6 +69,19 @@ genderizeAPI = function(x,
     query = as.list(termsQuery)
     
     names(query)  = paste0('name[', 0:(length(termsQuery) - 1), ']')
+    
+    if (!is.null(country)) {
+      
+      query = c(query, 'country_id' = country)
+
+    }
+    
+    if (!is.null(language)) {
+
+      query = c(query, 'language_id' = language)
+    
+    }
+
     
     if (!is.null(apikey)) {
         

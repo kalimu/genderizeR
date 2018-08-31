@@ -4,7 +4,8 @@
 \alias{findGivenNames}
 \title{Getting gender prediction data for a given text vector.}
 \usage{
-findGivenNames(x, textPrepare = TRUE, apikey = NULL, queryLength = 10,
+findGivenNames(x, textPrepare = TRUE, country = NULL,
+  language = NULL, apikey = NULL, queryLength = 10,
   progress = TRUE, ssl.verifypeer = TRUE)
 }
 \arguments{
@@ -15,6 +16,12 @@ pre-processed earlier manually or by the \code{textPrepare} function.}
 will be used on the \code{x} vector. Set it to FALSE if you already 
 have prepared a character vector of cleaned up and deduplicated terms 
 that you want to send to the API for gender checking.}
+
+\item{country}{A character string with a country code for localized search
+for names.}
+
+\item{language}{A character string with a language code for localized search
+for names.}
 
 \item{apikey}{A character string with the API key obtained via 
 https://store.genderize.io. A default is NULL, which uses the free API plan.
@@ -69,7 +76,15 @@ foundNames[count > 100]
 # 3: polly female        0.99   191
 # 4:   tom   male        1.00  3736
 
+
+# localization
+findGivenNames("andrea", country = "us")
+#      name gender probability count
+# 1: andrea female        0.97  2308
+
+findGivenNames("andrea", country = "it")
+#      name gender probability count
+# 1: andrea  male         0.99  1070
 }
 
 }
-

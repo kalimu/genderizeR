@@ -11,16 +11,17 @@ genderizeAPI(x, country = NULL, language = NULL, apikey = NULL,
 \item{x}{A vector of terms to check in genderize.io database.}
 
 \item{country}{A character string with a country code for localized search
-for names. Country codes follow the ISO_3166-1 alpha-2 standard:
-https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}
+for names. Country codes follow the ISO_3166-1 alpha-2 standard
+\url{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}.}
 
 \item{language}{A character string with a language code for localized search
 for names. Language codes follow the ISO_639-1 standard: 
-https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes}
+\url{https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes}}
 
-\item{apikey}{A character string with the API key obtained from 
-https://store.genderize.io. When set to NULL (default), 
-the free API plan is used.}
+\item{apikey}{A character string with the API key obtained via 
+\url{https://store.genderize.io}. A default is NULL, which uses the free API 
+ plan. If you reached the limit of the API you can start from the last 
+ checked term next time.}
 
 \item{ssl.verifypeer}{If TRUE (default) it checks the SSL Certificate.}
 }

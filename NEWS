@@ -3,6 +3,8 @@ genderizeR 2.0.0.9001
 
 * corrected typos and formulation in documentation files
 * examples from help files are all chcecked to be working with the current package version
+* new parameters for findGivenNames() and genderizeAPI() ("country" and "language") 
+which allow for localized searches (@tklebel)
 
 genderizeR 2.0.0
 ================

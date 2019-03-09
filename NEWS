@@ -1,10 +1,11 @@
-genderizeR 2.0.0.9001
+genderizeR 2.0.0.9003
 ================
 
 * corrected typos and formulation in documentation files
 * examples from help files are all chcecked to be working with the current package version
 * new parameters for findGivenNames() and genderizeAPI() ("country" and "language") 
-which allow for localized searches (@tklebel)
+which allow for localized searches (thanks to @tklebel)
+* updated DESCRIPTION file
 
 genderizeR 2.0.0
 ================

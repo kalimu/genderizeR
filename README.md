@@ -3,9 +3,9 @@
 genderizeR
 ==========
 
-by Kamil Wais [homepage / contact](http://www.wais.kamil.rzeszow.pl)
+by Kamil Wais [homepage / contact](https://kalimu.github.io)
 
-[![Travis-CI Build Status](https://travis-ci.org/kalimu/genderizeR.png?branch=master)](https://travis-ci.org/kalimu/genderizeR) [![cran version](http://www.r-pkg.org/badges/version/genderizeR)](https://cran.r-project.org/package=genderizeR) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/genderizeR?)](https://github.com/metacran/cranlogs.app)
+[![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](https://www.r-project.org/Licenses/MIT) [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/) [![Travis build status](https://travis-ci.org/kalimu/genderizeR.png?branch=master)](https://travis-ci.org/kalimu/genderizeR) [![CRAN Status](http://www.r-pkg.org/badges/version/genderizeR)](https://cran.r-project.org/package=genderizeR) [![CRAN Checks](https://cranchecks.info/badges/summary/genderizeR)](https://cran.r-project.org/web/checks/check_results_genderizeR.html) [![Monthly downloads badge](http://cranlogs.r-pkg.org/badges/last-month/genderizeR)](https://cran.r-project.org/package=genderizeR) [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/genderizeR?color=blue)](https://CRAN.R-project.org/package=genderizeR) [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/genderizeR?color=blue)](https://CRAN.R-project.org/package=genderizeR) [![HitCount](http://hits.dwyl.io/kalimu/genderizeR)](http://hits.dwyl.io/kalimu/genderizeR)
 
 R package for gender predictions based on first names.
 
@@ -43,7 +43,7 @@ library(genderizeR)
 ```
 
     #> 
-    #> Welcome to genderizeR package version: 2.0
+    #> Welcome to genderizeR package version: 2.0.0.9003
     #> 
     #> Homepage: http://www.wais.kamil.rzeszow.pl/genderizeR
     #> 
@@ -77,9 +77,9 @@ givenNames = findGivenNames(x, progress = FALSE)
 givenNames = givenNames[count > 100]
 givenNames
 #>       name gender probability count
-#> 1:     jan   male        0.60  1692
-#> 2:   maria female        0.99  8467
-#> 3: winston   male        0.98   128
+#> 1: winston   male        0.98   128
+#> 2:     jan   male         0.6  1663
+#> 3:   maria female        0.99  8402
 
 # Genderize the original character vector
 genderize(x, genderDB = givenNames, progress = FALSE)
@@ -130,18 +130,38 @@ Fork git repo `https://github.com/kalimu/genderizeR` and submit a pull request.
 
 If you enjoy using the package you could write a short testimonial and send it to me. I will be happy to post in on the package homepage.
 
-For any kind of feedback you can use the contact form here: <http://www.wais.kamil.rzeszow.pl/kontakt/>
+For any kind of feedback you can use the contact form here: <https://kalimu.github.io/#contact>
 
 How to contact the package's author regarding research or commercial project?
 -----------------------------------------------------------------------------
 
-Please use the contact form: <http://www.wais.kamil.rzeszow.pl/kontakt/>
+Please use the contact form: <https://kalimu.github.io/#contact>
 
 How to cite the package?
 ------------------------
 
 ``` r
 citation('genderizeR')
+#> 
+#> Wais K (2006). "Gender Prediction Methods Based on First Names
+#> with genderizeR." _The R Journal_, *8*(1), 17-37. doi:
+#> 10.32614/RJ-2016-002 (URL: http://doi.org/10.32614/RJ-2016-002),
+#> <URL: https://doi.org/10.32614/RJ-2016-002>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Article{,
+#>     title = {{Gender Prediction Methods Based on First Names with
+#>           genderizeR}},
+#>     author = {Kamil Wais},
+#>     year = {2006},
+#>     journal = {{The R Journal}},
+#>     doi = {10.32614/RJ-2016-002},
+#>     pages = {17--37},
+#>     volume = {8},
+#>     number = {1},
+#>     url = {https://doi.org/10.32614/RJ-2016-002},
+#>   }
 ```
 
 Thank You for the citation!

@@ -30,7 +30,7 @@
 #' 
 #' If you need help with your research or commercial projects, 
 #' feel free to contat me via my homepage contact form: 
-#' \url{http://www.wais.kamil.rzeszow.pl/genderizeR} 
+#' \url{https://kalimu.github.io/} 
 #'
 #' @docType package
 #' 

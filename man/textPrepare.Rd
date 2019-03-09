@@ -23,7 +23,6 @@ by the \code{findGivenNames} function
 as a text pre-processor before sending a query to the genderize.io API.
 }
 \examples{
-\dontrun{
 
 x = c("Winston J. Durant, ASHP past president, dies at 84", 
       "Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg",
@@ -32,9 +31,6 @@ x = c("Winston J. Durant, ASHP past president, dies at 84",
       "Maria Sklodowska-Curie")
 
 head(textPrepare(x))
-# [1] "ashp"         "at"           "badge"        "baszkiewicz" 
-# [5] "contribution" "curie
 
-}
 
 }

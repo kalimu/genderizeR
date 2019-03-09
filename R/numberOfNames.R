@@ -6,7 +6,7 @@
 #' 
 #' 
 #' @examples 
-#' \dontrun{
+#' \donttest{
 #' 
 #' numberOfNames()
 #' 

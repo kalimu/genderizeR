@@ -31,7 +31,7 @@ a gender prediction for the whole character string based
 on first names located inside the strings.
 }
 \examples{
-\dontrun{
+\donttest{
 
 x = c("Winston J. Durant, ASHP past president, dies at 84", 
 "Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg",

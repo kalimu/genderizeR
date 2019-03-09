@@ -36,7 +36,7 @@
 #' 
 #' 
 #' @examples 
-#' \dontrun{
+#' \donttest{
 #' 
 #' x = "Tom did play hookey, and he had a very good time. He got back home 
 #'      barely in season to help Jim, the small colored boy, saw next-day's wood 

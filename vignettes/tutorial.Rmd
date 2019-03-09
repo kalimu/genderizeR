@@ -5,8 +5,10 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to genderizeR - tutorial}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 R package for gender predictions based on first names 
 by Kamil Wais ([author's homepage](http://www.wais.kamil.rzeszow.pl)).
@@ -244,6 +246,25 @@ genderize(x, genderDB = genderDB, progress = FALSE)
 
 # The classification algorithm predict "Hans-Peter" as male using the most
 # common first name of the two.    
+
+# Localization
+
+findGivenNames("andrea", country = "us")
+#      name gender probability count
+# 1: andrea female        0.97  2308
+
+findGivenNames("andrea", country = "it")
+#      name gender probability count
+# 1: andrea  male         0.99  1070
+
+findGivenNames("andrea", language = "en")
+#      name gender probability count
+# 1: andrea female        0.96  2562
+
+findGivenNames("andrea", language = "it")
+#      name gender probability count
+# 1: andrea   male        0.99  1070
+
 ```    
 
 # Calculating gender prediction errors

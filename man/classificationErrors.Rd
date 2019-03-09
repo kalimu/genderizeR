@@ -37,8 +37,7 @@ A list of gender prediction efficency indicators:
  classification errors calculated on that matrix.
 }
 \examples{
-\dontrun{
-
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 labels = sample(c("female", "male", "unknown", "noname"), 100, replace = TRUE)
 predictions = sample(c("female", "male", NA), 100, replace = TRUE)
@@ -76,7 +75,5 @@ classificationErrors(labels, predictions)
 # 
 # $errorGenderBias
 # [1] 0 
-
-}
 
 }

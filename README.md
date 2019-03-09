@@ -5,11 +5,11 @@ genderizeR
 
 by Kamil Wais [homepage / contact](https://kalimu.github.io)
 
-[![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](https://www.r-project.org/Licenses/MIT) [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/) [![Travis build status](https://travis-ci.org/kalimu/genderizeR.png?branch=master)](https://travis-ci.org/kalimu/genderizeR) [![CRAN Status](http://www.r-pkg.org/badges/version/genderizeR)](https://cran.r-project.org/package=genderizeR) [![CRAN Checks](https://cranchecks.info/badges/summary/genderizeR)](https://cran.r-project.org/web/checks/check_results_genderizeR.html) [![Monthly downloads badge](http://cranlogs.r-pkg.org/badges/last-month/genderizeR)](https://cran.r-project.org/package=genderizeR) [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/genderizeR?color=blue)](https://CRAN.R-project.org/package=genderizeR) [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/genderizeR?color=blue)](https://CRAN.R-project.org/package=genderizeR) [![HitCount](http://hits.dwyl.io/kalimu/genderizeR)](http://hits.dwyl.io/kalimu/genderizeR)
+[![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](https://www.r-project.org/Licenses/MIT) [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/) [![Travis build status](https://travis-ci.org/kalimu/genderizeR.png?branch=master)](https://travis-ci.org/kalimu/genderizeR) [![CRAN Status](http://www.r-pkg.org/badges/version/genderizeR)](https://cran.r-project.org/package=genderizeR) [![CRAN Checks](https://cranchecks.info/badges/summary/genderizeR)](https://cran.r-project.org/web/checks/check_results_genderizeR.html) [![Monthly downloads badge](http://cranlogs.r-pkg.org/badges/last-month/genderizeR)](https://cran.r-project.org/package=genderizeR) [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/genderizeR?color=blue)](https://CRAN.R-project.org/package=genderizeR) [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/genderizeR?color=blue)](https://CRAN.R-project.org/package=genderizeR) [![HitCount](http://hits.dwyl.io/kalimu/genderizer.svg)](http://hits.dwyl.io/kalimu/genderizer)
 
 R package for gender predictions based on first names.
 
-The package home page: <http://www.wais.kamil.rzeszow.pl/genderizer/>
+The package home page: <https://kalimu.github.io/project/genderizer/>
 
 Information about the genderize.io project and documentation of the API: <http://genderize.io>
 

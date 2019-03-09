@@ -38,4 +38,3 @@ head(textPrepare(x))
 }
 
 }
-

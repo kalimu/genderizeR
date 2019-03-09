@@ -77,4 +77,3 @@ genderizeTrain(x = x, y = y,
 \seealso{
 Implementation of parallel mclapply on Windows machines by Nathan VanHoudnos \url{http://edustatistics.org/nathanvan/setup/mclapply.hack.R}.
 }
-

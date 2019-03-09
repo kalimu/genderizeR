@@ -33,4 +33,3 @@ published from 1945 to 2014.
 The sample was drawn in December 2014.
 }
 \keyword{datasets}
-

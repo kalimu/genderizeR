@@ -20,4 +20,3 @@ Now the function has the proper name \code{classificationErrors} (with "i").
 Old function name still works, but is deprecated now and will be removed
 in future version of the package.
 }
-

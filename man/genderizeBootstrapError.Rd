@@ -76,4 +76,3 @@ genderizeBootstrapError(x = x, y = y,
 \seealso{
 In the \code{sortinghat} package: \code{\link[sortinghat]{errorest_apparent}}, \code{\link[sortinghat]{errorest_loo_boot}}, \code{\link[sortinghat]{errorest_632plus}}.
 }
-

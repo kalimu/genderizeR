@@ -24,4 +24,3 @@ The \code{genderizePredict} function predicts gender using the values of
  \code{probability} and \code{count} parameters that mimize 
  the \code{errorCoded}.
 }
-

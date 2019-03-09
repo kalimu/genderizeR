@@ -25,4 +25,3 @@ of \code{findGivenNames}
 function that was performed on December 26, 2014.
 }
 \keyword{datasets}
-

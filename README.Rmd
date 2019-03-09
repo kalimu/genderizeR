@@ -26,12 +26,12 @@ by Kamil Wais [homepage / contact](https://kalimu.github.io)
 [![Monthly downloads badge](http://cranlogs.r-pkg.org/badges/last-month/genderizeR)](https://cran.r-project.org/package=genderizeR)
 [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/genderizeR?color=blue)](https://CRAN.R-project.org/package=genderizeR)
 [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/genderizeR?color=blue)](https://CRAN.R-project.org/package=genderizeR)
-[![HitCount](http://hits.dwyl.io/kalimu/genderizeR.svg)](http://hits.dwyl.io/kalimu/genderizeR)
+[![HitCount](http://hits.dwyl.io/kalimu/genderizer.svg)](http://hits.dwyl.io/kalimu/genderizer)
 
 R package for gender predictions based on first names. 
 
 The package home page:
-[http://www.wais.kamil.rzeszow.pl/genderizer/](http://www.wais.kamil.rzeszow.pl/genderizer/)
+[https://kalimu.github.io/project/genderizer/](https://kalimu.github.io/project/genderizer/)
 
 Information about the genderize.io project and documentation of the API: 
 [http://genderize.io](http://genderize.io)

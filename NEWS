@@ -1,15 +1,17 @@
-genderizeR 2.0.1
-================ 
+# genderizeR 2.0.1
 
-* corrected typos and formulation in documentation files
-* examples from help files are all chcecked to be working with the current package version
+## Major changes  
 * new parameters for findGivenNames() and genderizeAPI() ("country" and "language") 
 which allow for localized searches (thanks to @tklebel)
+
+## Minor changes
+* corrected typos and formulation in documentation files
+* depracted function names are removed
+* examples from help files are all chcecked to be working with the current package version
 * updated DESCRIPTION file
 * new CITATION file see citation('genderizeR')
 
-genderizeR 2.0.0
-================
+# genderizeR 2.0.0
 
 * parallel processing in genderizeTrain works properly under Linux now
 * simple solution for caching results for findGivenNames() 
@@ -23,26 +25,21 @@ genderizeR 2.0.0
 * updated README file
 * added tutorial vignette
 
-genderizeR 1.2.1
-================
+# genderizeR 1.2.1
 
 * fix in function textPrepare (now works properly with initials at the end)
 * documentation corrected
 * code cleared
 
-genderizeR 1.2.0
-================
+# genderizeR 1.2.0
 
 * fix for changes in version 1.0.0 of httr package
 
-genderizeR 1.1.1
-================
+# genderizeR 1.1.1
 
 * small DESCRIPTION update
 
-
-genderizeR 1.1.0
-================
+# genderizeR 1.1.0
 
 * second CRAN release working with new API now
 * RCurl package replaced by httr
@@ -54,55 +51,46 @@ genderizeR 1.1.0
 * workaround with multi handle error when the API query is stopped by user
 * added ssl.verifypeer option
 
-genderizeR 1.0.0.3
-==================
+# genderizeR 1.0.0.3
 
 * ncol error fixed
 * 'like' term works
 
-genderizeR 1.0.0.1
-==================
+# genderizeR 1.0.0.1
 
 * https temporary fix
 
-genderizeR 1.0.0.0
-==================
+# genderizeR 1.0.0.0
 
 * hotfixes and updates
 * first CRAN release
 
-genderizeR 0.1.2.4
-==================
+# genderizeR 0.1.2.4
 
 * training function with parallel version as well
 
 
-genderizeR 0.1.2.3
-==================
+# genderizeR 0.1.2.3
 
 * dataset with titles sample
 * dataset with first names and their gender data for the titles sample
 
 
-genderizeR 0.1.2.2
-==================
+# genderizeR 0.1.2.2
 
 * dataset with authorships sample 
 * dataset with first names and their gender data for the authorships sample
 
-genderizeR 0.1.2.1
-==================
+# genderizeR 0.1.2.1
 
 * improved progress monitoring 
 
 
-genderizeR 0.1.1
-================
+# genderizeR 0.1.1
 
 * optional distributed corpus in textPrepare function
 
 
-genderizeR 0.0.1
-================
+# genderizeR 0.0.1
 
 * dev version building on GitHub

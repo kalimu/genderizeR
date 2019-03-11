@@ -14,7 +14,7 @@ given the first name.
 }
 \details{
 If you need help with your research or commercial projects, 
-feel free to contat me via my homepage contact form: 
+feel free to contact me via my homepage contact form: 
 \url{https://kalimu.github.io/}
 }
 \seealso{

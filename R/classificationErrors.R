@@ -12,7 +12,7 @@
 #' values: c("female", "male", NA). \code{NA} when it was not possible 
 #' to predict a gender.
 #' 
-#' @return A list of gender prediction efficency indicators:
+#' @return A list of gender prediction efficiency indicators:
 #' \describe{
 #'   \item{confMatrix}{Full confusion matrix.}
 #'   \item{errorTotal}{Total classification error calculated on the matrix.}
@@ -22,7 +22,7 @@
 #'   \item{naTotal}{Total proportion of items with unpredicted gender.}
 #'   \item{naFullFirstNames}{Proportion of items with unpredicted gender calculated without "noname" category.}
 #'   \item{naCoded}{Proportion of items with unpredicted gender calculated without both "noname" and "unknown" category.}
-#'   \item{errorGenderBias}{Calculated as follows: "male" classified as "female" minus "female" classifed as "male" and divided by the sum of items in "female" and "male" categories from both predictions and labels.}
+#'   \item{errorGenderBias}{Calculated as follows: "male" classified as "female" minus "female" classified as "male" and divided by the sum of items in "female" and "male" categories from both predictions and labels.}
 #'   
 #'   
 #' }

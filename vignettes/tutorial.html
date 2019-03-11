@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -12,14 +12,14 @@
 
 <meta name="author" content="Kamil Wais" />
 
-<meta name="date" content="2016-07-10" />
+<meta name="date" content="2019-03-11" />
 
 <title>Introduction to genderizeR - tutorial</title>
 
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -55,7 +55,29 @@ code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
 code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -70,12 +92,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Introduction to genderizeR - tutorial</h1>
 <h4 class="author"><em>Kamil Wais</em></h4>
-<h4 class="date"><em>2016-07-10</em></h4>
+<h4 class="date"><em>2019-03-11</em></h4>
 
 
 
-<p>R package for gender predictions based on first names by Kamil Wais (<a href="http://www.wais.kamil.rzeszow.pl">author’s homepage</a>).</p>
-<p>The package homepage: <a href="http://www.wais.kamil.rzeszow.pl/genderizer/" class="uri">http://www.wais.kamil.rzeszow.pl/genderizer/</a>.</p>
+<p>R package for gender predictions based on first names by Kamil Wais.</p>
+<p>The package homepage: <a href="https://kalimu.github.io/project/genderizer/" class="uri">https://kalimu.github.io/project/genderizer/</a>.</p>
 <p>Information about the genderize.io project and documentation of the API: <a href="http://genderize.io" class="uri">http://genderize.io</a>.</p>
 <div id="description" class="section level1">
 <h1>Description</h1>
@@ -91,7 +113,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>Installing developer version from GitHub</h2>
 <p>Remember to install <code>devtools</code> package first!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages('devtools')</span>
-devtools::<span class="kw">install_github</span>(<span class="st">&quot;kalimu/genderizeR&quot;</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;kalimu/genderizeR&quot;</span>)</code></pre></div>
 </div>
 <div id="loading-the-installed-package" class="section level2">
 <h2>Loading the installed package</h2>
@@ -122,12 +144,12 @@ x =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Win
 givenNames =<span class="st"> </span><span class="kw">findGivenNames</span>(x, <span class="dt">progress =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We can use only terms that have more than x counts in the database </span>
 <span class="co"># to eliminate noise in gender data.</span>
-givenNames =<span class="st"> </span>givenNames[count &gt;<span class="st"> </span><span class="dv">100</span>]
+givenNames =<span class="st"> </span>givenNames[count <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>]
 givenNames</code></pre></div>
 <pre><code>##       name gender probability count
-## 1:     jan   male        0.60  1692
-## 2:   maria female        0.99  8467
-## 3: winston   male        0.98   128</code></pre>
+## 1: winston   male        0.98   128
+## 2:     jan   male         0.6  1663
+## 3:   maria female        0.99  8402</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Genderize the original character vector.</span>
 <span class="kw">genderize</span>(x, <span class="dt">genderDB =</span> givenNames, <span class="dt">progress =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <pre><code>##                                                              text
@@ -191,7 +213,7 @@ x =<span class="st"> &quot;Tom did play hookey, and he had a very good time. He 
 <span class="co"># If we using free API plan, it will be better to apply a list of stopwords </span>
 <span class="co"># to use fewer API requests. Let's use some simplified one and remove </span>
 <span class="co"># some of terms.</span>
-xPrepared =<span class="st"> </span>xPrepared[!xPrepared %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;before&quot;</span>, <span class="st">&quot;from&quot;</span>, <span class="st">&quot;had&quot;</span>, <span class="st">&quot;her&quot;</span>, <span class="st">&quot;in&quot;</span>, 
+xPrepared =<span class="st"> </span>xPrepared[<span class="op">!</span>xPrepared <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;before&quot;</span>, <span class="st">&quot;from&quot;</span>, <span class="st">&quot;had&quot;</span>, <span class="st">&quot;her&quot;</span>, <span class="st">&quot;in&quot;</span>, 
 <span class="st">&quot;no&quot;</span>, <span class="st">&quot;that&quot;</span>, <span class="st">&quot;with&quot;</span>, <span class="st">&quot;at&quot;</span>, <span class="st">&quot;him&quot;</span>, <span class="st">&quot;into&quot;</span>, <span class="st">&quot;of&quot;</span>, <span class="st">&quot;the&quot;</span>, <span class="st">&quot;to&quot;</span>, <span class="st">&quot;he&quot;</span>, <span class="st">&quot;his&quot;</span>, 
 <span class="st">&quot;it&quot;</span>, <span class="st">&quot;up&quot;</span>, <span class="st">&quot;for&quot;</span>, <span class="st">&quot;got&quot;</span>, <span class="st">&quot;as&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;did&quot;</span>, <span class="st">&quot;or&quot;</span>, <span class="st">&quot;was&quot;</span>, <span class="st">&quot;and&quot;</span>, <span class="st">&quot;back&quot;</span>, <span class="st">&quot;she&quot;</span>)]
 
@@ -203,53 +225,52 @@ xPrepared =<span class="st"> </span>xPrepared[!xPrepared %in%<span class="st"> <
 
 (<span class="dt">givenNames =</span> <span class="kw">findGivenNames</span>(xPrepared, <span class="dt">progress =</span> <span class="ot">FALSE</span>))</code></pre></div>
 <pre><code>##        name gender probability count
-##  1:    aunt female        1.00     6
-##  2: believe female        1.00     1
+##  1:    aunt female           1     6
+##  2: believe female           1     1
 ##  3:     boy   male        0.98    40
-##  4:   chips female        1.00     1
+##  4:   chips female           1     1
 ##  5:    dark   male        0.82    39
 ##  6:     day female        0.52    71
 ##  7:    deep   male        0.82    78
 ##  8:    full   male        0.67     3
 ##  9:    good   male        0.79    14
-## 10:   guile   male        1.00     3
-## 11:    half female        1.00     2
-## 12:    home female        0.50     6
-## 13:     jim   male        1.00  2291
-## 14:    like   male        0.60     5
+## 10:   guile   male           1     3
+## 11:    half female           1     2
+## 12:    home female         0.5     6
+## 13:     jim   male           1  2291
+## 14:    like   male         0.6     5
 ## 15:     low   male        0.73    67
-## 16:    many   male        1.00     2
-## 17:    mark   male        1.00  6178
-## 18:    next   male        1.00     1
-## 19:    part   male        1.00     1
-## 20:     pet female        1.00     1
-## 21:    play   male        1.00     7
-## 22:   polly female        0.99   191
-## 23:     saw   male        0.75    12
-## 24:  sawyer   male        1.00    14
-## 25:  season female        0.78     9
-## 26:     sid   male        0.92    71
-## 27:   small female        0.60     5
-## 28:   sugar female        0.71    17
-## 29:  supper   male        1.00     2
-## 30:    tell   male        1.00     2
-## 31:   there female        1.00     6
-## 32:    time   male        1.00     2
-## 33:     tom   male        1.00  3736
-## 34:    trap   male        1.00     2
-## 35:  vanity female        1.00     2
-## 36:    wood   male        1.00     3
+## 16:    many   male           1     2
+## 17:    mark   male           1  6176
+## 18:    next   male           1     1
+## 19:     pet female           1     1
+## 20:    play   male           1     7
+## 21:   polly female        0.99   191
+## 22:     saw   male        0.75    12
+## 23:  sawyer   male           1    14
+## 24:  season female        0.78     9
+## 25:     sid   male        0.92    71
+## 26:   small female         0.6     5
+## 27:   sugar female        0.71    17
+## 28:  supper   male           1     2
+## 29:    tell   male           1     2
+## 30:   there female           1     6
+## 31:    time   male           1     2
+## 32:     tom   male           1  3736
+## 33:    trap   male           1     2
+## 34:  vanity female           1     2
+## 35:    wood   male           1     3
 ##        name gender probability count</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We have found more than thirty terms in the genderize.io database, but </span>
 <span class="co"># many of them introduce only noise to gender data. We can remove them by setting </span>
 <span class="co"># higher threshold of &quot;count&quot; parameter. By doing that we obtain more reliable results.</span>
 
-givenNames[givenNames$count &gt;<span class="st"> </span><span class="dv">100</span>]</code></pre></div>
+givenNames[givenNames<span class="op">$</span>count <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>]</code></pre></div>
 <pre><code>##     name gender probability count
-## 1:   jim   male        1.00  2291
-## 2:  mark   male        1.00  6178
+## 1:   jim   male           1  2291
+## 2:  mark   male           1  6176
 ## 3: polly female        0.99   191
-## 4:   tom   male        1.00  3736</code></pre>
+## 4:   tom   male           1  3736</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Yes! We have got it right.</span></code></pre></div>
 <div id="cashing-results-from-free-api-plan" class="section level2">
 <h2>Cashing results from free API plan</h2>
@@ -282,7 +303,7 @@ givenNames_part1 =<span class="st"> </span><span class="kw">findGivenNames</span
 
 <span class="co"># You can see that the query stopped at 57 term in this case.</span>
 <span class="co"># We can use it tomorrow:</span>
-givenNames_part2 =<span class="st"> </span><span class="kw">findGivenNames</span>(xPrepared[<span class="dv">57</span>:<span class="kw">NROW</span>(xPrepared)])
+givenNames_part2 =<span class="st"> </span><span class="kw">findGivenNames</span>(xPrepared[<span class="dv">57</span><span class="op">:</span><span class="kw">NROW</span>(xPrepared)])
 
 <span class="co"># Finally, we can bind all parts together.</span>
 givenNames =<span class="st"> </span><span class="kw">rbind</span>(givenNames_part1, givenNames_part2)</code></pre></div>
@@ -291,8 +312,8 @@ givenNames =<span class="st"> </span><span class="kw">rbind</span>(givenNames_pa
 <h2>Encoding handling</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Genderize.io API uses UTF-8 encoding. We can also set specific locale.</span>
 <span class="kw">Sys.setlocale</span>(<span class="st">&quot;LC_ALL&quot;</span>, <span class="st">&quot;Polish&quot;</span>)
-(<span class="dt">x =</span> <span class="st">&quot;Róża&quot;</span>)
-<span class="co"># [1] &quot;Róża&quot;</span>
+(<span class="dt">x =</span> <span class="st">&quot;Róża&quot;)</span>
+<span class="st"># [1] &quot;</span>Róża&quot;
 (<span class="dt">xp =</span> <span class="kw">textPrepare</span>(x))
 <span class="co"># [1] &quot;róża&quot;</span>
 <span class="kw">findGivenNames</span>(x, <span class="dt">progress =</span> <span class="ot">FALSE</span>)
@@ -337,7 +358,25 @@ x =<span class="st"> 'Hans-Peter'</span>
 <span class="co"># 1: Hans-Peter     peter   male                2</span>
 
 <span class="co"># The classification algorithm predict &quot;Hans-Peter&quot; as male using the most</span>
-<span class="co"># common first name of the two.    </span></code></pre></div>
+<span class="co"># common first name of the two.    </span>
+
+<span class="co"># Localization</span>
+
+<span class="kw">findGivenNames</span>(<span class="st">&quot;andrea&quot;</span>, <span class="dt">country =</span> <span class="st">&quot;us&quot;</span>)
+<span class="co">#      name gender probability count</span>
+<span class="co"># 1: andrea female        0.97  2308</span>
+
+<span class="kw">findGivenNames</span>(<span class="st">&quot;andrea&quot;</span>, <span class="dt">country =</span> <span class="st">&quot;it&quot;</span>)
+<span class="co">#      name gender probability count</span>
+<span class="co"># 1: andrea  male         0.99  1070</span>
+
+<span class="kw">findGivenNames</span>(<span class="st">&quot;andrea&quot;</span>, <span class="dt">language =</span> <span class="st">&quot;en&quot;</span>)
+<span class="co">#      name gender probability count</span>
+<span class="co"># 1: andrea female        0.96  2562</span>
+
+<span class="kw">findGivenNames</span>(<span class="st">&quot;andrea&quot;</span>, <span class="dt">language =</span> <span class="st">&quot;it&quot;</span>)
+<span class="co">#      name gender probability count</span>
+<span class="co"># 1: andrea   male        0.99  1070</span></code></pre></div>
 </div>
 </div>
 <div id="calculating-gender-prediction-errors" class="section level1">
@@ -421,8 +460,8 @@ indicators[[<span class="st">'confMatrix'</span>]]
 probs =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span>, <span class="fl">0.97</span>, <span class="fl">0.98</span>, <span class="fl">0.99</span>, <span class="dv">1</span>)
 counts =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>)
 
-x =<span class="st"> </span>authorships$value
-y =<span class="st"> </span>authorships$genderCoded
+x =<span class="st"> </span>authorships<span class="op">$</span>value
+y =<span class="st"> </span>authorships<span class="op">$</span>genderCoded
 
 authorshipsGrid =
 <span class="st">    </span><span class="kw">genderizeTrain</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y,
@@ -464,7 +503,7 @@ authorshipsGrid
 
 <span class="co"># If we want to minimize &quot;errorCoded&quot; choosing standard prob=0.5 and count=1</span>
 <span class="co"># gives us the smallest possible value.</span>
-authorshipsGrid[authorshipsGrid$errorCoded ==<span class="st"> </span><span class="kw">min</span>(authorshipsGrid$errorCoded),]
+authorshipsGrid[authorshipsGrid<span class="op">$</span>errorCoded <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(authorshipsGrid<span class="op">$</span>errorCoded),]
 
 <span class="co">#     prob count errorCoded errorCodedWithoutNA   naCoded errorGenderBias</span>
 <span class="co"># 1:  0.5     1 0.07093822          0.03791469 0.03432494      0.01421801</span>
@@ -473,7 +512,7 @@ authorshipsGrid[authorshipsGrid$errorCoded ==<span class="st"> </span><span clas
 <span class="co"># choose prob = 0.97 and count = 10. The trade off is that the proportion </span>
 <span class="co"># of observation with unpredicted gender (&quot;naCodded&quot;) will greatly increase. </span>
 <span class="co"># authorshipsGrid[authorshipsGrid$errorCodedWithoutNA == </span>
-                        <span class="kw">min</span>(<span class="kw">abs</span>(authorshipsGrid$errorCodedWithoutNA)),]
+                        <span class="kw">min</span>(<span class="kw">abs</span>(authorshipsGrid<span class="op">$</span>errorCodedWithoutNA)),]
     
 <span class="co">#    prob count errorCoded errorCodedWithoutNA  naCoded errorGenderBias</span>
 <span class="co"># 1: 0.97    10  0.1990847          0.02234637 0.180778      0.01117318</span></code></pre></div>
@@ -487,15 +526,35 @@ authorshipsGrid[authorshipsGrid$errorCoded ==<span class="st"> </span><span clas
 <div id="feedback" class="section level2">
 <h2>Feedback:</h2>
 <p>If you enjoy using the package you could write a short testimonial and send it to me. I will be happy to post in on the package homepage.</p>
-<p>For any kind of feedback you can use the contact form here: <a href="http://www.wais.kamil.rzeszow.pl/kontakt/" class="uri">http://www.wais.kamil.rzeszow.pl/kontakt/</a></p>
+<p>For any kind of feedback you can use the contact form here: <a href="https://kalimu.github.io/#contact" class="uri">https://kalimu.github.io/#contact</a></p>
 </div>
 <div id="how-to-contact-the-author-regarding-research-or-commercial-project" class="section level2">
 <h2>How to contact the author regarding research or commercial project?</h2>
-<p>Please use the contact form: <a href="http://www.wais.kamil.rzeszow.pl/kontakt/" class="uri">http://www.wais.kamil.rzeszow.pl/kontakt/</a></p>
+<p>Please use the contact form: <a href="https://kalimu.github.io/#contact" class="uri">https://kalimu.github.io/#contact</a></p>
 </div>
 <div id="how-to-cite-the-package" class="section level2">
 <h2>How to cite the package?</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>(<span class="st">'genderizeR'</span>)</code></pre></div>
+<pre><code>## 
+## Wais K (2006). &quot;Gender Prediction Methods Based on First Names
+## with genderizeR.&quot; _The R Journal_, *8*(1), 17-37. doi:
+## 10.32614/RJ-2016-002 (URL: http://doi.org/10.32614/RJ-2016-002),
+## &lt;URL: https://doi.org/10.32614/RJ-2016-002&gt;.
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Article{,
+##     title = {{Gender Prediction Methods Based on First Names with
+##           genderizeR}},
+##     author = {Kamil Wais},
+##     year = {2006},
+##     journal = {{The R Journal}},
+##     doi = {10.32614/RJ-2016-002},
+##     pages = {17--37},
+##     volume = {8},
+##     number = {1},
+##     url = {https://doi.org/10.32614/RJ-2016-002},
+##   }</code></pre>
 <p>Thank You for the citation!</p>
 </div>
 </div>
@@ -507,7 +566,7 @@ authorshipsGrid[authorshipsGrid$errorCoded ==<span class="st"> </span><span clas
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

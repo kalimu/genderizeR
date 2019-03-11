@@ -7,3 +7,4 @@ data-raw
 log1.txt
 inst/doc
 vignettes/tutorial_cache
+revdep

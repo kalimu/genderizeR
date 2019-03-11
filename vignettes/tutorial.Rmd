@@ -11,10 +11,10 @@ editor_options:
   chunk_output_type: console
 ---
 R package for gender predictions based on first names 
-by Kamil Wais ([author's homepage](http://www.wais.kamil.rzeszow.pl)).
+by Kamil Wais.
 
 The package homepage:
-[http://www.wais.kamil.rzeszow.pl/genderizer/](http://www.wais.kamil.rzeszow.pl/genderizer/).
+[https://kalimu.github.io/project/genderizer/](https://kalimu.github.io/project/genderizer/).
 
 Information about the genderize.io project and documentation of the API: 
 [http://genderize.io](http://genderize.io).
@@ -429,15 +429,15 @@ Fork git repo [https://github.com/kalimu/genderizeR](https://github.com/kalimu/g
 If you enjoy using the package you could write a short testimonial 
 and send it to me. I will be happy to post in on the package homepage.
 
-For any kind of feedback you can use the contact form here: http://www.wais.kamil.rzeszow.pl/kontakt/
+For any kind of feedback you can use the contact form here: https://kalimu.github.io/#contact
 
 ## How to contact the author regarding research or commercial project?
 
-Please use the contact form: http://www.wais.kamil.rzeszow.pl/kontakt/
+Please use the contact form: https://kalimu.github.io/#contact
 
 ## How to cite the package?
 
-```{r, echo=TRUE, eval=FALSE, cache=FALSE}
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
 citation('genderizeR')
 ```
 

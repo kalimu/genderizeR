@@ -87,6 +87,53 @@ givenNames[givenNames$count > 100]
 
 
 ## ---- echo=TRUE, eval=FALSE, cache=TRUE----------------------------------
+#  # If you work with free API plan you are limited to 1000 gueries a day.
+#  # If your vector of terms to check is quite large we may want to
+#  # somehow cache the results when you reach the limit and start from
+#  # that point the next day.
+#  
+#  # When you reached the limit you will get a message...
+#  givenNames_part1 = findGivenNames(xPrepared)
+#  
+#  # Terms checked: 10/86. First names found: 4.          |   0%
+#  # Terms checked: 20/86. First names found: 7.          |  11%
+#  # Terms checked: 30/86. First names found: 12.         |  22%
+#  # Terms checked: 40/86. First names found: 17.         |  33%
+#  # Terms checked: 50/86. First names found: 22.         |  44%
+#  # Terms checked: 60/86. First names found: 25.         |  56%
+#  #   |=================================                 |  67%
+#  #  Client error: (429) Too Many Requests (RFC 6585)
+#  #  Request limit reached
+#  #
+#  # The API queries stopped at 57 term.
+#  # If you have reached the end of your API limit, you can start the function again from that term and continue finding given names next time with efficient use of the API.
+#  #  Remember to add the results to already found names and not to overwrite them.
+#  #
+#  # Warning messages:
+#  # 1: In genderizeAPI(termsQuery, apikey = apikey, ssl.verifypeer = ssl.verifypeer) :
+#  #   You have used all available requests in this subscription plan.
+#  # 2: In findGivenNames(xPrepared) : The API queries stopped.
+#  
+#  # You can see that the query stopped at 57 term in this case.
+#  # We can use it tomorrow:
+#  givenNames_part2 = findGivenNames(xPrepared[57:NROW(xPrepared)])
+#  
+#  # Finally, we can bind all parts together.
+#  givenNames = rbind(givenNames_part1, givenNames_part2)
+#  
+
+## ---- echo=TRUE, eval=FALSE, cache=TRUE----------------------------------
+#  # Genderize.io API uses UTF-8 encoding. We can also set specific locale.
+#  Sys.setlocale("LC_ALL", "Polish")
+#  (x = "Róza")
+#  # [1] "Róza"
+#  (xp = textPrepare(x))
+#  # [1] "róza"
+#  findGivenNames(x, progress = FALSE)
+#  #    name gender probability count
+#  # 1: róza female        0.89    28
+
+## ---- echo=TRUE, eval=FALSE, cache=TRUE----------------------------------
 #  
 #  # Let's say we have a character string with a first name within.
 #  x = 'Pascual-Leone Pascual, Ana Ma'
@@ -125,6 +172,25 @@ givenNames[givenNames$count > 100]
 #  
 #  # The classification algorithm predict "Hans-Peter" as male using the most
 #  # common first name of the two.
+#  
+#  # Localization
+#  
+#  findGivenNames("andrea", country = "us")
+#  #      name gender probability count
+#  # 1: andrea female        0.97  2308
+#  
+#  findGivenNames("andrea", country = "it")
+#  #      name gender probability count
+#  # 1: andrea  male         0.99  1070
+#  
+#  findGivenNames("andrea", language = "en")
+#  #      name gender probability count
+#  # 1: andrea female        0.96  2562
+#  
+#  findGivenNames("andrea", language = "it")
+#  #      name gender probability count
+#  # 1: andrea   male        0.99  1070
+#  
 
 ## ---- echo=TRUE, eval=FALSE, cache=TRUE----------------------------------
 #  # Let's calculate now some metrics of gender prediction efficiency
@@ -266,6 +332,6 @@ givenNames[givenNames$count > 100]
 #  
 #  
 
-## ---- echo=TRUE, eval=FALSE, cache=FALSE---------------------------------
-#  citation('genderizeR')
+## ---- echo=TRUE, eval=TRUE, cache=FALSE----------------------------------
+citation('genderizeR')
 

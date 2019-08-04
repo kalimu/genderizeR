@@ -7,7 +7,8 @@ api_working <- function() {
     response <- 
         tryCatch({
             response = httr::status_code(
-                httr::GET("https://api.genderize.io?name=kamil")
+                httr::GET("https://api.genderize.io?name=kamil", 
+                          httr::config(ssl_verifypeer = FALSE))
                 )       
         }, error = function(cond) {
             return(NULL)
@@ -35,13 +36,14 @@ test_that("testing genderizeAPI", {
   check_api()
 
   expect_identical(
-    httr::content(httr::GET("https://api.genderize.io?name=kamil"))$gender,
+    httr::content(httr::GET("https://api.genderize.io?name=kamil", 
+                          httr::config(ssl_verifypeer = FALSE)))$gender,
     "male"
   )
 
-  expect_true((genderizeAPI("Kamil")$limit) <= 1000)
+  expect_true((genderizeAPI("Kamil", ssl.verifypeer = FALSE)$limit) <= 1000)
   
-  expect_output(genderizeAPI("Kamil", apikey = 'test'), 'Unauthorized')
+  expect_output(genderizeAPI("Kamil", ssl.verifypeer = FALSE, apikey = 'test'), 'Unauthorized')
 
 })
 
@@ -56,7 +58,7 @@ test_that("genderize and findGivenNames", {capture.output({
        "Gold Badge of Honour of the DGAI Prof. Dr. med. Norbert R. Roewer Wuerzburg", 
        "JAN BASZKIEWICZ (3 JANUARY 1930 - 27 JANUARY 2011) IN MEMORIAM", 
        "Maria Sklodowska-Curie")
-     givenNames = findGivenNames(x, progress = FALSE)
+     givenNames = findGivenNames(x, progress = FALSE, ssl.verifypeer = FALSE)
      givenNames = givenNames[name %in% c("winston", "norbert", "jan", "maria")]
      result = genderize(x, genderDB = givenNames, 
                         blacklist = NULL, progress = FALSE)
@@ -73,10 +75,10 @@ test_that("country_id works", {
   
   check_api()
   
-  us_result <- findGivenNames("Andrea", country = "us", progress = FALSE)
+  us_result <- findGivenNames("Andrea", country = "us", progress = FALSE, ssl.verifypeer = FALSE)
   expect_equal(us_result$gender, "female")
   
-  it_result  <- findGivenNames("Andrea", country = "it", progress = FALSE)
+  it_result  <- findGivenNames("Andrea", country = "it", progress = FALSE, ssl.verifypeer = FALSE)
   expect_equal(it_result$gender, "male")
   
 })
@@ -85,10 +87,10 @@ test_that("language_id works", {
   
   check_api()
   
-  us_result <- findGivenNames("Andrea", language = "en", progress = FALSE)
+  us_result <- findGivenNames("Andrea", language = "en", progress = FALSE, ssl.verifypeer = FALSE)
   expect_equal(us_result$gender, "female")
   
-  it_result  <- findGivenNames("Andrea", language = "it", progress = FALSE)
+  it_result  <- findGivenNames("Andrea", language = "it", progress = FALSE, ssl.verifypeer = FALSE)
   expect_equal(it_result$gender, "male")
   
 })

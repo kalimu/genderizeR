@@ -1,3 +1,11 @@
+# genderizeR 2.1.1
+
+## Major changes  
+* function findGivenNames() returns now a data frame always with additional column "country_id"
+
+## Minor changes
+* more robust unit tests
+
 # genderizeR 2.0.1
 
 ## Major changes  

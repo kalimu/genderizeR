@@ -55,7 +55,8 @@
 #' 
 #' xProcessed = textPrepare(x)
 #' 
-#' foundNames = findGivenNames(xProcessed, textPrepare = FALSE)
+#' foundNames = findGivenNames(xProcessed, textPrepare = FALSE, 
+#'                             ssl.verifypeer = FALSE)
 #' foundNames[count > 100]
 #' 
 #' # (the results can differ due to new, updated data pulled from the API)
@@ -67,11 +68,11 @@
 #' 
 #' 
 #' # localization
-#' findGivenNames("andrea", country = "us")
+#' findGivenNames("andrea", country = "us", ssl.verifypeer = FALSE)
 #' #      name gender probability count
 #' # 1: andrea female        0.97  2308
 #' 
-#' findGivenNames("andrea", country = "it")
+#' findGivenNames("andrea", country = "it", ssl.verifypeer = FALSE)
 #' #      name gender probability count
 #' # 1: andrea  male         0.99  1070
 #' }

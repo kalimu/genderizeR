@@ -39,7 +39,8 @@ numberOfNames = function () {
     }
 
     pageURL <- paste0('https://genderize.io')
-    r = httr::GET(pageURL)
+    r = httr::GET(pageURL, 
+                  httr::config(ssl_verifypeer = FALSE))
     # pageHTML <- RCurl::getURL(pageURL, .encoding='UTF-8')
     tagsBefore = 
         "the database contains <span class=\"label\">"

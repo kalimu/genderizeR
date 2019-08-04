@@ -107,6 +107,7 @@ findGivenNames = function(x,
                          gender = character(), 
                          probability = character(), 
                          count = numeric(), 
+                         country_id = character(),
                          stringsAsFactors = FALSE) 
     
     dfNames = data.table::as.data.table(dfNames)
@@ -167,8 +168,16 @@ findGivenNames = function(x,
            
         }
         
-        if (NCOL(dfResponse) > 2) {
+        if (NCOL(dfResponse) == 4) {
       
+            dfResponse$country_id <- "all"
+            dfNames = data.table::rbindlist(list(dfNames, dfResponse))
+
+        }
+        
+        if (NCOL(dfResponse) == 5) {
+      
+          
             dfNames = data.table::rbindlist(list(dfNames, dfResponse))
 
         }

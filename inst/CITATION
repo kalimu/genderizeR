@@ -3,7 +3,7 @@ bibentry(bibtype = "article",
          title = "{Gender Prediction Methods Based on First Names with
           genderizeR}",
          author = c(person("Kamil", "Wais")),
-         year = 2006,
+         year = 2016,
          journal = "{The R Journal}",
          doi = "10.32614/RJ-2016-002",
          pages = "17--37",
